@@ -121,6 +121,7 @@ export interface StorageEstimate {
   usageBytes: number | null;
   quotaBytes: number | null;
   persisted: boolean;
+  volatile?: boolean;   // true when the data lives only in memory and is lost on reload
 }
 
 export interface StorageApi {
@@ -177,12 +178,13 @@ export interface PoseSample {
   yawDeg: number;       // + = the user's head turned to the user's own right
   mouthLeft: number;    // 0..1, mouth pulled to the user's own left
   mouthRight: number;   // 0..1, mouth pulled to the user's own right
+  pitchDeg?: number;    // head pitch in degrees; optional; the engine uses only its change from the calibrated value
 }
 
 export type PoseStatus = 'idle' | 'loading' | 'running' | 'denied' | 'unavailable' | 'error';
 
 export interface PoseSource {
-  start(): Promise<void>;           // never rejects; failures become a status
+  start(): Promise<void>;           // never rejects; failures become a status; may resolve before the status is 'running'
   stop(): void;                     // stops camera tracks; status 'idle'
   getStatus(): PoseStatus;
   subscribe(cb: (s: PoseSample) => void): () => void;
@@ -373,6 +375,7 @@ export interface CoverProps {
   composer: string;
   detail?: string;
   size?: 'sm' | 'md' | 'lg';   // 120 / 200 / 300 px wide, ratio 3:4
+  class?: string;
 }
 
 export interface PageOverlayInfo { page: number; crop: CropBox }
@@ -429,6 +432,8 @@ export interface ControlsSheetProps {
   cameraStatus: PoseStatus;
   yawThresholdDeg: number;
   onYawThreshold: (deg: number) => void;
+  flip: boolean;
+  onFlip: (on: boolean) => void;
   onRecalibrate: () => void;
   onAnnotate: () => void;
   onExit: () => void;

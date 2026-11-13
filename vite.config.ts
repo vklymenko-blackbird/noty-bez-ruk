@@ -7,8 +7,9 @@ import { basename } from 'node:path';
 
 function lanePorts() {
   const m = /lane(\d+)$/.exec(basename(process.cwd()));
-  const n = process.env.LANE && /^\d+$/.test(process.env.LANE) ? Number(process.env.LANE) : m ? Number(m[1]) : 0;
-  const base = 3200 + n * 10;
+  const envPort = process.env.PORT && /^\d+$/.test(process.env.PORT) ? Number(process.env.PORT) : null;
+  const lane = process.env.LANE && /^\d+$/.test(process.env.LANE) ? Number(process.env.LANE) : m ? Number(m[1]) : null;
+  const base = envPort ?? (lane !== null ? 3200 + lane * 10 : 5173);
   return { dev: base, preview: base + 1, e2e: base + 2 };
 }
 
@@ -68,6 +69,8 @@ export default defineConfig({
           'mediapipe/face_landmarker.task',
           'mediapipe/wasm/vision_wasm_internal.*',
           'pdfjs/wasm/*',
+          'pdfjs/cmaps/*',
+          'pdfjs/standard_fonts/*',
         ],
         maximumFileSizeToCacheInBytes: 16 * 1024 * 1024,
         navigateFallback: 'index.html',

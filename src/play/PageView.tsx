@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'preact/hooks';
-import type { PageViewProps } from '../contracts';
+import { FULL_PAGE, type PageViewProps } from '../contracts';
 import './pageview.css';
 
 /** STUB: replaced by package page-view. Renders the current page canvas, no cache, no themes, no half. */
@@ -24,5 +24,10 @@ export default function PageView(props: PageViewProps) {
       cancelled = true;
     };
   }, [doc, position.page]);
-  return <div class="pageview-stub" ref={host} data-testid="pageview" />;
+  return (
+    <div class="pageview-stub" data-testid="pageview">
+      <div ref={host} />
+      <div class="pageview-stub-overlay">{props.renderOverlay?.({ page: position.page, crop: FULL_PAGE })}</div>
+    </div>
+  );
 }
