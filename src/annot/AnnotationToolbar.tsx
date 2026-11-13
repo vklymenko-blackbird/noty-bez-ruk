@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import type { AnnotationToolbarProps, PenColor } from '../contracts';
 import { t, type StringKey } from '../i18n';
 import { Button, ConfirmSheet, IconButton, toast } from '../ui';
+import './annot.css';
 
 const PEN_SWATCHES: { color: PenColor; label: StringKey; token: string }[] = [
   { color: 'ink', label: 'annot.color.ink', token: 'var(--pen-ink)' },

@@ -4,6 +4,7 @@ import { ERASER_RADIUS, HIGHLIGHTER_WIDTH, PEN_WIDTH, STAMP_SIZE } from '../cont
 import { drawMarks } from '../annot/draw';
 import { newId } from '../annot/model';
 import { inkPalette } from '../paper';
+import './annot.css';
 
 /** Minimum distance between two stored points, in page fractions. */
 const MIN_STEP = 0.002;
@@ -50,8 +51,11 @@ export default function AnnotationLayer({ session, page, crop, editing, paper, f
     if (!canvas) return;
     const ro = new ResizeObserver(() => {
       const scale = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.max(1, Math.round(canvas.clientWidth * scale));
-      canvas.height = Math.max(1, Math.round(canvas.clientHeight * scale));
+      const w = Math.max(1, Math.round(canvas.clientWidth * scale));
+      const h = Math.max(1, Math.round(canvas.clientHeight * scale));
+      if (w === canvas.width && h === canvas.height) return;
+      canvas.width = w;
+      canvas.height = h;
       redraw();
     });
     ro.observe(canvas);
