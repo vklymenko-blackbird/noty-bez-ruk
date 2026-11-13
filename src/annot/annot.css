@@ -16,7 +16,11 @@
 
 /* Annotation toolbar: the bottom bar of note mode. */
 .annot-toolbar {
-  position: relative;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
   background: var(--surface);
   border-top: 1px solid var(--rule);
   border-radius: var(--r-sheet) var(--r-sheet) 0 0;
