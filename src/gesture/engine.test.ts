@@ -87,13 +87,14 @@ describe('gesture engine: head', () => {
   });
 
   it('a hold that drops below threshold minus 3 is cancelled', () => {
-    // Steady 15 after the hold starts: 15 is below 17, so the hold is cancelled.
+    // The filter starts empty after calibration, so arming starts at 2100.
+    // Steady 15 from 2300 is below 17: the hold is cancelled at 2500 (before 500 ms).
     const engine = calibrated();
-    const samples = [...series(2100, 4, 30), ...series(2500, 20, 15)];
+    const samples = [...series(2100, 2, 30), ...series(2300, 20, 15)];
     expect(turns(run(engine, samples))).toEqual([]);
-    // Steady 18 stays above 17, so the hold completes.
+    // Steady 18 stays above 17, so the hold completes at 2600 (500 ms after 2100).
     const kept = calibrated();
-    const kept2 = [...series(2100, 4, 30), ...series(2500, 20, 18)];
+    const kept2 = [...series(2100, 2, 30), ...series(2300, 20, 18)];
     expect(turns(run(kept, kept2))).toEqual(['next']);
   });
 
@@ -134,16 +135,16 @@ describe('gesture engine: head', () => {
 
   it('armProgress and cooldownProgress follow the timers', () => {
     const engine = calibrated();
-    run(engine, series(2100, 2, 30)); // arming starts at 2200
+    run(engine, series(2100, 1, 30)); // arming starts at 2100 (filter empty)
     expect(engine.getState().armProgress).toBe(0);
-    run(engine, series(2300, 2, 30)); // 2300 and 2400
+    run(engine, series(2200, 2, 30)); // 2200 and 2300
     expect(engine.getState().armProgress).toBeCloseTo(0.4, 5);
     expect(engine.getState().dir).toBe('next');
-    // Turn fires at 2700 (armStart 2200 + 500). Cooldown is 1500 ms.
-    const events = run(engine, series(2500, 3, 30)); // 2500, 2600, 2700
-    expect(events).toEqual([{ type: 'turn', dir: 'next', t: 2700 }]);
+    // Turn fires at 2600 (armStart 2100 + 500). Cooldown is 1500 ms.
+    const events = run(engine, series(2400, 3, 30)); // 2400, 2500, 2600
+    expect(events).toEqual([{ type: 'turn', dir: 'next', t: 2600 }]);
     expect(engine.getState().phase).toBe('cooldown');
-    run(engine, series(2800, 3, 30)); // 2800, 2900, 3000
+    run(engine, series(2700, 3, 30)); // 2700, 2800, 2900
     expect(engine.getState().cooldownProgress).toBeCloseTo(0.2, 5);
     expect(engine.getState().armProgress).toBe(0);
   });
