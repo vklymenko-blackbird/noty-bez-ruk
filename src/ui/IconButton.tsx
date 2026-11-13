@@ -5,14 +5,15 @@ export interface IconButtonProps {
   label: string;
   onClick?: (e: MouseEvent) => void;
   active?: boolean;
+  disabled?: boolean;
   class?: string;
   'data-testid'?: string;
 }
 
-export function IconButton({ icon, label, onClick, active, class: cls, ...rest }: IconButtonProps) {
+export function IconButton({ icon, label, onClick, active, disabled, class: cls, ...rest }: IconButtonProps) {
   const c = ['ui-icon-button', active ? 'ui-icon-button--active' : '', cls ?? ''].filter(Boolean).join(' ');
   return (
-    <button type="button" class={c} aria-label={label} title={label} onClick={onClick} data-testid={rest['data-testid']}>
+    <button type="button" class={c} aria-label={label} title={label} onClick={onClick} disabled={disabled} data-testid={rest['data-testid']}>
       <Icon name={icon} />
     </button>
   );
