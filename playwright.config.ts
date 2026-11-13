@@ -1,6 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 import { resolve } from 'node:path';
-import { lanePorts } from './scripts/lane.mjs';
+import { basename } from 'node:path';
+
+function lanePorts() {
+  const m = /lane(\d+)$/.exec(basename(process.cwd()));
+  const n = process.env.LANE && /^\d+$/.test(process.env.LANE) ? Number(process.env.LANE) : m ? Number(m[1]) : 0;
+  const base = 3200 + n * 10;
+  return { dev: base, preview: base + 1, e2e: base + 2 };
+}
 
 const { e2e: port } = lanePorts();
 const baseURL = `http://localhost:${port}/noty-bez-ruk/`;

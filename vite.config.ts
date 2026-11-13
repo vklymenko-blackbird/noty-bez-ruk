@@ -3,7 +3,14 @@ import { defineConfig, type Plugin } from 'vite';
 import preact from '@preact/preset-vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { readFileSync } from 'node:fs';
-import { lanePorts } from './scripts/lane.mjs';
+import { basename } from 'node:path';
+
+function lanePorts() {
+  const m = /lane(\d+)$/.exec(basename(process.cwd()));
+  const n = process.env.LANE && /^\d+$/.test(process.env.LANE) ? Number(process.env.LANE) : m ? Number(m[1]) : 0;
+  const base = 3200 + n * 10;
+  return { dev: base, preview: base + 1, e2e: base + 2 };
+}
 
 const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string };
 const ports = lanePorts();
