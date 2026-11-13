@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/preact';
 import type { GestureSnapshot, GestureState, PoseStatus } from '../contracts';
 import CalibrationOverlay from './CalibrationOverlay';
@@ -68,8 +68,14 @@ describe('CalibrationOverlay', () => {
     });
     expect(screen.getByTestId('calib-overlay')).toBeTruthy();
     act(() => {
-      vi.advanceTimersByTime(1 + 160);
+      vi.advanceTimersByTime(1);
     });
+    act(() => {});
+    expect(screen.getByTestId('calib-overlay').className).toContain('calib--out');
+    act(() => {
+      vi.advanceTimersByTime(160);
+    });
+    act(() => {});
     expect(screen.queryByTestId('calib-overlay')).toBeNull();
   });
 });
