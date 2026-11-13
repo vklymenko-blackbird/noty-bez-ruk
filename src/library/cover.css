@@ -1,0 +1,5 @@
+/* STUB: replaced by package import-covers. */
+.cover-stub { aspect-ratio: 3 / 4; padding: var(--sp-3); background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-card); font-family: var(--font-display); font-style: italic; }
+.cover-stub--sm { width: 120px; }
+.cover-stub--md { width: 200px; }
+.cover-stub--lg { width: 300px; }

@@ -1,0 +1,1 @@
+export { initPwa } from './register';

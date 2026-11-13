@@ -1,0 +1,16 @@
+[
+  "turn-right-hold",
+  "turn-left-hold",
+  "glance-short",
+  "hold-long",
+  "double-turn",
+  "too-soon",
+  "nod-noise",
+  "face-lost-mid-hold",
+  "face-returns-turned",
+  "mouth-right-hold",
+  "mouth-left-hold",
+  "mouth-smile",
+  "calibration-no-face",
+  "slow-drift"
+]
