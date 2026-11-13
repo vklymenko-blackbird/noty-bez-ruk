@@ -2,8 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/preact';
 import Cover, { tintIndex } from './Cover';
 
-function tintClass(container: HTMLElement): string {
-  const root = container.querySelector('[data-testid="cover"]') as HTMLElement;
+function tintClass(container: Element): string {
+  const root = container.querySelector<HTMLElement>('[data-testid="cover"]');
+  if (!root) throw new Error('cover root not found');
   return [...root.classList].find((c) => c.startsWith('cover--tint-')) ?? '';
 }
 
