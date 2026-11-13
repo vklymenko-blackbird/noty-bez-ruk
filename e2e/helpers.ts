@@ -35,9 +35,9 @@ export async function openApp(page: Page, opts: OpenOpts = {}): Promise<void> {
 }
 
 /** Adds a fixture PDF to storage and returns its score id. */
-export async function addFixtureScore(page: Page, fileName: string, title: string, pageCount: number): Promise<string> {
+export async function addFixtureScore(page: Page, fileName: string, title: string, pageCount: number, composer?: string): Promise<string> {
   const b64 = readFileSync(fixturePath(fileName)).toString('base64');
-  return page.evaluate(([data, t, n]) => window.__notyTest!.addScore(data as string, { title: t as string, pageCount: n as number }), [b64, title, pageCount]);
+  return page.evaluate(([data, t, n, c]) => window.__notyTest!.addScore(data as string, { title: t as string, pageCount: n as number, composer: c as string | undefined }), [b64, title, pageCount, composer]);
 }
 
 /** Waits until the gesture probe says running, then replays a trace from tests/traces. */
@@ -63,13 +63,20 @@ export interface ErrorWatch {
   expectNoErrors(): void;
 }
 
-/** Collects console errors, page errors and CSP violations. */
-export function watchErrors(page: Page): ErrorWatch {
+/** MediaPipe prints its info log through console.error. Pass this as `ignore` in tests that run the real camera. */
+export const MEDIAPIPE_LOG_IGNORE: RegExp[] = [/^console: (INFO|WARNING): /, /^console: [WI]\d{4} /, /XNNPACK/, /gl_context/i, /Graph successfully started/i];
+
+/** Collects console errors, page errors and CSP violations. A CSP violation is never ignored. */
+export function watchErrors(page: Page, opts: { ignore?: RegExp[] } = {}): ErrorWatch {
   const errors: string[] = [];
+  const record = (entry: string) => {
+    if (!entry.includes('CSP violation') && (opts.ignore ?? []).some((re) => re.test(entry))) return;
+    errors.push(entry);
+  };
   page.on('console', (m) => {
-    if (m.type() === 'error') errors.push(`console: ${m.text()}`);
+    if (m.type() === 'error') record(`console: ${m.text()}`);
   });
-  page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
+  page.on('pageerror', (e) => record(`pageerror: ${e.message}`));
   void page.addInitScript(() => {
     window.addEventListener('securitypolicyviolation', (e) => {
       console.error(`CSP violation: ${e.violatedDirective} ${e.blockedURI}`);

@@ -1,9 +1,20 @@
 import 'fake-indexeddb/auto';
-import { beforeEach } from 'vitest';
+import { cleanup } from '@testing-library/preact';
+import { afterEach, beforeEach } from 'vitest';
+import { settings } from '../src/settings';
+import { storage } from '../src/storage';
 
-beforeEach(() => {
+afterEach(() => cleanup());
+
+beforeEach(async () => {
   try {
     localStorage.clear();
+  } catch {
+    /* ignore */
+  }
+  settings.reset();
+  try {
+    for (const s of await storage.listScores()) await storage.deleteScore(s.id);
   } catch {
     /* ignore */
   }

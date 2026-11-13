@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'preact/hooks';
-import type { AnnotSession, GestureController, GestureKind, PaperTheme, PdfDoc, PoseStatus, ScreenProps, TurnDir, TurnPosition } from '../contracts';
+import type { AnnotSession, GestureController, GestureKind, PaperTheme, PdfDoc, PoseSample, PoseSource, PoseStatus, ScreenProps, TurnDir, TurnPosition } from '../contracts';
 import { PAPER_THEMES } from '../paper';
 import { openPdf } from '../pdf';
 import { storage } from '../storage';
@@ -96,15 +96,18 @@ function AnnotHarness({ id }: { id: string }) {
 function GestureHarness() {
   const [turns, setTurns] = useState<TurnDir[]>([]);
   const [, force] = useState(0);
+  const pose: PoseSource = useMemo(() => createPoseSource(), []);
+  const [sample, setSample] = useState<PoseSample | null>(null);
   const ctl: GestureController = useMemo(
     () =>
       createGestureController({
-        pose: createPoseSource(),
+        pose,
         getSettings: () => settings.get(),
         onTurn: (d) => setTurns((t) => [...t, d]),
       }),
-    [],
+    [pose],
   );
+  useEffect(() => pose.subscribe(setSample), [pose]);
   useEffect(() => {
     setProbe('gesture', () => ctl.getSnapshot());
     const off = ctl.subscribe(() => force((n) => n + 1));
@@ -117,12 +120,15 @@ function GestureHarness() {
   }, [ctl]);
   const snapshot = ctl.getSnapshot();
   const gesture: GestureKind = settings.get().gesture;
+  const n1 = (v: number) => v.toFixed(1);
+  const readout = `yaw ${sample ? n1(sample.yawDeg) : '-'} pitch ${sample && sample.pitchDeg !== undefined ? n1(sample.pitchDeg) : '-'} rel ${n1(snapshot.state.relYawDeg)} mouthL ${sample ? sample.mouthLeft.toFixed(2) : '-'} mouthR ${sample ? sample.mouthRight.toFixed(2) : '-'} phase ${snapshot.state.phase} status ${snapshot.status}`;
   return (
     <div class="dev-harness" data-testid="dev-gesture">
       <CalibrationOverlay snapshot={snapshot} stream={ctl.getVideoStream()} onSkip={() => {}} />
       <GestureHud snapshot={snapshot} gesture={gesture} />
       <div class="dev-bar" data-nav-ignore>
         <span data-testid="dev-turns">{turns.join(',')}</span>
+        <span data-testid="dev-pose">{readout}</span>
       </div>
     </div>
   );
@@ -135,6 +141,7 @@ function ControlsHarness() {
   const [paper, setPaper] = useState<PaperTheme>('ivory');
   const [crop, setCrop] = useState(true);
   const [yaw, setYaw] = useState(20);
+  const [flip, setFlip] = useState(false);
   const status: PoseStatus = 'running';
   const rec = (name: string, value: unknown) => setLast(`${name}:${String(value)}`);
   return (
@@ -156,6 +163,8 @@ function ControlsHarness() {
         cameraStatus={status}
         yawThresholdDeg={yaw}
         onYawThreshold={(v) => { setYaw(v); rec('yaw', v); }}
+        flip={flip}
+        onFlip={(v) => { setFlip(v); rec('flip', v); }}
         onRecalibrate={() => rec('recalibrate', '')}
         onAnnotate={() => rec('annotate', '')}
         onExit={() => rec('exit', '')}

@@ -30,7 +30,18 @@ export interface NotyTest {
   setSettings(patch: Partial<Settings>): void;
   storage: StorageApi;
   navigate(path: string): void;
-  modules: { pdf: object; paper: object; pose: object; gesture: object; annot: object; sources: object; library: object; input: object; wake: object; play: object };
+  modules: {
+    pdf: typeof import('../pdf');
+    paper: typeof import('../paper');
+    pose: typeof import('../pose');
+    gesture: typeof import('../gesture');
+    annot: typeof import('../annot');
+    sources: typeof import('../sources');
+    library: typeof import('../library');
+    input: typeof import('../input');
+    wake: typeof import('../wake');
+    play: typeof import('../play');
+  };
 }
 
 declare global {
