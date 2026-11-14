@@ -439,6 +439,15 @@ body:has(.annot-toolbar) .ui-toast-host {
   top: calc(var(--sp-5) + env(safe-area-inset-top));
   bottom: auto;
 }
+/* The camera banner sits at the top of the play page. A toast that moved to the top stays below it. */
+body:has(.play-banner):has(.ui-sheet-scrim) .ui-toast-host {
+  top: calc(var(--sp-3) + env(safe-area-inset-top) + var(--toast-below-banner));
+}
+@media (max-width: 560px) {
+  body:has(.play-banner):has(.ui-sheet-scrim) .ui-toast-host {
+    top: calc(var(--sp-3) + env(safe-area-inset-top) + var(--toast-below-banner-narrow));
+  }
+}
 .ui-toast--ok {
   border-left: 4px solid var(--ok);
 }

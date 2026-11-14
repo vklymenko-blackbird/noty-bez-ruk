@@ -57,6 +57,8 @@
   --dur-2: 240ms;
 
   --touch: 48px;
+  --toast-below-banner: 72px;
+  --toast-below-banner-narrow: 192px;
   --touch-play: 64px;
   --content-max: 960px;
   --screen-pad: 24px;

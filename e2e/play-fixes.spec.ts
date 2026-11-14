@@ -129,3 +129,28 @@ test('a finger in note mode shows the pen-only hint once per note session', asyn
   await page.waitForTimeout(300);
   await expect(hint).toHaveCount(0);
 });
+
+for (const size of [
+  { width: 744, height: 1133 },
+  { width: 390, height: 844 },
+]) {
+  test(`F: the wake hint toast stays below the camera banner when a sheet is open (${size.width} px)`, async ({ page }) => {
+    await page.setViewportSize(size);
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'wakeLock', { configurable: true, value: undefined });
+      Object.defineProperty(navigator, 'mediaDevices', {
+        configurable: true,
+        value: { getUserMedia: () => Promise.reject(new DOMException('denied', 'NotAllowedError')), enumerateDevices: () => Promise.resolve([]) },
+      });
+    });
+    await openApp(page, { query: 'camera=1', settings: { gesture: 'head', halfPage: false } });
+    await openPlay(page);
+    await expect(page.getByTestId('play-camera-banner')).toBeVisible({ timeout: 20_000 });
+    await expect(page.getByTestId('toast')).toBeVisible();
+    await page.mouse.click(size.width / 2, size.height / 2);
+    await expect(page.getByTestId('controls-sheet')).toBeVisible();
+    await expect(page.getByTestId('toast')).toBeVisible();
+    const [toastBox, bannerBox] = await Promise.all([page.getByTestId('toast').boundingBox(), page.getByTestId('play-camera-banner').boundingBox()]);
+    expect(toastBox!.y).toBeGreaterThanOrEqual(bannerBox!.y + bannerBox!.height);
+  });
+}
