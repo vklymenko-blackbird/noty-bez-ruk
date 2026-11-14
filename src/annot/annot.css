@@ -35,14 +35,14 @@
   display: flex;
   align-items: center;
   gap: var(--sp-2);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
 }
 
-.annot-toolbar__row::-webkit-scrollbar {
-  display: none;
+.annot-toolbar__row + .annot-toolbar__row {
+  margin-top: var(--sp-2);
+}
+
+.annot-toolbar__row--stamps {
+  justify-content: center;
 }
 
 .annot-toolbar__group {
@@ -54,6 +54,11 @@
 
 .annot-toolbar__end {
   margin-left: auto;
+}
+
+.annot-toolbar__end .ui-button {
+  min-height: 48px;
+  white-space: nowrap;
 }
 
 .annot-toolbar__sep {
@@ -70,6 +75,7 @@
   min-height: 48px;
   justify-content: center;
   padding: 0 var(--sp-2);
+  flex-shrink: 0;
 }
 
 .annot-swatch .ui-chip__swatch {

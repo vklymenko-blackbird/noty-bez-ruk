@@ -146,6 +146,7 @@ export const uk = {
   'annot.clear': 'Очистити сторінку',
   'annot.clear.confirm': 'Стерти всі позначки на цій сторінці?',
   'annot.save': 'Зберегти позначки',
+  'annot.saveShort': 'Зберегти',
   'annot.cancel': 'Не зберігати',
   'annot.saved': 'Позначки збережено',
   'annot.penOnly': 'Малюйте Apple Pencil. Палець можна ввімкнути в налаштуваннях.',

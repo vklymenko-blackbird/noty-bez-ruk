@@ -89,6 +89,22 @@ export default function AnnotationToolbar({ session, page, onDone, onCancel }: A
               onClick={() => session.setTool({ tool: 'eraser' })}
               data-testid="tool-eraser"
             />
+          </div>
+          <span class="annot-toolbar__sep" aria-hidden="true" />
+          <div class="annot-toolbar__group">
+            <IconButton icon="undo" label={t('annot.undo')} disabled={saving || !canUndo} onClick={() => session.undo(page)} data-testid="annot-undo" />
+            <IconButton icon="redo" label={t('annot.redo')} disabled={saving || !canRedo} onClick={() => session.redo(page)} data-testid="annot-redo" />
+            <IconButton icon="trash" label={t('annot.clear')} disabled={saving} onClick={() => setConfirmClear(true)} data-testid="annot-clear" />
+          </div>
+          <div class="annot-toolbar__group annot-toolbar__end">
+            <Button variant="primary" icon="check" disabled={saving} onClick={done} data-testid="annot-done">
+              <span aria-hidden="true">{t('annot.saveShort')}</span>
+              <span class="sr-only">{t('annot.save')}</span>
+            </Button>
+          </div>
+        </div>
+        <div class="annot-toolbar__row annot-toolbar__row--stamps">
+          <div class="annot-toolbar__group">
             {STAMP_DIGITS.map((d) => {
               const selected = tool.tool === 'stamp' && tool.stampDigit === d;
               return (
@@ -106,17 +122,6 @@ export default function AnnotationToolbar({ session, page, onDone, onCancel }: A
                 </button>
               );
             })}
-          </div>
-          <span class="annot-toolbar__sep" aria-hidden="true" />
-          <div class="annot-toolbar__group">
-            <IconButton icon="undo" label={t('annot.undo')} disabled={saving || !canUndo} onClick={() => session.undo(page)} data-testid="annot-undo" />
-            <IconButton icon="redo" label={t('annot.redo')} disabled={saving || !canRedo} onClick={() => session.redo(page)} data-testid="annot-redo" />
-            <IconButton icon="trash" label={t('annot.clear')} disabled={saving} onClick={() => setConfirmClear(true)} data-testid="annot-clear" />
-          </div>
-          <div class="annot-toolbar__group annot-toolbar__end">
-            <Button variant="primary" icon="check" disabled={saving} onClick={done} data-testid="annot-done">
-              {t('annot.save')}
-            </Button>
           </div>
         </div>
       </div>

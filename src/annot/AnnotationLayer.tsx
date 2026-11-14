@@ -4,6 +4,8 @@ import { ERASER_RADIUS, HIGHLIGHTER_WIDTH, PEN_WIDTH, STAMP_SIZE } from '../cont
 import { drawMarks } from '../annot/draw';
 import { newId } from '../annot/model';
 import { inkPalette } from '../paper';
+import { toast } from '../ui';
+import { t } from '../i18n';
 import './annot.css';
 
 /** Minimum distance between two stored points, in page fractions. */
@@ -27,6 +29,7 @@ export default function AnnotationLayer({ session, page, crop, editing, paper, f
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pendingRef = useRef<PendingStroke | null>(null);
   const downRef = useRef(false);
+  const penHintShown = useRef(false);
   const latest = useRef({ session, page, crop, paper, fingerDraw, editing });
   latest.current = { session, page, crop, paper, fingerDraw, editing };
 
@@ -88,6 +91,11 @@ export default function AnnotationLayer({ session, page, crop, editing, paper, f
     redraw();
   }, [crop.x, crop.y, crop.w, crop.h, paper, redraw]);
 
+  // A new note session may show the pen-only hint again.
+  useEffect(() => {
+    penHintShown.current = false;
+  }, [editing]);
+
   // Leaving edit mode drops any stroke in progress.
   useEffect(() => {
     if (!editing) {
@@ -111,7 +119,14 @@ export default function AnnotationLayer({ session, page, crop, editing, paper, f
 
   const accepts = (e: PointerEvent): boolean => {
     if (!latest.current.editing) return false;
-    if (e.pointerType === 'touch') return latest.current.fingerDraw;
+    if (e.pointerType === 'touch') {
+      if (latest.current.fingerDraw) return true;
+      if (e.type === 'pointerdown' && !penHintShown.current) {
+        penHintShown.current = true;
+        toast(t('annot.penOnly'));
+      }
+      return false;
+    }
     return true;
   };
 
