@@ -20,7 +20,38 @@ describe('sanitizeSettings', () => {
     expect(s.gesture).toBe('head');
     expect(s.paper).toBe('night');
     expect(s.keysNext).toEqual(['a']);
+    // An empty stored list is kept (F5): the user may have no key for one direction.
+    expect(s.keysPrev).toEqual([]);
+  });
+  it('uses defaults only when the stored value is not an array (F5)', () => {
+    const s = sanitizeSettings({ keysNext: 'x' });
+    expect(s.keysNext).toEqual(DEFAULT_SETTINGS.keysNext);
     expect(s.keysPrev).toEqual(DEFAULT_SETTINGS.keysPrev);
+  });
+  it('keeps the next and previous lists disjoint (F5)', () => {
+    const s = sanitizeSettings({ keysNext: ['a', 'b'], keysPrev: ['b', 'c'] });
+    expect(s.keysNext).toEqual(['a', 'b']);
+    expect(s.keysPrev).toEqual(['c']);
+  });
+});
+
+describe('settings store keys (F5)', () => {
+  it('moving the last next key to previous leaves next empty and it no longer turns forward', () => {
+    const store = createSettingsStore();
+    store.set({ keysNext: ['x'], keysPrev: ['y'] });
+    store.set({ keysPrev: ['y', 'x'] });
+    expect(store.get().keysNext).toEqual([]);
+    expect(store.get().keysPrev).toEqual(['y', 'x']);
+    // The saved value also keeps the empty list.
+    const again = createSettingsStore();
+    expect(again.get().keysNext).toEqual([]);
+    expect(again.get().keysPrev).toEqual(['y', 'x']);
+  });
+  it('a key learned for next is removed from previous', () => {
+    const store = createSettingsStore();
+    store.set({ keysNext: ['x'], keysPrev: ['y'] });
+    store.set({ keysNext: ['x', 'y'] });
+    expect(store.get().keysPrev).toEqual([]);
   });
 });
 

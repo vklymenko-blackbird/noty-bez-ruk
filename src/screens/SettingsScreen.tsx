@@ -75,6 +75,11 @@ function PedalRow({
         </Button>
       </div>
       <div class="set-pedal-row__chips">
+        {keys.length === 0 ? (
+          <span class="set-pedal-row__none" data-testid={`${rowTestId}-none`}>
+            {t('settings.pedal.noKeys')}
+          </span>
+        ) : null}
         {keys.map((key) => (
           <Chip key={key} selected onClick={() => onRemove(key)} data-testid={`${rowTestId}-chip`}>
             {keyLabel(key)}

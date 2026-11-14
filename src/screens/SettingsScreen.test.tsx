@@ -59,6 +59,17 @@ describe('SettingsScreen', () => {
     expect(settings.get().keysNext).not.toContain('ArrowRight');
   });
 
+  it('shows a muted note when a direction has no keys, and the last next key is not kept (F5)', () => {
+    settings.set({ keysNext: ['q'], keysPrev: ['w'] });
+    renderScreen();
+    fireEvent.click(screen.getByTestId('set-learn-prev'));
+    fireEvent.keyDown(window, { key: 'q' });
+    expect(settings.get().keysNext).toEqual([]);
+    expect(settings.get().keysPrev).toEqual(['w', 'q']);
+    expect(screen.getByTestId('set-keys-next-none').textContent).toBe('Немає клавіш');
+    expect(screen.queryByTestId('set-keys-prev-none')).toBeNull();
+  });
+
   it('Escape cancels learn mode without changing keys', () => {
     renderScreen();
     fireEvent.click(screen.getByTestId('set-learn-next'));

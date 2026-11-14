@@ -181,6 +181,7 @@ export const uk = {
   'settings.pedal.next': 'Клавіші «далі»',
   'settings.pedal.prev': 'Клавіші «назад»',
   'settings.pedal.learn': 'Навчити клавішу',
+  'settings.pedal.noKeys': 'Немає клавіш',
   'settings.pedal.press': 'Натисніть педаль…',
   'settings.pedal.reset': 'Скинути клавіші',
   'settings.pedal.space': 'Пробіл',

@@ -29,14 +29,17 @@ function bool(raw: unknown, fallback: boolean): boolean {
 }
 function keys(raw: unknown, fallback: string[]): string[] {
   if (!Array.isArray(raw)) return [...fallback];
+  // A stored array is kept as it is, even when empty: the user may have no key for one direction.
   const list = raw.filter((k): k is string => typeof k === 'string' && k.length > 0 && k.length <= 32).slice(0, 16);
-  return list.length > 0 ? list : [...fallback];
+  return [...new Set(list)];
 }
 
 /** Unknown or invalid fields fall back to defaults. Numbers are clamped to SETTING_LIMITS. */
 export function sanitizeSettings(raw: unknown): Settings {
   const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
   const d = DEFAULT_SETTINGS;
+  const keysNext = keys(r.keysNext, d.keysNext);
+  const keysPrev = keys(r.keysPrev, d.keysPrev);
   return {
     version: 1,
     gesture: pick(r.gesture, GESTURES, d.gesture),
@@ -50,8 +53,9 @@ export function sanitizeSettings(raw: unknown): Settings {
     autoCrop: bool(r.autoCrop, d.autoCrop),
     appTheme: pick(r.appTheme, THEMES, d.appTheme),
     fingerDraw: bool(r.fingerDraw, d.fingerDraw),
-    keysNext: keys(r.keysNext, d.keysNext),
-    keysPrev: keys(r.keysPrev, d.keysPrev),
+    keysNext,
+    // One key never turns both ways: a key in the next list is removed from the previous list.
+    keysPrev: keysPrev.filter((k) => !keysNext.includes(k)),
     useGpu: bool(r.useGpu, d.useGpu),
     onboardingDone: bool(r.onboardingDone, d.onboardingDone),
     librarySort: pick(r.librarySort, SORTS, d.librarySort),
@@ -105,7 +109,12 @@ export function createSettingsStore(): SettingsStore {
   return {
     get: () => current,
     set(patch) {
-      current = sanitizeSettings({ ...current, ...patch });
+      const merged: Record<string, unknown> = { ...current, ...patch };
+      // When only the previous list changes, its keys win over the next list (a learned key moves).
+      if (patch.keysPrev && !patch.keysNext) {
+        merged.keysNext = current.keysNext.filter((k) => !patch.keysPrev!.includes(k));
+      }
+      current = sanitizeSettings(merged);
       save(current);
       applyTheme(current.appTheme);
       emit();
