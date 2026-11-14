@@ -1,0 +1,147 @@
+/* Calibration overlay and gesture HUD. Colours come from tokens only (SPEC 1.4). */
+
+.calib {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-5);
+  padding:
+    calc(var(--sp-5) + env(safe-area-inset-top))
+    calc(var(--sp-5) + env(safe-area-inset-right))
+    calc(var(--sp-5) + env(safe-area-inset-bottom))
+    calc(var(--sp-5) + env(safe-area-inset-left));
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  color: var(--ink);
+  text-align: center;
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.calib--out {
+  opacity: 0;
+}
+
+.calib__oval {
+  width: 160px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  color: var(--ink-muted);
+}
+
+.calib__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+/* The ring's svg rule must not reach the icon inside the oval. */
+.calib .calib__oval svg {
+  position: static;
+  inset: auto;
+  transform: none;
+}
+
+.calib__done-icon {
+  color: var(--ok);
+}
+
+.calib__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-32);
+  font-weight: 500;
+  line-height: 1.2;
+  max-width: 24ch;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.calib__starting {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.calib__hint {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-15);
+  line-height: 1.45;
+  max-width: 36ch;
+  color: var(--ink-muted);
+}
+
+.gesture-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.gesture-hud__dot {
+  position: absolute;
+  top: calc(var(--sp-4) + env(safe-area-inset-top));
+  right: calc(var(--sp-4) + env(safe-area-inset-right));
+  width: 10px;
+  height: 10px;
+  border-radius: var(--r-pill);
+  pointer-events: none;
+}
+
+.gesture-hud__dot[data-state='paused'] {
+  background: var(--ink-muted);
+  opacity: 0.5;
+}
+
+.gesture-hud__dot[data-state='lost'] {
+  background: var(--ink-muted);
+}
+
+.gesture-hud__dot[data-state='arming'] {
+  background: var(--warn);
+}
+
+.gesture-hud__dot[data-state='seen'] {
+  background: var(--ok);
+}
+
+.gesture-hud__ring {
+  position: absolute;
+  left: -7px;
+  top: -7px;
+  width: 24px;
+  height: 24px;
+  overflow: visible;
+}
+
+.gesture-hud__ring-bar {
+  fill: none;
+  stroke: var(--warn);
+  stroke-width: 2;
+}
+
+.gesture-hud__cooldown {
+  position: fixed;
+  left: 0;
+  bottom: env(safe-area-inset-bottom);
+  height: 2px;
+  background: var(--gold);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calib {
+    transition: none;
+  }
+}

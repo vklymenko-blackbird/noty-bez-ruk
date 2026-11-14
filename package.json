@@ -1,0 +1,47 @@
+{
+  "name": "noty-bez-ruk",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "postinstall": "node scripts/copy-vendor.mjs",
+    "dev": "vite --host 127.0.0.1 --strictPort",
+    "build": "node scripts/copy-vendor.mjs && vite build && node scripts/check-dist.mjs",
+    "preview": "vite preview --strictPort",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . && node scripts/check-imports.mjs",
+    "test": "vitest run",
+    "e2e": "playwright test",
+    "fixtures": "node scripts/make-fixtures.mjs && node scripts/make-traces.mjs",
+    "icons": "node scripts/make-icons.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/commissioner": "5.3.0",
+    "@fontsource/cormorant-garamond": "5.3.0",
+    "@mediapipe/tasks-vision": "1.2.3",
+    "idb": "8.0.4",
+    "lucide-preact": "1.72.0",
+    "pdfjs-dist": "6.5.438",
+    "preact": "10.29.8",
+    "workbox-window": "7.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.29.13",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
+    "@preact/preset-vite": "2.10.6",
+    "@testing-library/preact": "3.2.6",
+    "@types/node": "24.19.2",
+    "eslint": "10.15.0",
+    "fake-indexeddb": "6.2.8",
+    "globals": "17.14.0",
+    "happy-dom": "21.0.4",
+    "pdf-lib": "1.17.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.2",
+    "vite": "8.3.8",
+    "vite-plugin-pwa": "2.0.0",
+    "vitest": "5.1.0",
+    "workbox-build": "7.4.1"
+  }
+}

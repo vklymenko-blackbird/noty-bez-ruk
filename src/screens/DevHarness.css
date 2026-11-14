@@ -1,0 +1,23 @@
+.dev-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  background: var(--surface);
+  border-top: 1px solid var(--rule);
+}
+.dev-last {
+  position: fixed;
+  top: var(--sp-2);
+  right: var(--sp-2);
+  z-index: 70;
+}
+.dev-harness {
+  min-height: 100dvh;
+}

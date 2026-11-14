@@ -1,0 +1,119 @@
+/* Settings screen. Uses design tokens from src/styles/tokens.css only. */
+
+.set-screen {
+  padding-bottom: var(--sp-7);
+  min-width: 0;
+}
+
+.set-block {
+  padding: var(--sp-3) var(--sp-4);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.set-hint {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-15);
+  line-height: 1.45;
+  color: var(--ink-muted);
+  overflow-wrap: anywhere;
+}
+
+.set-value {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-17);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.set-label {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-15);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.set-warning {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-17);
+  color: var(--danger);
+  overflow-wrap: anywhere;
+}
+
+.set-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.set-pedal {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.set-pedal-row {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.set-pedal-row__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.set-pedal-row__title {
+  font-family: var(--font-ui);
+  font-size: var(--fs-17);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.set-pedal-row__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  min-height: 48px;
+  align-items: center;
+}
+
+.set-about {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.set-about .ui-button {
+  justify-self: stretch;
+}
+
+@media (max-width: 480px) {
+  .set-pedal-row__head {
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .set-screen * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* The block already pads; do not pad the slider twice. */
+.set-block .ui-slider {
+  padding: 0;
+}
+
+.set-block .ui-slider__input {
+  height: var(--touch);
+}
+.set-pedal-row__none {
+  color: var(--ink-muted);
+  font-size: var(--fs-15);
+}

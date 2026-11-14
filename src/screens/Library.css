@@ -1,0 +1,177 @@
+/* Library screen («Програмка»). Tokens only. */
+
+/* The action bar ends at the screen edge, so the screen has no bottom padding of its own. */
+.screen--library {
+  padding-bottom: 0;
+}
+
+.library {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  min-height: calc(100dvh - 2 * var(--screen-pad));
+}
+
+.screen--library .library {
+  min-height: calc(100dvh - var(--screen-pad));
+}
+
+.library__banner,
+.library__warning,
+.library__importing {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-card);
+  font-size: var(--fs-15);
+  line-height: 1.45;
+}
+
+.library__banner {
+  background: var(--surface-2);
+  color: var(--ink-muted);
+}
+
+.library__warning {
+  background: var(--surface);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+.library__importing {
+  align-items: center;
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.library__sort {
+  align-self: flex-start;
+}
+
+.library__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 var(--sp-4);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-5);
+  align-items: stretch;
+}
+
+/* Landscape: the screen is short, so use five columns. The covers get smaller and the first row,
+   with its titles, fits above the bottom bar. */
+@media (orientation: landscape) and (min-width: 900px) {
+  .library__grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--sp-4);
+  }
+}
+
+.library__item {
+  min-width: 0;
+  display: flex;
+}
+
+.library__card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--sp-2);
+  width: 100%;
+  min-height: var(--touch);
+  padding: 0;
+  align-self: flex-start;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.library__card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--r-card);
+}
+
+.library__cover {
+  position: relative;
+}
+
+/* A tag under the card text. It never sits on the cover, so the surname and the title stay readable. */
+.library__ribbon {
+  align-self: flex-start;
+  margin-top: var(--sp-1);
+  padding: var(--sp-1) var(--sp-3);
+  background: var(--ink);
+  color: var(--surface);
+  font-size: var(--fs-13);
+  font-weight: 600;
+  border-radius: var(--r-pill);
+}
+
+.library__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-weight: 600;
+  font-size: var(--fs-17);
+  line-height: 1.3;
+}
+
+.library__composer {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-muted);
+  font-size: var(--fs-15);
+}
+
+.library__page {
+  color: var(--ink-muted);
+  font-size: var(--fs-13);
+}
+
+.library__note {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--fs-13);
+  line-height: 1.45;
+}
+
+/* The action bar: one row, opaque, full width down to the screen edge (about 88 px high).
+   It sits in the flow and sticks to the bottom, so the last row of cards ends above it. */
+.library__actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  gap: var(--sp-3);
+  margin-top: auto;
+  margin-inline: calc(-1 * var(--screen-pad));
+  padding: var(--sp-3) var(--screen-pad);
+  padding-bottom: calc(var(--sp-3) + env(safe-area-inset-bottom));
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+}
+
+.library__actions > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .library__grid {
+    gap: var(--sp-4);
+  }
+
+  .library__actions {
+    flex-direction: column;
+  }
+}

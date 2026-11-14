@@ -1,0 +1,129 @@
+/* Onboarding: install step and three cards. Printed-programme look, tokens only. */
+
+.onb {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.onb-inner {
+  box-sizing: border-box;
+  min-height: 100dvh;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: calc(var(--sp-7) + env(safe-area-inset-top)) var(--sp-5) calc(var(--sp-6) + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-5);
+  text-align: center;
+}
+
+.onb-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  animation: onb-in var(--dur-2) var(--ease);
+}
+
+@keyframes onb-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.onb-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-40);
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.onb-body {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-20);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.onb-charge {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-15);
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+/* Inline SVG drawings: 1.5 px strokes in the ink colour, one accent detail. */
+.onb-art {
+  width: 200px;
+  height: 170px;
+  max-width: 60vw;
+  color: var(--ink);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.onb-art .onb-accent {
+  stroke: var(--accent);
+}
+
+.onb-share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+}
+
+.onb-cta,
+.onb-actions .ui-button {
+  max-width: 100%;
+}
+
+.onb-dots {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.onb-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--rule);
+}
+
+.onb-dot--on {
+  background: var(--ink);
+}
+
+.onb-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .onb-card {
+    animation: none;
+  }
+}

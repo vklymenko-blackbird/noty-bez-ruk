@@ -1,0 +1,173 @@
+/* Play mode screen. Only design tokens are used. */
+body.is-playing {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* Full-bleed page: the base .screen padding does not apply in play mode. */
+.screen.play-screen {
+  padding: 0;
+  min-height: 0;
+}
+
+.play-root {
+  position: relative;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
+}
+
+.play-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  color: var(--ink-muted);
+  font-size: var(--fs-17);
+}
+
+.play-pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--fs-20);
+  box-shadow: var(--e2);
+  pointer-events: none;
+  z-index: 20;
+  border: 1px solid var(--rule);
+  animation: play-pulse-in var(--dur-1) var(--ease);
+}
+
+@keyframes play-pulse-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.play-rotate {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--sp-5) + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  font-size: var(--fs-15);
+  box-shadow: var(--e1);
+  max-width: calc(100% - var(--sp-5) * 2);
+  text-align: center;
+  z-index: 25;
+  pointer-events: none;
+}
+
+.play-banner {
+  position: absolute;
+  top: calc(var(--sp-3) + env(safe-area-inset-top));
+  left: calc(var(--sp-3) + env(safe-area-inset-left));
+  right: calc(var(--sp-3) + env(safe-area-inset-right));
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-2) var(--sp-1) var(--sp-4);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  box-shadow: var(--e2);
+  font-size: var(--fs-15);
+  z-index: 40;
+  touch-action: manipulation;
+}
+
+.play-banner__text {
+  flex: 1 1 0;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.play-banner > .ui-btn,
+.play-banner > .ui-icon-button {
+  flex: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .play-banner {
+    flex-wrap: wrap;
+  }
+
+  .play-banner__text {
+    flex-basis: 100%;
+    padding-top: var(--sp-2);
+  }
+}
+
+.play-coach {
+  position: absolute;
+  inset: 0;
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  color: var(--ink);
+  padding-bottom: env(safe-area-inset-bottom);
+  animation: play-pulse-in var(--dur-2) var(--ease);
+}
+
+.play-coach__cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex: 1;
+  align-items: center;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--fs-32);
+  font-weight: 500;
+  max-height: 60%;
+}
+
+.play-coach__cols > span {
+  padding: var(--sp-5) var(--sp-3);
+}
+
+.play-coach__cols > span + span {
+  border-left: 1px solid var(--gold);
+}
+
+.play-coach__touch {
+  margin: 0;
+  padding: 0 var(--sp-5) var(--sp-7);
+  text-align: center;
+  font-size: var(--fs-17);
+}
+
+html:has(body.is-playing) {
+  overscroll-behavior: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-pulse,
+  .play-coach {
+    animation: none;
+  }
+}
