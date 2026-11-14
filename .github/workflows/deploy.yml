@@ -2,7 +2,9 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    # The feature branch is listed so the first version can be published before the PR is merged.
+    # Remove it after the merge.
+    branches: [main, feature/noty-bez-ruk]
   workflow_dispatch:
 
 permissions:
