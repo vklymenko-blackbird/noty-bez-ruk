@@ -263,6 +263,12 @@ describe('searchCatalog and popularCatalog on the real catalogue', () => {
     }
   });
 
+  it('a query «op 27» in Latin still finds entries that now say «ор. 27» (C)', () => {
+    const ids = searchCatalog('op 27').map((h) => h.id);
+    expect(ids).toContain('catalog:beethoven-moonlight');
+    expect(ids).toContain('catalog:chopin-nocturne-op27-2');
+  });
+
   it('returns nothing for an empty query', () => {
     expect(searchCatalog('')).toEqual([]);
   });

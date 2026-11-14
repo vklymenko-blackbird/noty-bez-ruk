@@ -29,12 +29,17 @@ interface Haystack {
   detail: string[];
 }
 
+/** Ukrainian «ор.» (opus) also matches a query typed in Latin as «op». */
+function withLatinOpus(text: string): string {
+  return text + ' ' + text.replace(/(^|[^\p{L}])ор\./gu, '$1op.');
+}
+
 function haystackOf(e: CatalogEntry): Haystack {
   return {
-    title: [...tokensOf(e.title), ...tokensOf(e.titleUk)],
+    title: [...tokensOf(e.title), ...tokensOf(withLatinOpus(e.titleUk))],
     aliases: e.aliases.flatMap(tokensOf),
     people: [...tokensOf(e.composer), ...tokensOf(e.composerUk)],
-    detail: tokensOf(e.detail),
+    detail: tokensOf(withLatinOpus(e.detail)),
   };
 }
 
