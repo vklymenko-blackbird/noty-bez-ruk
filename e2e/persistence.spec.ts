@@ -90,10 +90,11 @@ test.describe('persistence', () => {
       const id = await cardId(page, 1);
       await page.evaluate((i) => window.__notyTest!.navigate(`/score/${i}`), id);
       await expect(page.getByTestId('screen-score')).toBeVisible();
-      await page.getByRole('button', { name: 'Перейменувати' }).first().click();
-      const field = page.getByLabel('Назва твору');
-      await field.fill('Нова назва');
-      await field.press('Enter');
+      await page.getByTestId('btn-more').click();
+      await page.getByTestId('btn-rename').click();
+      await page.getByTestId('rename-title').fill('Нова назва');
+      await page.getByTestId('rename-save').click();
+      await expect(page.getByTestId('score-title')).toHaveText('Нова назва');
       await reload(page);
       await page.evaluate(() => window.__notyTest!.navigate('/'));
       await expect(page.getByTestId('score-card').filter({ hasText: 'Нова назва' })).toHaveCount(1);
@@ -102,7 +103,9 @@ test.describe('persistence', () => {
     await test.step('delete', async () => {
       const id = await cardId(page, 'Нова назва');
       await page.evaluate((i) => window.__notyTest!.navigate(`/score/${i}`), id);
-      await page.getByRole('button', { name: 'Видалити твір' }).first().click();
+      await expect(page.getByTestId('score-title')).toBeVisible();
+      await page.getByTestId('btn-more').click();
+      await page.getByTestId('btn-delete').click();
       await page.getByTestId('confirm-ok').click();
       await expect(page.getByTestId('screen-library')).toBeVisible();
       await reload(page);
