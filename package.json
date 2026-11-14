@@ -9,7 +9,7 @@
     "build": "node scripts/copy-vendor.mjs && vite build && node scripts/check-dist.mjs",
     "preview": "vite preview --strictPort",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
+    "lint": "eslint . && node scripts/check-imports.mjs",
     "test": "vitest run",
     "e2e": "playwright test",
     "fixtures": "node scripts/make-fixtures.mjs && node scripts/make-traces.mjs",
