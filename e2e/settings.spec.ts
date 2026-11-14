@@ -22,6 +22,7 @@ test.describe('settings screen @chromium', () => {
   test('learn mode adds a pedal key as a chip', async ({ page }) => {
     await openApp(page, { path: '/settings' });
     await page.getByTestId('set-learn-next').click();
+    await expect(page.getByTestId('set-learn-next')).toHaveText('Натисніть педаль…');
     await page.keyboard.press('a');
     await expect(page.getByTestId('set-keys-next-chip').filter({ hasText: /^a$/ })).toBeVisible();
   });
