@@ -1,1 +1,55 @@
-/* STUB: replaced by package play-controls. */
+/* Controls sheet in play mode. Targets are at least 64 px high. */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.controls .ui-switch,
+.controls .ui-slider {
+  min-height: 64px;
+}
+
+.controls__papers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.controls__papers .ui-chip {
+  min-height: 64px;
+  padding-inline: var(--sp-4);
+}
+
+.controls__camera {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--rule);
+}
+
+.controls__status {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-15);
+  color: var(--ink-muted);
+}
+
+.controls__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controls * {
+    transition: none !important;
+  }
+}
