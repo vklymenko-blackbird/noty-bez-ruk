@@ -24,7 +24,7 @@ test.describe('settings screen @chromium', () => {
     await page.getByTestId('set-learn-next').click();
     await expect(page.getByTestId('set-learn-next')).toHaveText('Натисніть педаль…');
     await page.keyboard.press('a');
-    await expect(page.getByTestId('set-keys-next-chip').filter({ hasText: /^a$/ })).toBeVisible();
+    await expect(page.getByTestId('set-keys-next-chip').filter({ hasText: /^A$/ })).toBeVisible();
   });
 
   test('privacy text is visible and the page has no horizontal scroll', async ({ page }) => {

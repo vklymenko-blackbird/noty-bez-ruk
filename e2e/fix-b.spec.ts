@@ -209,7 +209,7 @@ test('settings: pedal keys show friendly names and sizes use ГБ', async ({ pag
   const texts = await chips.allTextContents();
   expect(texts.join('|')).not.toMatch(/Arrow/);
   expect(texts).toEqual(expect.arrayContaining(['→ Стрілка вправо', '← Стрілка вліво', 'Page Down', 'Пробіл', 'Enter', 'Backspace']));
-  await expect(page.getByTestId('screen-settings')).not.toContainText('МБ з 5');
+  await expect(page.getByTestId('screen-settings')).not.toContainText(/\d{4,}(,\d)? МБ/);
 });
 
 test('rename sheet shows visible labels above the fields', async ({ page }) => {
