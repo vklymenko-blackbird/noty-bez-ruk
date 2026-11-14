@@ -20,6 +20,8 @@ type Fileset = Awaited<ReturnType<Vision['FilesetResolver']['forVisionTasks']>>;
 
 const MODEL_PATH = 'mediapipe/face_landmarker.task';
 const WASM_PATH = 'mediapipe/wasm';
+/** A video track that stays muted this long counts as a lost camera. */
+const TRACK_MUTE_LOST_MS = 3000;
 
 /**
  * MediaPipe FaceLandmarker pose source (SPEC 1.9 item 6, §1.6 sign convention).
@@ -106,6 +108,30 @@ export function createMediaPipePoseSource(opts: { useGpu: boolean }): PoseSource
     setStatus('error');
   };
 
+  /** The system took the camera away (track ended, or muted for a long time). */
+  const cameraLost = (s: Session): void => {
+    if (!isLive(s)) return;
+    release(s);
+    if (session === s) session = null;
+    current = null;
+    setStatus('unavailable');
+  };
+
+  const watchTracks = (s: Session, stream: MediaStream): void => {
+    stream.getVideoTracks().forEach((track) => {
+      let muteTimer: ReturnType<typeof setTimeout> | undefined;
+      track.addEventListener('ended', () => {
+        clearTimeout(muteTimer);
+        cameraLost(s);
+      });
+      track.addEventListener('mute', () => {
+        clearTimeout(muteTimer);
+        muteTimer = setTimeout(() => cameraLost(s), TRACK_MUTE_LOST_MS);
+      });
+      track.addEventListener('unmute', () => clearTimeout(muteTimer));
+    });
+  };
+
   const tick = (s: Session): void => {
     s.timer = undefined;
     if (!isLive(s)) return;
@@ -184,6 +210,8 @@ export function createMediaPipePoseSource(opts: { useGpu: boolean }): PoseSource
       release(s);
       return false;
     }
+
+    watchTracks(s, stream);
 
     const video = document.createElement('video');
     video.muted = true;
