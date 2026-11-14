@@ -414,8 +414,15 @@
   color: var(--bg);
   box-shadow: var(--e2);
   font-size: var(--fs-15);
-  pointer-events: auto;
+  pointer-events: none;
   animation: ui-rise var(--dur-2) var(--ease);
+}
+/* Toasts never sit on bottom buttons: with a sheet, the library actions or the note bar, they move to the top. */
+body:has(.ui-sheet-scrim) .ui-toast-host,
+body:has(.library__actions) .ui-toast-host,
+body:has(.annot-toolbar) .ui-toast-host {
+  top: calc(var(--sp-5) + env(safe-area-inset-top));
+  bottom: auto;
 }
 .ui-toast--ok {
   border-left: 4px solid var(--ok);
@@ -433,6 +440,7 @@
   background: transparent;
   color: var(--gold);
   font-weight: 600;
+  pointer-events: auto;
 }
 
 /* Spinner and ProgressRing */

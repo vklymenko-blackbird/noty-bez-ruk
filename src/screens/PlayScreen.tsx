@@ -456,7 +456,7 @@ export default function PlayScreen({ params }: ScreenProps) {
   const showBanner = gestureOn && !cameraSkipped && cameraProblem;
 
   return (
-    <main class="screen" data-testid="screen-play">
+    <main class="screen play-screen" data-testid="screen-play">
       <div ref={rootRef} class="play-root" data-testid="play-root">
         {!ready ? (
           <div class="play-loading" data-nav-ignore>
