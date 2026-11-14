@@ -12,7 +12,7 @@ test.describe('webkit smoke', () => {
 
   test('a fixture import, the score screen and play mode work @webkit', async ({ page }) => {
     const watch = watchErrors(page);
-    await openApp(page, { settings: { gesture: 'off' } });
+    await openApp(page, { settings: { gesture: 'off', halfPage: false } });
     await page.addInitScript(() => localStorage.setItem('noty.coach.v1', '3'));
     await page.getByTestId('input-file').setInputFiles([fixturePath('score-3.pdf')]);
     const card = page.getByTestId('score-card');
@@ -32,7 +32,7 @@ test.describe('webkit smoke', () => {
     const box = await page.getByTestId('play-root').boundingBox();
     if (!box) throw new Error('no play-root');
     await page.mouse.click(box.x + box.width * 0.9, box.y + box.height * 0.6);
-    await expect.poll(async () => ((await getState(page)).play as { page: number }).page, { timeout: 10_000 }).toBe(2);
+    await expect.poll(async () => (((await getState(page)).play as { page: number } | null)?.page ?? 0), { timeout: 10_000 }).toBe(2);
     watch.expectNoErrors();
   });
 
