@@ -10,9 +10,13 @@ async function reload(page: Page): Promise<void> {
   await page.waitForFunction(() => !!window.__notyTest);
 }
 
-async function cardId(page: Page, hasText: string): Promise<string> {
-  const id = await page.getByTestId('score-card').filter({ hasText }).first().getAttribute('data-id');
-  if (!id) throw new Error('no card id for ' + hasText);
+/** Finds a score id by its page count (the three fixtures have 3, 12 and 1 pages), or by its title. */
+async function cardId(page: Page, key: number | string): Promise<string> {
+  const id = await page.evaluate(async (k) => {
+    const list = await window.__notyTest!.storage.listScores();
+    return list.find((s) => (typeof k === 'number' ? s.pageCount === k : s.title === k))?.id;
+  }, key);
+  if (!id) throw new Error('no score for ' + String(key));
   return id;
 }
 
@@ -25,7 +29,7 @@ test.describe('persistence', () => {
 
   test('imports, progress, notes, rename, delete and settings survive a reload', async ({ page }) => {
     const watch = watchErrors(page);
-    await openApp(page, { settings: { gesture: 'off' } });
+    await openApp(page, { settings: { gesture: 'off', halfPage: false } });
 
     await test.step('import three scores', async () => {
       await page.getByTestId('input-file').setInputFiles([fixturePath('score-3.pdf'), fixturePath('score-12.pdf'), fixturePath('landscape-1.pdf')]);
@@ -34,7 +38,7 @@ test.describe('persistence', () => {
       await expect(page.getByTestId('score-card')).toHaveCount(3);
     });
 
-    const id12 = await cardId(page, 'score-12');
+    const id12 = await cardId(page, 12);
 
     await test.step('reading progress', async () => {
       await page.evaluate((i) => window.__notyTest!.navigate(`/play/${i}`), id12);
@@ -71,6 +75,10 @@ test.describe('persistence', () => {
       await page.mouse.move(l.x + l.width * 0.6, l.y + l.height * 0.35, { steps: 8 });
       await page.mouse.up();
       await page.getByTestId('annot-done').click();
+      await expect(page.getByTestId('annot-toolbar')).toHaveCount(0);
+      await expect
+        .poll(() => page.evaluate(async (i) => (await window.__notyTest!.storage.getMarks(i, 1)).length, id3), { timeout: 5000 })
+        .toBe(1);
       await reload(page);
       const count = await page.evaluate(async (i) => (await window.__notyTest!.storage.getMarks(i, 1)).length, id3);
       expect(count).toBe(1);
@@ -78,7 +86,7 @@ test.describe('persistence', () => {
 
     await test.step('rename', async () => {
       await page.evaluate(() => window.__notyTest!.navigate('/'));
-      const id = await cardId(page, 'landscape-1');
+      const id = await cardId(page, 1);
       await page.evaluate((i) => window.__notyTest!.navigate(`/score/${i}`), id);
       await expect(page.getByTestId('screen-score')).toBeVisible();
       await page.getByRole('button', { name: 'Перейменувати' }).first().click();
@@ -126,5 +134,5 @@ test.describe('persistence', () => {
 
 async function cardId0(page: Page): Promise<string> {
   await page.evaluate(() => window.__notyTest!.navigate('/'));
-  return cardId(page, 'score-3');
+  return cardId(page, 3);
 }
