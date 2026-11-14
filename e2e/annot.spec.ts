@@ -29,6 +29,11 @@ async function openNoteMode(page: Page): Promise<void> {
   await page.evaluate((scoreId) => window.__notyTest!.navigate(`/dev/annot/${scoreId}`), id);
   await expect(page.getByTestId('annot-layer')).toBeVisible();
   await expect(page.getByTestId('dev-marks')).toHaveText('0');
+  // The layer is sized when the page image arrives. Draw only after its box stops moving.
+  await expect
+    .poll(async () => JSON.stringify(await page.getByTestId('annot-layer').boundingBox()), { intervals: [150, 150, 150], timeout: 5000 })
+    .toBe(JSON.stringify(await page.getByTestId('annot-layer').boundingBox()));
+  await page.waitForTimeout(400);
 }
 
 test('note mode: draw, undo, redo, stamp, erase, save and reload', async ({ page }) => {
