@@ -105,6 +105,8 @@ export const uk = {
   'play.end': 'Кінець',
   'play.start': 'Початок',
   'play.loading': 'Відкриваємо ноти…',
+  'play.pageFailed': 'Не вдалося показати сторінку {page}',
+  'play.pageRetry': 'Спробувати ще раз',
   'play.rotate': 'Поверніть iPad вертикально',
   'play.cameraOff': 'Камера вимкнена — гортайте дотиком або педаллю',
   'play.cameraHow': 'Як увімкнути',

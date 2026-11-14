@@ -2,7 +2,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/ho
 import { FULL_PAGE, type CropBox, type PageCache, type PageViewProps } from '../contracts';
 import { getCropBox, paperClass } from '../paper';
 import { createPageCache } from '../pdf';
-import { Spinner } from '../ui';
+import { Button, Spinner } from '../ui';
+import { t } from '../i18n';
 import './pageview.css';
 
 const MIN_RATIO = 0.3;
@@ -64,6 +65,8 @@ export default function PageView(props: PageViewProps) {
   const counters = useRef({ fade: 0, wipe: 0 });
   const [root, setRoot] = useState({ w: 0, h: 0 });
   const [view, setView] = useState<ViewData | null>(null);
+  const [failedPage, setFailedPage] = useState<number | null>(null);
+  const [retryTick, setRetryTick] = useState(0);
   const [drag, setDrag] = useState<number | null>(null);
   const dragRef = useRef<{ startY: number; startRatio: number; height: number; ratio: number } | null>(null);
   const ratio = drag ?? clampRatio(props.dividerRatio);
@@ -86,6 +89,7 @@ export default function PageView(props: PageViewProps) {
     cacheRef.current = cache;
     prev.current = null;
     setView(null);
+    setFailedPage(null);
     return () => {
       token.current++;
       cache.clear();
@@ -100,6 +104,7 @@ export default function PageView(props: PageViewProps) {
     const mine = ++token.current;
     const page = position.page;
     const half = position.half && page + 1 <= doc.pageCount;
+    setFailedPage(null);
     (async () => {
       const pages = half ? [page, page + 1] : [page];
       const crops = await Promise.all(pages.map((p) => (crop ? getCropBox(doc, p) : Promise.resolve(FULL_PAGE))));
@@ -140,11 +145,14 @@ export default function PageView(props: PageViewProps) {
             });
         }
       }
-    })().catch(() => {});
+    })().catch(() => {
+      // Do not keep showing another page: say that this page failed and offer a retry.
+      if (mine === token.current) setFailedPage(page);
+    });
     return () => {
       // A newer run bumps the token itself; this only invalidates on unmount of the effect.
     };
-  }, [doc, position.page, position.half, crop, root.w, root.h]);
+  }, [doc, position.page, position.half, crop, root.w, root.h, retryTick]);
 
   // Put canvases into the layers after each render.
   useLayoutEffect(() => {
@@ -184,7 +192,14 @@ export default function PageView(props: PageViewProps) {
 
   return (
     <div class="pv" data-testid="pv" ref={rootRef}>
-      {view === null ? (
+      {failedPage !== null ? (
+        <div class="pv-error" data-testid="pv-error" role="alert" data-nav-ignore>
+          <p class="pv-error__text">{t('play.pageFailed', { page: failedPage })}</p>
+          <Button variant="primary" onClick={() => setRetryTick((n) => n + 1)} data-testid="pv-retry">
+            {t('play.pageRetry')}
+          </Button>
+        </div>
+      ) : view === null ? (
         <div class="pv-loading">
           <Spinner />
         </div>
