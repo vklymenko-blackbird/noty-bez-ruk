@@ -1,2 +1,90 @@
-.pageview-stub { position: relative; width: 100%; min-height: 100dvh; background: var(--bg); }
-.pageview-stub-overlay { position: absolute; inset: 0; }
+.pv {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+}
+.pv-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pv-layer {
+  position: absolute;
+}
+.pv-layer > canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pv-overlay {
+  position: absolute;
+  inset: 0;
+}
+.pv-fade {
+  animation: pv-fade-in 180ms var(--ease) both;
+}
+.pv-wipe {
+  animation: pv-wipe-in 200ms var(--ease) both;
+}
+@keyframes pv-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pv-wipe-in {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 var(--pv-clip, 50%) 0);
+  }
+}
+.pv-divider {
+  position: absolute;
+  height: 2px;
+  background: var(--gold);
+  pointer-events: none;
+}
+.pv-notch {
+  position: absolute;
+  right: 8px;
+  top: -23px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  touch-action: none;
+  cursor: ns-resize;
+}
+.pv-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pv-fade,
+  .pv-wipe {
+    animation: none;
+  }
+}
