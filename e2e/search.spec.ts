@@ -46,7 +46,7 @@ test('search: find a catalogue piece, add it and open it', async ({ page }) => {
   await page.getByTestId('search-input').fill('Elise');
   const card = page.locator('[data-testid="hit-card"][data-source="catalog"]').first();
   await expect(card).toBeVisible();
-  await expect(card.getByTestId('hit-license')).toContainText('Public domain');
+  await expect(card.getByTestId('hit-license')).toContainText('Суспільне надбання');
 
   // The Commons hit shows up after the debounce.
   await expect(page.getByText('Test Etude Op 99')).toBeVisible();

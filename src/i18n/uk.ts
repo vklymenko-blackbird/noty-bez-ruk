@@ -71,6 +71,7 @@ export const uk = {
   'search.linkouts.commons': 'Шукати на Wikimedia Commons',
   'search.linkouts.hint': 'Завантажте PDF у Safari, потім у бібліотеці натисніть «Відкрити PDF».',
   'search.license': 'Ліцензія: {license}',
+  'license.publicDomain': 'Суспільне надбання',
   'search.source.commons': 'Wikimedia Commons',
   'search.popular': 'Популярне',
 

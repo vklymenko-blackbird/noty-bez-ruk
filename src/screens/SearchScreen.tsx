@@ -6,6 +6,7 @@ import { searchCatalog, popularCatalog, searchCommons, downloadScore, linkOuts, 
 import { importPdfBytes } from '../library/importPdf';
 import { storage } from '../storage';
 import { navigate } from '../app/router';
+import { licenseText, sizeText } from '../i18n/format';
 import { t, uk, type StringKey } from '../i18n';
 import './Search.css';
 
@@ -30,11 +31,6 @@ function errorText(e: unknown, name: string): string {
     if (key in uk) return t(key as StringKey, { name });
   }
   return t('error.generic');
-}
-
-function sizeText(bytes: number): string {
-  if (bytes >= 1024 * 1024) return t('common.sizeMb', { size: (bytes / (1024 * 1024)).toFixed(1) });
-  return t('common.sizeKb', { size: Math.max(1, Math.round(bytes / 1024)) });
 }
 
 type CardState = 'idle' | 'adding' | 'added';
@@ -128,7 +124,9 @@ function HitCard({ hit, libraryId }: HitCardProps) {
           {hit.composer ? <p class="hit__composer">{hit.composer}</p> : null}
           {hit.detail ? <p class="hit__detail">{hit.detail}</p> : null}
           <div class="hit__meta">
-            <span class="hit__license" data-testid="hit-license">{t('search.license', { license: hit.license })}</span>
+            {hit.license.trim() ? (
+              <span class="hit__license" data-testid="hit-license">{t('search.license', { license: licenseText(hit.license) })}</span>
+            ) : null}
             {size ? <span class="hit__size">{size}</span> : null}
             {link ? (
               <a

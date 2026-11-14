@@ -66,7 +66,24 @@ describe('SearchScreen', () => {
     render(<SearchScreen params={{}} />);
     fireEvent.input(screen.getByTestId('search-input'), { target: { value: 'Elise' } });
     const badges = await screen.findAllByTestId('hit-license');
-    expect(badges.map((b) => b.textContent)).toEqual(['Ліцензія: Public domain', 'Ліцензія: CC0']);
+    expect(badges.map((b) => b.textContent)).toEqual(['Ліцензія: Суспільне надбання', 'Ліцензія: CC0']);
+  });
+
+  it('shows no licence chip when the entry has no licence (B)', async () => {
+    mocks.searchCatalog.mockReturnValue([hit({ id: 'u', license: '', fileUrl: null, sizeBytes: null })]);
+    render(<SearchScreen params={{}} />);
+    fireEvent.input(screen.getByTestId('search-input'), { target: { value: 'Elise' } });
+    await screen.findByTestId('hit-card');
+    expect(screen.queryByTestId('hit-license')).toBeNull();
+    expect(screen.getByTestId('hit-card').textContent).not.toContain('Ліцензія');
+  });
+
+  it('shows sizes with a comma and one decimal (D)', async () => {
+    mocks.searchCatalog.mockReturnValue([hit({ id: 's', sizeBytes: 4 * 1024 * 1024 })]);
+    render(<SearchScreen params={{}} />);
+    fireEvent.input(screen.getByTestId('search-input'), { target: { value: 'Elise' } });
+    await screen.findByTestId('hit-card');
+    expect(screen.getByTestId('hit-card').textContent).toContain('4,0 МБ');
   });
 
   it('has no add button when the hit has no file', async () => {

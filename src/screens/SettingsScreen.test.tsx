@@ -127,9 +127,10 @@ describe('SettingsScreen', () => {
 
   it('shows storage sizes in ГБ from 1024 МБ up', () => {
     const MB = 1024 * 1024;
-    expect(sizeText(0.1 * MB)).toBe('0,1 МБ');
-    expect(sizeText(1023 * MB)).toBe('1023 МБ');
-    expect(sizeText(5120.1 * MB)).toBe('5 ГБ');
+    expect(sizeText(0.1 * MB)).toBe('102 КБ');
+    expect(sizeText(4 * MB)).toBe('4,0 МБ');
+    expect(sizeText(1023 * MB)).toBe('1023,0 МБ');
+    expect(sizeText(5120.1 * MB)).toBe('5,0 ГБ');
     expect(sizeText(1536 * MB)).toBe('1,5 ГБ');
   });
 });

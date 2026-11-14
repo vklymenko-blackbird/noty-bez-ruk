@@ -11,6 +11,7 @@ import {
   Switch,
   TopBar,
 } from '../ui';
+import { sizeText } from '../i18n/format';
 import { t, uk, type StringKey } from '../i18n';
 import { navigate } from '../app/router';
 import { settings, useSettings } from '../settings';
@@ -23,17 +24,7 @@ const GESTURES: GestureKind[] = ['head', 'mouth', 'off'];
 const THEMES: AppTheme[] = ['auto', 'light', 'dark'];
 const PAPER_THEMES: PaperTheme[] = ['ivory', 'sepia', 'night', 'contrast', 'plain'];
 
-/** One decimal, comma as the separator, no trailing ",0". */
-function decimal(n: number): string {
-  return String(Math.round(n * 10) / 10).replace('.', ',');
-}
-
-/** Sizes from 1024 МБ up show in ГБ. */
-export function sizeText(bytes: number): string {
-  const mb = bytes / (1024 * 1024);
-  if (mb >= 1024) return t('common.sizeGb', { size: decimal(mb / 1024) });
-  return t('common.sizeMb', { size: decimal(mb) });
-}
+export { sizeText };
 
 function secText(ms: number): string {
   return t('settings.hold.value', { sec: (ms / 1000).toFixed(1).replace('.', ',') });
