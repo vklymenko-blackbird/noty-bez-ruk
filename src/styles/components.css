@@ -253,7 +253,8 @@
 .ui-segmented__item {
   flex: 1;
   min-height: 42px;
-  padding: 0 var(--sp-3);
+  padding: 0 var(--sp-4);
+  white-space: nowrap;
   border: 0;
   border-radius: var(--r-pill);
   background: transparent;
