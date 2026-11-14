@@ -35,8 +35,18 @@ input {
   font: inherit;
   color: inherit;
 }
-button {
+button,
+[role='button'],
+[role='radio'],
+[role='switch'] {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+html {
+  overscroll-behavior: none;
 }
 a {
   color: var(--accent);
