@@ -1,7 +1,17 @@
 // Build script for src/sources/catalog.json.
 // Run once by hand: node scripts/build-catalog.mjs
 // Flag --check: HEAD request for each resolved fileUrl, prints the dead ones.
+// Flag --offline: no request at all. Rewrites catalog.json from the existing
+//   catalog.json plus scripts/catalog-verified.json.
 // This script is not part of the app build.
+//
+// ALLOWLIST RULE: an entry is written as resolved ONLY when its id and fileUrl
+// are in scripts/catalog-verified.json ([{ id, fileUrl, kind: "piece" | "set" }]).
+// Every other entry is written unresolved (fileUrl, pageUrl, license, sizeBytes,
+// pages = null). A new match found by the network search is NOT trusted: a human
+// must look at the pages of the file first, and only then add it to the allowlist.
+// kind "set" means the file is a whole collection; the detail text then says so
+// ("у збірці: ..."). kind "piece" never carries that wording.
 import { readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -12,6 +22,23 @@ const OUT = join(HERE, '..', 'src', 'sources', 'catalog.json');
 const API = 'https://commons.wikimedia.org/w/api.php';
 const UA = 'noty-bez-ruk-catalog/0.1 (build script)';
 const DELAY_MS = 1000;
+const ALLOWLIST = join(HERE, 'catalog-verified.json');
+// Ids renamed after the first release of the catalogue (old id -> new id).
+const RENAMED = { 'beethoven-bagatelle-woo59': 'beethoven-lustig-traurig-woo54' };
+// Most famous first. Only verified (resolved) entries should be listed here.
+const POPULAR_FIRST = [
+  'beethoven-fur-elise',
+  'beethoven-moonlight',
+  'mozart-sonata-k545',
+  'chopin-fantaisie-impromptu',
+  'chopin-nocturne-op27-2',
+  'chopin-minute-waltz',
+  'chopin-etude-op10-3',
+  'liszt-liebestraum-3',
+  'bach-minuet-g',
+  'mozart-twinkle-variations',
+  'chopin-polonaise-heroic',
+];
 const INVENTORY_CACHE = process.env.INVENTORY_CACHE || join(tmpdir(), 'noty-catalog-inventory.json');
 const INVENTORY_MAX_REQUESTS = 12;
 const MIN_BYTES = 30 * 1024;
@@ -157,7 +184,7 @@ const CURATED = [
   { id: 'beethoven-sonata-15-pastoral', title: 'Sonata No. 15 «Pastoral», Op. 28', titleUk: 'Соната № 15 «Пасторальна»', aliases: ['Pastoral Sonata', 'Sonata Op. 28'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 28', surname: 'Beethoven', query: 'Beethoven Sonata Op.28', must: ['op 28'] },
   { id: 'beethoven-bagatelles-op33', title: '7 Bagatelles, Op. 33', titleUk: '7 багателей, соч. 33', aliases: ['Bagatelles Op. 33'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 33', surname: 'Beethoven', query: 'Beethoven 7 Bagatelles Op.33', must: ['bagatelles', '33'] },
   { id: 'beethoven-andante-favori', title: 'Andante favori, WoO 57', titleUk: 'Улюблене андант, WoO 57', aliases: ['Andante favori'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'WoO 57', surname: 'Beethoven', query: 'Beethoven Andante favori WoO 57', must: ['57', 'andante'] },
-  { id: 'beethoven-bagatelle-woo59', title: 'Bagatelle in C minor, WoO 54', titleUk: 'Багатель до мінор, WoO 54', aliases: ['Bagatelle WoO 54'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'WoO 54', surname: 'Beethoven', query: 'Beethoven Bagatelle WoO 54', must: ['woo 54'] },
+  { id: 'beethoven-lustig-traurig-woo54', title: 'Lustig – Traurig, WoO 54', titleUk: 'Веселий – Сумний, WoO 54', aliases: ['Lustig Traurig', 'Bagatelle in C minor', 'Bagatelle WoO 54', 'Багатель до мінор'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'WoO 54; багатель до мінор', surname: 'Beethoven', query: 'Beethoven Bagatelle WoO 54', must: ['woo 54'] },
   { id: 'beethoven-sonata-24', title: 'Sonata No. 24 «À Thérèse», Op. 78', titleUk: 'Соната № 24, соч. 78', aliases: ['Sonata Op. 78', 'A Therese'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 78', surname: 'Beethoven', query: 'Beethoven Sonata Op.78', must: ['op 78'] },
   { id: 'beethoven-sonata-26-adieux', title: 'Sonata No. 26 «Les Adieux», Op. 81a', titleUk: 'Соната № 26 «Прощальна»', aliases: ['Les Adieux', 'Farewell Sonata'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 81a', surname: 'Beethoven', query: 'Beethoven Sonata Op.81a', must: ['81a'] },
   { id: 'beethoven-sonata-25', title: 'Sonata No. 25 in G major, Op. 79', titleUk: 'Соната № 25 соль мажор, соч. 79', aliases: ['Sonata Op. 79'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 79', surname: 'Beethoven', query: 'Beethoven Sonata Op.79', must: ['op 79'] },
@@ -397,16 +424,23 @@ async function resolveItem(item, inventory = {}, previous = new Map()) {
   return fromInv;
 }
 
+function fileTitleOf(pageUrl) {
+  return decodeURIComponent(String(pageUrl).split('/wiki/File:')[1] ?? '').replace(/_/g, ' ');
+}
+
 async function main() {
   const check = process.argv.includes('--check');
+  const offline = process.argv.includes('--offline');
   const previous = new Map();
   try {
-    for (const e of JSON.parse(await readFile(OUT, 'utf8'))) previous.set(e.id, e);
+    for (const e of JSON.parse(await readFile(OUT, 'utf8'))) previous.set(RENAMED[e.id] ?? e.id, { ...e, id: RENAMED[e.id] ?? e.id });
   } catch {
     // no previous file
   }
-  const inventory = await loadInventory([...new Set(CURATED.map((i) => i.surname))]);
-  if (process.argv.includes('--inventory')) {
+  const allow = new Map();
+  for (const a of JSON.parse(await readFile(ALLOWLIST, 'utf8'))) allow.set(a.id, a);
+  const inventory = offline ? {} : await loadInventory([...new Set(CURATED.map((i) => i.surname))]);
+  if (process.argv.includes('--inventory') && !offline) {
     for (const [k, v] of Object.entries(inventory)) for (const p of v) console.log(`${k}\t${p.title}`);
     return;
   }
@@ -415,13 +449,23 @@ async function main() {
   const lines = [];
   for (const item of CURATED) {
     let hit = null;
-    try {
-      hit = await resolveItem(item, inventory, previous);
-    } catch (e) {
-      console.error(`ERROR ${item.id}: ${e.message}`);
+    if (offline) {
       const old = previous.get(item.id);
-      if (old?.fileUrl) hit = { ...old, fileTitle: '(kept from previous run)' };
+      if (old?.fileUrl && old.pageUrl) hit = { ...old, fileTitle: fileTitleOf(old.pageUrl), asSet: false };
+    } else {
+      try {
+        hit = await resolveItem(item, inventory, previous);
+      } catch (e) {
+        console.error(`ERROR ${item.id}: ${e.message}`);
+        const old = previous.get(item.id);
+        if (old?.fileUrl) hit = { ...old, fileTitle: '(kept from previous run)' };
+      }
     }
+    // Allowlist gate: resolved only when id and fileUrl are verified by a human.
+    const verified = allow.get(item.id);
+    if (!hit || !verified || verified.fileUrl !== hit.fileUrl) hit = null;
+    const prevDetail = previous.get(item.id)?.detail ?? '';
+    const setNote = /;\s*у збірці:.*$/.exec(prevDetail)?.[0].replace(/^;\s*/, '');
     const entry = {
       id: item.id,
       title: item.title,
@@ -429,7 +473,7 @@ async function main() {
       aliases: item.aliases,
       composer: item.composer,
       composerUk: item.composerUk,
-      detail: hit?.asSet ? `${item.detail}; у збірці: ${hit.fileTitle.replace(/\s*\(IA imslp[^)]*\)/i, '').replace(/\.pdf$/i, '')}` : item.detail,
+      detail: hit && verified.kind === 'set' ? `${item.detail}; ${setNote ?? 'у збірці: ' + hit.fileTitle.replace(/\s*\(IA imslp[^)]*\)/i, '').replace(/\.pdf$/i, '')}` : item.detail,
       fileUrl: hit ? hit.fileUrl : null,
       pageUrl: hit ? hit.pageUrl : null,
       license: hit ? hit.license : null,
@@ -445,6 +489,12 @@ async function main() {
   }
   const ids = new Set(out.map((e) => e.id));
   if (ids.size !== out.length) throw new Error('duplicate ids');
+  // The "Популярне" list is the first resolved entries in file order: famous pieces go first.
+  const rank = (e) => {
+    const i = POPULAR_FIRST.indexOf(e.id);
+    return i === -1 ? POPULAR_FIRST.length : i;
+  };
+  out.sort((a, b) => rank(a) - rank(b));
   await writeFile(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8');
   console.log(`total: ${out.length}`);
   console.log(`resolved: ${out.length - unresolved.length}`);

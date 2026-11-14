@@ -1,8 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import data from './catalog.json';
+import allowRaw from '../../scripts/catalog-verified.json';
 import type { CatalogEntry } from '../contracts';
+import { popularEntries } from './catalog';
 
 const CATALOG = data as CatalogEntry[];
+const allow = allowRaw as { id: string; fileUrl: string; kind: 'piece' | 'set' }[];
 
 // Licence allow-list of SPEC 1.7 item 3, written inline on purpose.
 function licenceAllowed(s: string): boolean {
@@ -70,10 +73,41 @@ describe('catalogue data (catalog.json)', () => {
     expect(fe?.fileUrl).not.toBeNull();
   });
 
-  it('resolves at least 40 entries when the network build worked', () => {
+  it('resolves at least 40 entries', () => {
     const resolved = CATALOG.filter((e) => e.fileUrl !== null).length;
-    if (resolved > 1) {
-      expect(resolved).toBeGreaterThanOrEqual(40);
+    expect(resolved).toBeGreaterThanOrEqual(40);
+  });
+
+  it('every resolved entry is in the verified allowlist with the same URL', () => {
+    const byId = new Map(allow.map((a) => [a.id, a]));
+    for (const e of CATALOG) {
+      if (e.fileUrl === null) continue;
+      expect(byId.get(e.id)?.fileUrl, e.id).toBe(e.fileUrl);
     }
+  });
+
+  it('the allowlist has no duplicate ids and only known ids', () => {
+    const ids = new Set(CATALOG.map((e) => e.id));
+    expect(new Set(allow.map((a) => a.id)).size).toBe(allow.length);
+    for (const a of allow) expect(ids.has(a.id), a.id).toBe(true);
+  });
+
+  it('detail says "у збірці" exactly for sets', () => {
+    const kind = new Map(allow.map((a) => [a.id, a.kind]));
+    for (const e of CATALOG) {
+      expect(e.detail.includes('у збірці'), e.id).toBe(e.fileUrl !== null && kind.get(e.id) === 'set');
+    }
+  });
+
+  it('the old Lustig-Traurig id is gone', () => {
+    expect(CATALOG.some((e) => e.id === 'beethoven-bagatelle-woo59')).toBe(false);
+    expect(CATALOG.some((e) => e.id === 'beethoven-lustig-traurig-woo54')).toBe(true);
+  });
+
+  it('the first 12 popular entries are all resolved', () => {
+    const popular = popularEntries(CATALOG, 12);
+    expect(popular).toHaveLength(12);
+    expect(popular.every((h) => h.fileUrl !== null)).toBe(true);
+    expect(popular[0]?.id).toBe('catalog:beethoven-fur-elise');
   });
 });
