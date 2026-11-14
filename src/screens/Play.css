@@ -1,1 +1,133 @@
-/* STUB: replaced by its screen package. */
+/* Play mode screen. Only design tokens are used. */
+body.is-playing {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.play-root {
+  position: relative;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
+}
+
+.play-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  color: var(--ink-muted);
+  font-size: var(--fs-17);
+}
+
+.play-pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--fs-20);
+  box-shadow: var(--e2);
+  pointer-events: none;
+  z-index: 20;
+  animation: play-pulse-in var(--dur-1) var(--ease);
+}
+
+@keyframes play-pulse-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.play-rotate {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--sp-5) + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  font-size: var(--fs-15);
+  box-shadow: var(--e1);
+  z-index: 25;
+  pointer-events: none;
+}
+
+.play-banner {
+  position: absolute;
+  top: calc(var(--sp-3) + env(safe-area-inset-top));
+  left: var(--sp-3);
+  right: var(--sp-3);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  box-shadow: var(--e2);
+  font-size: var(--fs-15);
+  z-index: 40;
+  touch-action: manipulation;
+}
+
+.play-banner__text {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.play-coach {
+  position: absolute;
+  inset: 0;
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--scrim);
+  color: var(--accent-ink);
+  animation: play-pulse-in var(--dur-2) var(--ease);
+}
+
+.play-coach__cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex: 1;
+  align-items: center;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--fs-32);
+  max-height: 60%;
+}
+
+.play-coach__cols > span {
+  padding: var(--sp-5) var(--sp-3);
+}
+
+.play-coach__cols > span + span {
+  border-left: 1px solid var(--accent-ink);
+}
+
+.play-coach__touch {
+  margin: 0;
+  padding: 0 var(--sp-5) var(--sp-7);
+  text-align: center;
+  font-size: var(--fs-17);
+}
