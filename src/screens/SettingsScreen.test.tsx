@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeEach } from 'vitest';
 import { render, fireEvent, screen, cleanup, act } from '@testing-library/preact';
-import SettingsScreen from './SettingsScreen';
+import SettingsScreen, { keyLabel, sizeText } from './SettingsScreen';
 import { settings } from '../settings';
 import { DEFAULT_SETTINGS } from '../contracts';
 import { t } from '../i18n';
@@ -93,5 +93,32 @@ describe('SettingsScreen', () => {
     expect(s.gesture).toBe(DEFAULT_SETTINGS.gesture);
     expect(s.keysNext).toEqual(DEFAULT_SETTINGS.keysNext);
     expect(s.onboardingDone).toBe(true);
+  });
+
+  it('shows friendly names for the default pedal keys', () => {
+    const { container } = renderScreen();
+    const chips = Array.from(container.querySelectorAll('.set-pedal-row__chips .ui-chip')).map((c) => c.textContent);
+    expect(chips.join('|')).not.toMatch(/Arrow/);
+    expect(chips).toContain('→ Стрілка вправо');
+    expect(chips).toContain('Page Down');
+    expect(chips).toContain('Пробіл');
+  });
+
+  it('keyLabel names arrows, shows letters in upper case and keeps unknown keys', () => {
+    expect(keyLabel('ArrowLeft')).toBe('← Стрілка вліво');
+    expect(keyLabel('ArrowUp')).toBe('↑ Стрілка вгору');
+    expect(keyLabel('ArrowDown')).toBe('↓ Стрілка вниз');
+    expect(keyLabel(' ')).toBe('Пробіл');
+    expect(keyLabel('Backspace')).toBe('Backspace');
+    expect(keyLabel('b')).toBe('B');
+    expect(keyLabel('F5')).toBe('F5');
+  });
+
+  it('shows storage sizes in ГБ from 1024 МБ up', () => {
+    const MB = 1024 * 1024;
+    expect(sizeText(0.1 * MB)).toBe('0,1 МБ');
+    expect(sizeText(1023 * MB)).toBe('1023 МБ');
+    expect(sizeText(5120.1 * MB)).toBe('5 ГБ');
+    expect(sizeText(1536 * MB)).toBe('1,5 ГБ');
   });
 });

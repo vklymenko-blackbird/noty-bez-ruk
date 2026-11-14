@@ -11,7 +11,7 @@ import {
   Switch,
   TopBar,
 } from '../ui';
-import { t } from '../i18n';
+import { t, uk, type StringKey } from '../i18n';
 import { navigate } from '../app/router';
 import { settings, useSettings } from '../settings';
 import { storage } from '../storage';
@@ -23,17 +23,27 @@ const GESTURES: GestureKind[] = ['head', 'mouth', 'off'];
 const THEMES: AppTheme[] = ['auto', 'light', 'dark'];
 const PAPER_THEMES: PaperTheme[] = ['ivory', 'sepia', 'night', 'contrast', 'plain'];
 
-function sizeText(bytes: number): string {
-  const mb = Math.round((bytes / (1024 * 1024)) * 10) / 10;
-  return t('common.sizeMb', { size: String(mb).replace('.', ',') });
+/** One decimal, comma as the separator, no trailing ",0". */
+function decimal(n: number): string {
+  return String(Math.round(n * 10) / 10).replace('.', ',');
+}
+
+/** Sizes from 1024 МБ up show in ГБ. */
+export function sizeText(bytes: number): string {
+  const mb = bytes / (1024 * 1024);
+  if (mb >= 1024) return t('common.sizeGb', { size: decimal(mb / 1024) });
+  return t('common.sizeMb', { size: decimal(mb) });
 }
 
 function secText(ms: number): string {
   return t('settings.hold.value', { sec: (ms / 1000).toFixed(1).replace('.', ',') });
 }
 
-function keyLabel(key: string): string {
-  return key === ' ' ? t('settings.pedal.space') : key;
+/** A friendly name for a key code. Letters show in upper case. Unknown keys show as they are. */
+export function keyLabel(key: string): string {
+  const named = `settings.key.${key === ' ' ? 'Space' : key}`;
+  if (named in uk) return uk[named as StringKey];
+  return key.length === 1 ? key.toUpperCase() : key;
 }
 
 /** Keys of one pedal direction, shown as chips. A tap on a chip removes the key. */
