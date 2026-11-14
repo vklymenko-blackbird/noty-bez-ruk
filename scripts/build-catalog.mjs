@@ -3,6 +3,7 @@
 // Flag --check: HEAD request for each resolved fileUrl, prints the dead ones.
 // This script is not part of the app build.
 import { readFile, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -10,7 +11,9 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, '..', 'src', 'sources', 'catalog.json');
 const API = 'https://commons.wikimedia.org/w/api.php';
 const UA = 'noty-bez-ruk-catalog/0.1 (build script)';
-const DELAY_MS = 400;
+const DELAY_MS = 1000;
+const INVENTORY_CACHE = process.env.INVENTORY_CACHE || join(tmpdir(), 'noty-catalog-inventory.json');
+const INVENTORY_MAX_REQUESTS = 12;
 const MIN_BYTES = 30 * 1024;
 const MAX_BYTES = 12 * 1024 * 1024;
 const MAX_PAGES_PREFERRED = 40;
@@ -86,7 +89,7 @@ const CURATED = [
   { id: 'schubert-impromptu-d899-3', title: 'Impromptu in G-flat major, D. 899 No. 3', titleUk: 'Експромт соль-бемоль мажор, D. 899 № 3', aliases: ['Impromptu Op. 90 No. 3', 'Impromptu D899'], composer: 'Franz Schubert', composerUk: 'Франц Шуберт', detail: 'D. 899 No. 3', surname: 'Schubert', query: 'Schubert Impromptu D.899 No.3', must: ['899', '3'] },
   { id: 'schubert-impromptu-d899-4', title: 'Impromptu in A-flat major, D. 899 No. 4', titleUk: 'Експромт ля-бемоль мажор, D. 899 № 4', aliases: ['Impromptu Op. 90 No. 4', 'Impromptu D899 4'], composer: 'Franz Schubert', composerUk: 'Франц Шуберт', detail: 'D. 899 No. 4', surname: 'Schubert', query: 'Schubert Impromptu D.899 No.4', must: ['899', '4'] },
   { id: 'schubert-moment-musical-3', title: 'Moments musicaux No. 3, D. 780', titleUk: 'Музичні миттєвості № 3, D. 780', aliases: ['Moments Musicaux No. 3', 'Musical Moments 3'], composer: 'Franz Schubert', composerUk: 'Франц Шуберт', detail: 'D. 780 No. 3', surname: 'Schubert', query: 'Schubert Moments musicaux No.3 D.780', must: ['780'] },
-  { id: 'schubert-standchen', title: 'Serenade (Ständchen), D. 957 No. 4', titleUk: 'Серенада', aliases: ['Serenade', 'Standchen', 'Ständchen'], composer: 'Franz Schubert', composerUk: 'Франц Шуберт', detail: 'D. 957 No. 4', surname: 'Schubert', query: 'Schubert Standchen piano', must: ['standchen'] },
+  { id: 'schubert-standchen', title: 'Serenade (Ständchen), D. 957 No. 4', titleUk: 'Серенада', aliases: ['Serenade', 'Standchen', 'Ständchen'], composer: 'Franz Schubert', composerUk: 'Франц Шуберт', detail: 'D. 957 No. 4', surname: 'Schubert', query: 'Schubert Standchen D.957 No.4', must: ['957'] },
   { id: 'schubert-wanderer-fantasy', title: 'Wanderer Fantasy, D. 760', titleUk: 'Фантазія «Мандрівник»', aliases: ['Wanderer Fantasy', 'Wandererfantasie'], composer: 'Franz Schubert', composerUk: 'Франц Шуберт', detail: 'D. 760', surname: 'Schubert', query: 'Schubert Wanderer Fantasy D.760', must: ['wanderer'] },
   { id: 'schumann-arabeske', title: 'Arabeske in C major, Op. 18', titleUk: 'Арабеска до мажор, соч. 18', aliases: ['Arabeske', 'Arabesque Schumann'], composer: 'Robert Schumann', composerUk: 'Роберт Шуман', detail: 'Op. 18', surname: 'Schumann', query: 'Schumann Arabeske Op.18', must: ['18'] },
   { id: 'schumann-kinderszenen', title: 'Kinderszenen, Op. 15', titleUk: 'Дитячі сцени, соч. 15', aliases: ['Scenes from Childhood', 'Kinderszenen'], composer: 'Robert Schumann', composerUk: 'Роберт Шуман', detail: 'Op. 15', surname: 'Schumann', query: 'Schumann Kinderszenen Op.15', must: ['kinderszenen'] },
@@ -144,7 +147,75 @@ const CURATED = [
   { id: 'joplin-easy-winners', title: 'The Easy Winners', titleUk: 'Легкі переможці', aliases: ['Easy Winners'], composer: 'Scott Joplin', composerUk: 'Скотт Джоплін', detail: 'Rag', surname: 'Joplin', query: 'Joplin The Easy Winners', must: ['easy', 'winners'] },
   { id: 'bach-prelude-d-bwv850', title: 'Prelude in D major, BWV 850', titleUk: 'Прелюдія ре мажор, BWV 850', aliases: ['Prelude BWV 850'], composer: 'Johann Sebastian Bach', composerUk: 'Йоганн Себастьян Бах', detail: 'BWV 850', surname: 'Bach', query: 'Bach Prelude D major BWV 850', must: ['850'] },
   { id: 'bach-little-prelude-c-bwv939', title: 'Little Prelude in C major, BWV 939', titleUk: 'Маленька прелюдія до мажор, BWV 939', aliases: ['Little Prelude BWV 939'], composer: 'Johann Sebastian Bach', composerUk: 'Йоганн Себастьян Бах', detail: 'BWV 939', surname: 'Bach', query: 'Bach Little Prelude C major BWV 939', must: ['939'] },
+  { id: 'beethoven-tempest', title: 'Sonata No. 17 «Tempest», Op. 31 No. 2', titleUk: 'Соната № 17 «Буря»', aliases: ['Tempest Sonata', 'Tempest', 'Буря'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 31 No. 2', surname: 'Beethoven', query: 'Beethoven Sonata Op.31 No.2 Tempest', must: ['31', '2'] },
+  { id: 'beethoven-sonata-20', title: 'Sonata No. 20 in G major, Op. 49 No. 2', titleUk: 'Соната № 20 соль мажор, соч. 49 № 2', aliases: ['Sonata Op. 49 No. 2', 'Sonatina G major'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 49 No. 2', surname: 'Beethoven', query: 'Beethoven Sonata Op.49 No.2', must: ['49', '2'] },
+  { id: 'beethoven-sonata-19', title: 'Sonata No. 19 in G minor, Op. 49 No. 1', titleUk: 'Соната № 19 соль мінор, соч. 49 № 1', aliases: ['Sonata Op. 49 No. 1'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 49 No. 1', surname: 'Beethoven', query: 'Beethoven Sonata Op.49 No.1', must: ['49', '1'] },
+  { id: 'beethoven-sonata-5', title: 'Sonata No. 5 in C minor, Op. 10 No. 1', titleUk: 'Соната № 5 до мінор, соч. 10 № 1', aliases: ['Sonata Op. 10 No. 1'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 10 No. 1', surname: 'Beethoven', query: 'Beethoven Sonata Op.10 No.1', must: ['10', '1'] },
+  { id: 'beethoven-sonata-6', title: 'Sonata No. 6 in F major, Op. 10 No. 2', titleUk: 'Соната № 6 фа мажор, соч. 10 № 2', aliases: ['Sonata Op. 10 No. 2'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 10 No. 2', surname: 'Beethoven', query: 'Beethoven Sonata Op.10 No.2', must: ['10', '2'] },
+  { id: 'beethoven-sonata-7', title: 'Sonata No. 7 in D major, Op. 10 No. 3', titleUk: 'Соната № 7 ре мажор, соч. 10 № 3', aliases: ['Sonata Op. 10 No. 3'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 10 No. 3', surname: 'Beethoven', query: 'Beethoven Sonata Op.10 No.3', must: ['10', '3'] },
+  { id: 'beethoven-sonata-11', title: 'Sonata No. 11 in B-flat major, Op. 22', titleUk: 'Соната № 11 сі-бемоль мажор, соч. 22', aliases: ['Sonata Op. 22'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 22', surname: 'Beethoven', query: 'Beethoven Sonata Op.22', must: ['22', 'sonata'] },
+  { id: 'beethoven-sonata-15-pastoral', title: 'Sonata No. 15 «Pastoral», Op. 28', titleUk: 'Соната № 15 «Пасторальна»', aliases: ['Pastoral Sonata', 'Sonata Op. 28'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 28', surname: 'Beethoven', query: 'Beethoven Sonata Op.28', must: ['28', 'sonata'] },
+  { id: 'beethoven-bagatelles-op33', title: '7 Bagatelles, Op. 33', titleUk: '7 багателей, соч. 33', aliases: ['Bagatelles Op. 33'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 33', surname: 'Beethoven', query: 'Beethoven 7 Bagatelles Op.33', must: ['bagatelles', '33'] },
+  { id: 'beethoven-andante-favori', title: 'Andante favori, WoO 57', titleUk: 'Улюблене андант, WoO 57', aliases: ['Andante favori'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'WoO 57', surname: 'Beethoven', query: 'Beethoven Andante favori WoO 57', must: ['57', 'andante'] },
+  { id: 'beethoven-bagatelle-woo59', title: 'Bagatelle in C minor, WoO 54', titleUk: 'Багатель до мінор, WoO 54', aliases: ['Bagatelle WoO 54'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'WoO 54', surname: 'Beethoven', query: 'Beethoven Bagatelle WoO 54', must: ['54'] },
+  { id: 'beethoven-sonata-24', title: 'Sonata No. 24 «À Thérèse», Op. 78', titleUk: 'Соната № 24, соч. 78', aliases: ['Sonata Op. 78', 'A Therese'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 78', surname: 'Beethoven', query: 'Beethoven Sonata Op.78', must: ['78', 'sonata'] },
+  { id: 'beethoven-sonata-26-adieux', title: 'Sonata No. 26 «Les Adieux», Op. 81a', titleUk: 'Соната № 26 «Прощальна»', aliases: ['Les Adieux', 'Farewell Sonata'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 81a', surname: 'Beethoven', query: 'Beethoven Sonata Op.81a', must: ['81a'] },
+  { id: 'beethoven-sonata-25', title: 'Sonata No. 25 in G major, Op. 79', titleUk: 'Соната № 25 соль мажор, соч. 79', aliases: ['Sonata Op. 79'], composer: 'Ludwig van Beethoven', composerUk: 'Людвіг ван Бетховен', detail: 'Op. 79', surname: 'Beethoven', query: 'Beethoven Sonata Op.79', must: ['79', 'sonata'] },
+  { id: 'mozart-sonata-k457', title: 'Sonata No. 14 in C minor, K. 457', titleUk: 'Соната № 14 до мінор, K. 457', aliases: ['Sonata K.457'], composer: 'Wolfgang Amadeus Mozart', composerUk: 'Вольфганг Амадей Моцарт', detail: 'K. 457', surname: 'Mozart', query: 'Mozart Sonata K.457', must: ['457'] },
+  { id: 'mozart-sonata-k570', title: 'Sonata No. 17 in B-flat major, K. 570', titleUk: 'Соната № 17 сі-бемоль мажор, K. 570', aliases: ['Sonata K.570'], composer: 'Wolfgang Amadeus Mozart', composerUk: 'Вольфганг Амадей Моцарт', detail: 'K. 570', surname: 'Mozart', query: 'Mozart Sonata K.570', must: ['570'] },
+  { id: 'mozart-sonata-k576', title: 'Sonata No. 18 in D major, K. 576', titleUk: 'Соната № 18 ре мажор, K. 576', aliases: ['Sonata K.576'], composer: 'Wolfgang Amadeus Mozart', composerUk: 'Вольфганг Амадей Моцарт', detail: 'K. 576', surname: 'Mozart', query: 'Mozart Sonata K.576', must: ['576'] },
+  { id: 'mozart-sonata-k311', title: 'Sonata No. 9 in D major, K. 311', titleUk: 'Соната № 9 ре мажор, K. 311', aliases: ['Sonata K.311'], composer: 'Wolfgang Amadeus Mozart', composerUk: 'Вольфганг Амадей Моцарт', detail: 'K. 311', surname: 'Mozart', query: 'Mozart Sonata K.311', must: ['311'] },
+  { id: 'mozart-sonata-k332', title: 'Sonata No. 12 in F major, K. 332', titleUk: 'Соната № 12 фа мажор, K. 332', aliases: ['Sonata K.332'], composer: 'Wolfgang Amadeus Mozart', composerUk: 'Вольфганг Амадей Моцарт', detail: 'K. 332', surname: 'Mozart', query: 'Mozart Sonata K.332', must: ['332'] },
+  { id: 'mozart-sonata-k279', title: 'Sonata No. 1 in C major, K. 279', titleUk: 'Соната № 1 до мажор, K. 279', aliases: ['Sonata K.279'], composer: 'Wolfgang Amadeus Mozart', composerUk: 'Вольфганг Амадей Моцарт', detail: 'K. 279', surname: 'Mozart', query: 'Mozart Sonata K.279', must: ['279'] },
+  { id: 'mozart-sonata-k280', title: 'Sonata No. 2 in F major, K. 280', titleUk: 'Соната № 2 фа мажор, K. 280', aliases: ['Sonata K.280'], composer: 'Wolfgang Amadeus Mozart', composerUk: 'Вольфганг Амадей Моцарт', detail: 'K. 280', surname: 'Mozart', query: 'Mozart Sonata K.280', must: ['280'] },
+  { id: 'mozart-adagio-rondo-k617', title: 'Adagio and Rondo in C minor, K. 617', titleUk: 'Адажіо і рондо до мінор, K. 617', aliases: ['Adagio and Rondo K.617'], composer: 'Wolfgang Amadeus Mozart', composerUk: 'Вольфганг Амадей Моцарт', detail: 'K. 617', surname: 'Mozart', query: 'Mozart Adagio Rondo K.617', must: ['617'] },
+  { id: 'mozart-fugue-k401', title: 'Fugue in G minor, K. 401', titleUk: 'Фуга соль мінор, K. 401', aliases: ['Fugue K.401'], composer: 'Wolfgang Amadeus Mozart', composerUk: 'Вольфганг Амадей Моцарт', detail: 'K. 401', surname: 'Mozart', query: 'Mozart Fugue K.401', must: ['401'] },
+  { id: 'schumann-album-jugend', title: 'Album for the Young, Op. 68', titleUk: 'Альбом для юнацтва, соч. 68', aliases: ['Album fuer die Jugend', 'Album für die Jugend', 'Album for the Young'], composer: 'Robert Schumann', composerUk: 'Роберт Шуман', detail: 'Op. 68', surname: 'Schumann', query: 'Schumann Album fur die Jugend Op.68', must: ['jugend', '68'] },
+  { id: 'schumann-carnaval', title: 'Carnaval, Op. 9', titleUk: 'Карнавал, соч. 9', aliases: ['Carnaval'], composer: 'Robert Schumann', composerUk: 'Роберт Шуман', detail: 'Op. 9', surname: 'Schumann', query: 'Schumann Carnaval Op.9', must: ['carnaval'] },
+  { id: 'chopin-fantaisie-op49', title: 'Fantaisie in F minor, Op. 49', titleUk: 'Фантазія фа мінор, соч. 49', aliases: ['Fantasie Op. 49'], composer: 'Frédéric Chopin', composerUk: 'Фредерік Шопен', detail: 'Op. 49', surname: 'Chopin', query: 'Chopin Fantaisie Op.49', must: ['49'] },
+  { id: 'chopin-scherzo-1', title: 'Scherzo No. 1 in B minor, Op. 20', titleUk: 'Скерцо № 1 сі мінор, соч. 20', aliases: ['Scherzo No. 1'], composer: 'Frédéric Chopin', composerUk: 'Фредерік Шопен', detail: 'Op. 20', surname: 'Chopin', query: 'Chopin Scherzo No.1 Op.20', must: ['20'] },
+  { id: 'chopin-ballade-3', title: 'Ballade No. 3 in A-flat major, Op. 47', titleUk: 'Балада № 3 ля-бемоль мажор, соч. 47', aliases: ['Ballade No. 3'], composer: 'Frédéric Chopin', composerUk: 'Фредерік Шопен', detail: 'Op. 47', surname: 'Chopin', query: 'Chopin Ballade No.3 Op.47', must: ['47'] },
+  { id: 'chopin-sonata-3', title: 'Piano Sonata No. 3 in B minor, Op. 58', titleUk: 'Соната № 3 сі мінор, соч. 58', aliases: ['Sonata No. 3'], composer: 'Frédéric Chopin', composerUk: 'Фредерік Шопен', detail: 'Op. 58', surname: 'Chopin', query: 'Chopin Piano Sonata No.3 Op.58', must: ['58'] },
+  { id: 'liszt-ballade-2', title: 'Ballade No. 2 in B minor, S. 171', titleUk: 'Балада № 2 сі мінор, S. 171', aliases: ['Ballade No. 2'], composer: 'Franz Liszt', composerUk: 'Ференц Ліст', detail: 'S. 171', surname: 'Liszt', query: 'Liszt Ballade No.2 S.171', must: ['171'] },
+  { id: 'liszt-mephisto-1', title: 'Mephisto Waltz No. 1, S. 514', titleUk: 'Мефісто-вальс № 1, S. 514', aliases: ['Mephisto Waltz'], composer: 'Franz Liszt', composerUk: 'Ференц Ліст', detail: 'S. 514', surname: 'Liszt', query: 'Liszt Mephisto Waltz No.1', must: ['mephisto'] },
+  { id: 'liszt-hungarian-rhapsody-6', title: 'Hungarian Rhapsody No. 6, S. 244/6', titleUk: 'Угорська рапсодія № 6', aliases: ['Hungarian Rhapsody 6'], composer: 'Franz Liszt', composerUk: 'Ференц Ліст', detail: 'S. 244/6', surname: 'Liszt', query: 'Liszt Hungarian Rhapsody No.6', must: ['rhapsody', '6'] },
 ];
+
+const SET_MUST = {
+  'chopin-minute-waltz': ['waltzes', '64'],
+  'chopin-waltz-op64-2': ['waltzes', '64'],
+  'chopin-nocturne-op9-1': ['nocturnes', '9'],
+  'chopin-nocturne-op9-2': ['nocturnes', '9'],
+  'chopin-nocturne-op27-2': ['nocturnes', '27'],
+  'chopin-nocturne-op48-1': ['nocturnes', '48'],
+  'chopin-polonaise-op40-1': ['polonaises', '40'],
+  'chopin-polonaise-op40-2': ['polonaises', '40'],
+  'chopin-mazurka-op7-1': ['mazurkas', '7'],
+  'chopin-prelude-op28-1': ['preludes', '28'],
+  'chopin-prelude-op28-4': ['preludes', '28'],
+  'chopin-prelude-op28-6': ['preludes', '28'],
+  'chopin-prelude-op28-7': ['preludes', '28'],
+  'chopin-raindrop': ['preludes', '28'],
+  'chopin-prelude-op28-20': ['preludes', '28'],
+  'chopin-etude-op10-3': ['etudes', '10'],
+  'chopin-etude-op10-12': ['etudes', '10'],
+  'liszt-liebestraum-3': ['liebestraume', '541'],
+  'liszt-liebestraum-1': ['liebestraume', '541'],
+  'liszt-la-campanella': ['paganini', '141'],
+  'bach-invention-1': ['inventions', '772'],
+  'bach-invention-8': ['inventions', '772'],
+  'bach-invention-13': ['inventions', '772'],
+  'bach-minuet-g': ['anna', 'magdalena'],
+  'schumann-traumerei': ['jugend', '68'],
+};
+const ALT_MUST = {
+  'beethoven-pathetique': [['13', 'sonata']],
+  'beethoven-appassionata': [['57', 'sonata']],
+  'beethoven-waldstein': [['53', 'sonata']],
+  'mozart-twinkle-variations': [['265']],
+};
+for (const it of CURATED) if (ALT_MUST[it.id]) it.altMust = ALT_MUST[it.id];
+for (const it of CURATED) if (SET_MUST[it.id]) it.setMust = SET_MUST[it.id];
 
 const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 const hasWord = (title, token) => ` ${norm(title)} `.includes(` ${norm(token)} `);
@@ -164,7 +235,7 @@ async function apiGet(params) {
   for (const [k, v] of Object.entries(params)) url.searchParams.set(k, String(v));
   let wait = 5000;
   for (let attempt = 1; ; attempt++) {
-    const res = await fetch(url, { headers: { 'User-Agent': UA } });
+    const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30000) });
     if (res.ok) return res.json();
     const retryable = res.status === 429 || res.status >= 500;
     if (!retryable || attempt >= 6) throw new Error(`HTTP ${res.status}`);
@@ -177,6 +248,12 @@ function pagesOf(ii) {
   const m = (ii.metadata || []).find((x) => x.name === 'Pages');
   const n = m ? Number(m.value) : NaN;
   return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+// Whole-word check for single-word exclusions; 'arr' also covers arranged/arrangement but not Barcarolle.
+function isExcluded(fileTitle) {
+  const words = norm(fileTitle).split(' ');
+  return EXCLUDED.some((w) => words.some((x) => (w === 'arr' ? x.startsWith('arr') : x === w || x === `${w}s`)));
 }
 
 function toCandidate(page, item) {
@@ -192,9 +269,10 @@ function toCandidate(page, item) {
   if (ii.size < MIN_BYTES || ii.size > MAX_BYTES) return null;
   if (!isAllowedLicense(license)) return null;
   if (!hasText(fileTitle, item.surname)) return null;
-  const lower = norm(fileTitle);
-  if (EXCLUDED.some((w) => lower.includes(w))) return null;
-  if (!item.must.every((t) => hasWord(fileTitle, t))) return null;
+  if (isExcluded(fileTitle)) return null;
+  const whole = item.must.every((t) => hasWord(fileTitle, t)) || (item.altMust ?? []).some((alt) => alt.every((t) => hasWord(fileTitle, t)));
+  const asSet = !whole && Array.isArray(item.setMust) && item.setMust.every((t) => hasWord(fileTitle, t));
+  if (!whole && !asSet) return null;
   const pages = pagesOf(ii);
   return {
     fileTitle,
@@ -206,7 +284,61 @@ function toCandidate(page, item) {
     startsIMSLP: fileTitle.startsWith('IMSLP') ? 0 : 1,
     pagePref: pages !== null && pages <= MAX_PAGES_PREFERRED ? 0 : 1,
     rank: page.index ?? 9999,
+    asSet,
   };
+}
+
+
+// Inventory-first: all Commons PDF titles of IMSLP mirror uploads for one composer surname.
+async function fetchInventory(surname) {
+  const pages = [];
+  let offset = 0;
+  for (let i = 0; i < INVENTORY_MAX_REQUESTS; i++) {
+    const params = {
+      action: 'query',
+      generator: 'search',
+      gsrsearch: `intitle:"IA imslp" intitle:${surname.toLowerCase()} filetype:pdf`,
+      gsrnamespace: 6,
+      gsrlimit: 50,
+      gsroffset: offset,
+      prop: 'imageinfo',
+      iiprop: 'url|size|mime|extmetadata|metadata',
+      format: 'json',
+      origin: '*',
+    };
+    const data = await apiGet(params);
+    await sleep(DELAY_MS);
+    for (const p of Object.values(data.query?.pages || {})) pages.push(p);
+    if (data.continue?.gsroffset === undefined) break;
+    offset = data.continue.gsroffset;
+  }
+  return pages;
+}
+
+async function loadInventory(surnames) {
+  let cache = {};
+  try {
+    cache = JSON.parse(await readFile(INVENTORY_CACHE, 'utf8'));
+  } catch {
+    // no cache yet
+  }
+  for (const s of surnames) {
+    if (cache[s]) continue;
+    try {
+      cache[s] = await fetchInventory(s);
+      console.error(`inventory ${s}: ${cache[s].length}`);
+      await writeFile(INVENTORY_CACHE, JSON.stringify(cache), 'utf8');
+    } catch (e) {
+      console.error(`INVENTORY ${s}: ${e.message}`);
+    }
+  }
+  return cache;
+}
+
+function fromInventory(item, inventory) {
+  const cands = (inventory[item.surname] || []).map((p) => toCandidate(p, item)).filter(Boolean);
+  cands.sort((a, b) => a.asSet - b.asSet || a.startsIMSLP - b.startsIMSLP || a.pagePref - b.pagePref || a.rank - b.rank);
+  return cands[0] ?? null;
 }
 
 export function queryForms(item) {
@@ -233,18 +365,20 @@ async function searchOnce(q, item) {
   });
   const pages = Object.values(data.query?.pages || {});
   const cands = pages.map((p) => toCandidate(p, item)).filter(Boolean);
-  cands.sort((a, b) => a.startsIMSLP - b.startsIMSLP || a.pagePref - b.pagePref || a.rank - b.rank);
+  cands.sort((a, b) => a.asSet - b.asSet || a.startsIMSLP - b.startsIMSLP || a.pagePref - b.pagePref || a.rank - b.rank);
   return cands[0] ?? null;
 }
 
 // Tries several query forms; the first form that gives a candidate that passes every identity check wins.
-async function resolveItem(item) {
+async function resolveItem(item, inventory = {}) {
+  const fromInv = fromInventory(item, inventory);
+  if (fromInv && !fromInv.asSet) return fromInv;
   for (const q of queryForms(item)) {
     const hit = await searchOnce(q, item);
     await sleep(DELAY_MS);
-    if (hit) return hit;
+    if (hit && !hit.asSet) return hit;
   }
-  return null;
+  return fromInv;
 }
 
 async function main() {
@@ -255,13 +389,18 @@ async function main() {
   } catch {
     // no previous file
   }
+  const inventory = await loadInventory([...new Set(CURATED.map((i) => i.surname))]);
+  if (process.argv.includes('--inventory')) {
+    for (const [k, v] of Object.entries(inventory)) for (const p of v) console.log(`${k}\t${p.title}`);
+    return;
+  }
   const out = [];
   const unresolved = [];
   const lines = [];
   for (const item of CURATED) {
     let hit = null;
     try {
-      hit = await resolveItem(item);
+      hit = await resolveItem(item, inventory);
     } catch (e) {
       console.error(`ERROR ${item.id}: ${e.message}`);
       const old = previous.get(item.id);
@@ -274,7 +413,7 @@ async function main() {
       aliases: item.aliases,
       composer: item.composer,
       composerUk: item.composerUk,
-      detail: item.detail,
+      detail: hit?.asSet ? `${item.detail}; у збірці: ${hit.fileTitle.replace(/\s*\(IA imslp[^)]*\)/i, '').replace(/\.pdf$/i, '')}` : item.detail,
       fileUrl: hit ? hit.fileUrl : null,
       pageUrl: hit ? hit.pageUrl : null,
       license: hit ? hit.license : null,
