@@ -47,10 +47,12 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--sp-5);
+  align-items: stretch;
 }
 
 .library__item {
   min-width: 0;
+  display: flex;
 }
 
 .library__card {
@@ -61,6 +63,7 @@
   width: 100%;
   min-height: var(--touch);
   padding: 0;
+  align-self: flex-start;
   margin: 0;
   border: 0;
   background: transparent;
@@ -131,6 +134,7 @@
   gap: var(--sp-3);
   margin-top: auto;
   padding-top: var(--sp-4);
+  padding-bottom: env(safe-area-inset-bottom);
   background: var(--bg);
 }
 

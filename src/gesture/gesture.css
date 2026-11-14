@@ -14,7 +14,7 @@
     calc(var(--sp-5) + env(safe-area-inset-right))
     calc(var(--sp-5) + env(safe-area-inset-bottom))
     calc(var(--sp-5) + env(safe-area-inset-left));
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
   color: var(--ink);
   text-align: center;
   transition: opacity var(--dur-1) var(--ease);
@@ -30,6 +30,7 @@
   border-radius: 50%;
   border: 2px solid var(--gold);
   overflow: hidden;
+  flex: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,6 +45,13 @@
   transform: scaleX(-1);
 }
 
+/* The ring's svg rule must not reach the icon inside the oval. */
+.calib .calib__oval svg {
+  position: static;
+  inset: auto;
+  transform: none;
+}
+
 .calib__done-icon {
   color: var(--ok);
 }
@@ -54,6 +62,8 @@
   font-size: var(--fs-32);
   font-weight: 500;
   line-height: 1.2;
+  max-width: 24ch;
+  text-wrap: balance;
   color: var(--ink);
 }
 
@@ -68,6 +78,7 @@
   font-family: var(--font-ui);
   font-size: var(--fs-15);
   line-height: 1.45;
+  max-width: 36ch;
   color: var(--ink-muted);
 }
 
