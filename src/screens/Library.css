@@ -59,6 +59,15 @@
   align-items: stretch;
 }
 
+/* Landscape: the screen is short, so use five columns. The covers get smaller and the first row,
+   with its titles, fits above the bottom bar. */
+@media (orientation: landscape) and (min-width: 900px) {
+  .library__grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--sp-4);
+  }
+}
+
 .library__item {
   min-width: 0;
   display: flex;
