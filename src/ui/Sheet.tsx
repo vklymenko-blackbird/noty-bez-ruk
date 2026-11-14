@@ -1,12 +1,6 @@
 import type { ComponentChildren } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 
-/**
- * A touch tap opens a sheet on pointerup. The click that follows lands on the new scrim and must not close it.
- * Such a ghost click has no pointerdown on the scrim, so it is ignored for a short time after opening.
- */
-const GHOST_CLICK_MS = 400;
-
 export interface SheetProps {
   open: boolean;
   onClose: () => void;
@@ -21,12 +15,15 @@ export function Sheet({ open, onClose, title, children, class: cls, ...rest }: S
   const ref = useRef<HTMLDivElement>(null);
   const closeRef = useRef(onClose);
   closeRef.current = onClose;
-  const openedAt = useRef(0);
+  /**
+   * True when the last pointerdown started on the scrim itself. A touch tap can open a sheet on pointerup;
+   * the click that follows lands on the new scrim without any pointerdown on it, so it never closes the sheet.
+   * There is no time window: only a press that really started on the scrim closes it.
+   */
   const pressed = useRef(false);
 
   useEffect(() => {
     if (!open) return;
-    openedAt.current = performance.now();
     const prev = document.activeElement as HTMLElement | null;
     ref.current?.focus();
     const onKey = (e: KeyboardEvent) => {
@@ -45,15 +42,18 @@ export function Sheet({ open, onClose, title, children, class: cls, ...rest }: S
   const onScrimDown = (e: PointerEvent) => {
     pressed.current = e.target === e.currentTarget;
   };
+  const onScrimCancel = () => {
+    pressed.current = false;
+  };
   const onScrimClick = (e: MouseEvent) => {
     const real = pressed.current;
     pressed.current = false;
-    if (e.target === e.currentTarget && (real || performance.now() - openedAt.current > GHOST_CLICK_MS)) onClose();
+    if (real && e.target === e.currentTarget) onClose();
   };
 
   if (!open) return null;
   return (
-    <div class="ui-sheet-scrim" data-testid="sheet-scrim" data-nav-ignore onPointerDown={onScrimDown} onClick={onScrimClick}>
+    <div class="ui-sheet-scrim" data-testid="sheet-scrim" data-nav-ignore onPointerDown={onScrimDown} onPointerCancel={onScrimCancel} onClick={onScrimClick}>
       <div ref={ref} class={`ui-sheet${cls ? ` ${cls}` : ''}`} role="dialog" aria-modal="true" aria-label={title} tabIndex={-1} data-testid={rest['data-testid'] ?? 'sheet'}>
         <div class="ui-sheet__grip" />
         {title ? <h2 class="ui-sheet__title">{title}</h2> : null}

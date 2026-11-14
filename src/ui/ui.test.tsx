@@ -17,13 +17,17 @@ describe('Sheet', () => {
     render(<Sheet open onClose={onClose} title="Заголовок">тіло</Sheet>);
     const dlg = screen.getByRole('dialog');
     expect(document.activeElement).toBe(dlg);
-    // The click that follows a touch tap right after opening is ignored.
+    // A click without a pointerdown on the scrim (the ghost click after a touch tap that opened it) is ignored, at any time.
     fireEvent.click(screen.getByTestId('sheet-scrim'));
     expect(onClose).not.toHaveBeenCalled();
     const now = performance.now();
-    const spy = vi.spyOn(performance, 'now').mockReturnValue(now + 1000);
+    const spy = vi.spyOn(performance, 'now').mockReturnValue(now + 10_000);
     fireEvent.click(screen.getByTestId('sheet-scrim'));
     spy.mockRestore();
+    expect(onClose).not.toHaveBeenCalled();
+    // A real press on the scrim closes it.
+    fireEvent.pointerDown(screen.getByTestId('sheet-scrim'));
+    fireEvent.click(screen.getByTestId('sheet-scrim'));
     expect(onClose).toHaveBeenCalledTimes(1);
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(onClose).toHaveBeenCalledTimes(2);
