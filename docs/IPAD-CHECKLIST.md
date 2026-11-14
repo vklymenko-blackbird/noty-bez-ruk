@@ -33,7 +33,7 @@ Scores you add in Safari do not move to the installed app. So install before you
 - [ ] Delete the app and install it again (or use a new browser profile).
 - [ ] Open the app.
 - Expected: the install step shows first. Then three cards. Then the empty library.
-- [ ] Tap "Налаштування", find "Показати вступ ще раз".
+- [ ] Tap "Налаштування", find "Показати знайомство знову".
 - Expected: the introduction opens again.
 
 ## 4. Find and add scores
@@ -66,9 +66,9 @@ Scores you add in Safari do not move to the installed app. So install before you
 - Expected: no false turns. Write down how many: ______
 
 ## 7. Half-page turn and the divider
-- [ ] Turn on "Півсторінки" in play mode.
+- [ ] In play mode, tap the centre of the page to open the menu. Turn on "Гортати половинами". Close the menu.
 - [ ] Make one head turn.
-- Expected: the next page shows in the lower half, with a divider line. Another turn shows the full next page.
+- Expected: the next page shows in the TOP half and the current page stays in the bottom half, with a gold "½" divider line. Another turn shows the full next page.
 
 ## 8. Tap, swipe and Bluetooth pedal
 - [ ] Tap the right edge of the page. Expected: next page.
@@ -100,7 +100,7 @@ Scores you add in Safari do not move to the installed app. So install before you
 - [ ] In play mode, open the menu and tap "Нотатки".
 - [ ] Draw with the Pencil. Rest your palm on the screen while you draw.
 - Expected: the Pencil draws. The palm does not draw (finger drawing is off by default).
-- [ ] Add a stamp. Erase a mark. Tap "Готово". Close the app and open it again.
+- [ ] Add a stamp. Erase a mark. Tap "Зберегти" (full name "Зберегти позначки", at the right end of the first toolbar row). Close the app and open it again.
 - Expected: the notes are still there.
 
 ## 12. Paper themes and crop on a big scanned score
