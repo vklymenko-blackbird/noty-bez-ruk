@@ -22,6 +22,7 @@ import { createGestureController } from '../gesture';
 import CalibrationOverlay from '../gesture/CalibrationOverlay';
 import GestureHud from '../gesture/GestureHud';
 import { createAnnotSession } from '../annot';
+import { setUnsavedNotesGuard } from '../pwa/guard';
 import AnnotationLayer from '../annot/AnnotationLayer';
 import AnnotationToolbar from '../annot/AnnotationToolbar';
 import PageView from '../play/PageView';
@@ -263,6 +264,8 @@ export default function PlayScreen({ params }: ScreenProps) {
   const saveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const savedPage = useRef(0);
   const session = useMemo<AnnotSession>(() => createAnnotSession(storage, id), [id]);
+  // An update that reloads the page must wait while this note session has unsaved changes.
+  useEffect(() => setUnsavedNotesGuard(() => session.isDirty()), [session]);
 
   const posRef = useRef(position);
   const blockedRef = useRef(false);
