@@ -405,9 +405,11 @@ export default function PlayScreen({ params }: ScreenProps) {
   );
   const onDividerChange = useCallback(
     (dividerRatio: number) => {
+      // Keep the local meta in step, or the divider snaps back to the old ratio after the drag.
+      setMeta((m) => (m ? { ...m, dividerRatio } : m));
       void storage.updateScore(id, { dividerRatio }).catch(() => undefined);
     },
-    [id],
+    [id, setMeta],
   );
   const goToPage = useCallback((page: number) => {
     const next = { page: clampPage(page, pageCountRef.current), half: false };
