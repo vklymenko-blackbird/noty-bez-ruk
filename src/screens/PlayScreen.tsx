@@ -36,6 +36,7 @@ const COACH_KEY = 'noty.coach.v1';
 const COACH_MAX_SESSIONS = 3;
 const COACH_MS = 4000;
 const PULSE_MS = 900;
+const OVERLAY_FADE_MS = 1000;
 const SAVE_PAGE_DEBOUNCE_MS = 500;
 const WAKE_HINT_KEY = 'noty.wakeHint';
 
@@ -365,7 +366,18 @@ export default function PlayScreen({ params }: ScreenProps) {
   const status = snapshot.status;
   const cameraProblem = status === 'denied' || status === 'unavailable' || status === 'error';
   const phase = snapshot.state.phase;
-  const coachReady = ready && (!gestureOn || cameraSkipped || cameraProblem || (phase !== 'idle' && phase !== 'calibrating'));
+  const calibrationOver = !gestureOn || cameraSkipped || cameraProblem || (phase !== 'idle' && phase !== 'calibrating');
+  // The overlay shows «Готово» and fades for about 0.9 s after the calibration. The coach waits for that.
+  const [overlayGone, setOverlayGone] = useState(false);
+  useEffect(() => {
+    if (!calibrationOver) {
+      setOverlayGone(false);
+      return;
+    }
+    const timer = setTimeout(() => setOverlayGone(true), gestureOn && !cameraSkipped && !cameraProblem ? OVERLAY_FADE_MS : 0);
+    return () => clearTimeout(timer);
+  }, [calibrationOver, gestureOn, cameraSkipped, cameraProblem]);
+  const coachReady = ready && overlayGone;
   useEffect(() => {
     if (!coachReady || coachDecided.current) return;
     coachDecided.current = true;
@@ -491,7 +503,7 @@ export default function PlayScreen({ params }: ScreenProps) {
           </div>
         ) : null}
 
-        {coach ? (
+        {coach && coachReady && phase !== 'calibrating' ? (
           <div class="play-coach" data-testid="play-coach" data-nav-ignore onClick={() => setCoach(false)}>
             <div class="play-coach__cols">
               <span>{t('play.coach.prev')}</span>
