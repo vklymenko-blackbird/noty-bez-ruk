@@ -65,7 +65,12 @@ export default function PageView(props: PageViewProps) {
   const counters = useRef({ fade: 0, wipe: 0 });
   const [root, setRoot] = useState({ w: 0, h: 0 });
   const [view, setView] = useState<ViewData | null>(null);
-  const [failedPage, setFailedPage] = useState<number | null>(null);
+  const [failedPage, setFailedPageState] = useState<number | null>(null);
+  const failedRef = useRef<number | null>(null);
+  const setFailedPage = (p: number | null) => {
+    failedRef.current = p;
+    setFailedPageState(p);
+  };
   const [retryTick, setRetryTick] = useState(0);
   const [drag, setDrag] = useState<number | null>(null);
   const dragRef = useRef<{ startY: number; startRatio: number; height: number; ratio: number } | null>(null);
@@ -104,6 +109,8 @@ export default function PageView(props: PageViewProps) {
     const mine = ++token.current;
     const page = position.page;
     const half = position.half && page + 1 <= doc.pageCount;
+    // After a failure the old page is stale: drop it so a pending retry shows the spinner.
+    if (failedRef.current !== null) setView(null);
     setFailedPage(null);
     (async () => {
       const pages = half ? [page, page + 1] : [page];
@@ -193,11 +200,13 @@ export default function PageView(props: PageViewProps) {
   return (
     <div class="pv" data-testid="pv" ref={rootRef}>
       {failedPage !== null ? (
-        <div class="pv-error" data-testid="pv-error" role="alert" data-nav-ignore>
+        <div class="pv-error" data-testid="pv-error" role="alert">
           <p class="pv-error__text">{t('play.pageFailed', { page: failedPage })}</p>
-          <Button variant="primary" onClick={() => setRetryTick((n) => n + 1)} data-testid="pv-retry">
-            {t('play.pageRetry')}
-          </Button>
+          <div class="pv-error__action" data-nav-ignore>
+            <Button variant="primary" onClick={() => setRetryTick((n) => n + 1)} data-testid="pv-retry">
+              {t('play.pageRetry')}
+            </Button>
+          </div>
         </div>
       ) : view === null ? (
         <div class="pv-loading">
