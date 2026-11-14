@@ -24,7 +24,11 @@
   background: var(--surface);
   border-top: 1px solid var(--rule);
   border-radius: var(--r-sheet) var(--r-sheet) 0 0;
-  padding: var(--sp-3) var(--sp-4) calc(var(--sp-3) + env(safe-area-inset-bottom, 0px));
+  padding:
+    var(--sp-3)
+    calc(var(--sp-4) + env(safe-area-inset-right, 0px))
+    calc(var(--sp-3) + env(safe-area-inset-bottom, 0px))
+    calc(var(--sp-4) + env(safe-area-inset-left, 0px));
 }
 
 .annot-toolbar__row {
@@ -71,7 +75,7 @@
 .annot-swatch .ui-chip__swatch {
   width: 24px;
   height: 24px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--ink-muted);
 }
 
 .annot-stamp {
@@ -83,4 +87,10 @@
 
 .annot-toolbar[data-saving="true"] .annot-toolbar__row {
   opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .annot-toolbar * {
+    transition: none !important;
+  }
 }

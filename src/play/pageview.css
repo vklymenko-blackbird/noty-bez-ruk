@@ -57,7 +57,7 @@
 }
 .pv-notch {
   position: absolute;
-  right: 8px;
+  right: var(--sp-2);
   top: -23px;
   width: 48px;
   height: 48px;
@@ -74,11 +74,11 @@
   justify-content: center;
   min-width: 28px;
   height: 20px;
-  padding: 0 8px;
+  padding: 0 var(--sp-2);
   border-radius: 999px;
   background: var(--gold);
   color: var(--bg);
-  font-size: 13px;
+  font-size: var(--fs-13);
   font-weight: 600;
   line-height: 1;
 }
