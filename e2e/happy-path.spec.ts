@@ -54,7 +54,7 @@ test('the whole journey: onboarding, find, add, play, leave, continue', async ({
 
   await test.step('score screen', async () => {
     await expect(page.getByTestId('screen-score')).toBeVisible();
-    await expect(page.getByRole('heading').first()).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'До Елізи', level: 2 })).toBeVisible();
     await page.getByRole('button', { name: 'Грати' }).first().click();
   });
 

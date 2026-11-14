@@ -21,7 +21,8 @@ async function cardId(page: Page, key: number | string): Promise<string> {
 }
 
 async function currentPage(page: Page): Promise<number> {
-  return ((await getState(page)).play as { page: number }).page;
+  const play = (await getState(page)).play as { page: number } | null | undefined;
+  return play?.page ?? 0;
 }
 
 test.describe('persistence', () => {
