@@ -71,7 +71,16 @@ export async function downloadScore(
 
   try {
     const response = await fetch(fileUrl, { signal });
-    if (!response.ok) throw new AppError('bad-response');
+    // 429 has its own message. Other failed statuses (404, 5xx) mean the source is not reachable.
+    // Only a 200 response whose body is not a PDF is 'bad-response' (checked below).
+    if (response.status === 429) {
+      await response.body?.cancel().catch(() => undefined);
+      throw new AppError('rate-limited');
+    }
+    if (!response.ok) {
+      await response.body?.cancel().catch(() => undefined);
+      throw new AppError('network');
+    }
 
     const header = response.headers.get('Content-Length');
     const declared = header === null ? NaN : Number(header);

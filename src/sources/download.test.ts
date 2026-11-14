@@ -108,9 +108,16 @@ describe('downloadScore', () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
-  it('maps a non-ok response to bad-response', async () => {
-    vi.stubGlobal('fetch', vi.fn(async () => response({ ok: false, status: 404 })));
-    await expect(downloadScore(hit())).rejects.toMatchObject({ code: 'bad-response' });
+  it('maps HTTP 404 and 5xx to a network error, not to "not a PDF"', async () => {
+    for (const status of [404, 500, 503]) {
+      vi.stubGlobal('fetch', vi.fn(async () => response({ ok: false, status })));
+      await expect(downloadScore(hit())).rejects.toMatchObject({ code: 'network' });
+    }
+  });
+
+  it('maps HTTP 429 to its own rate-limited error', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => response({ ok: false, status: 429 })));
+    await expect(downloadScore(hit())).rejects.toMatchObject({ code: 'rate-limited' });
   });
 
   it('rejects a file that is not a PDF', async () => {

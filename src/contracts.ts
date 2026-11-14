@@ -10,7 +10,7 @@ export type LibrarySort = 'recent' | 'title' | 'added';
 
 export type AppErrorCode =
   | 'not-pdf' | 'too-large' | 'pdf-open-failed' | 'storage-full' | 'not-found'
-  | 'network' | 'offline' | 'bad-response' | 'aborted'
+  | 'network' | 'offline' | 'bad-response' | 'rate-limited' | 'aborted'
   | 'camera-denied' | 'camera-unavailable' | 'model-load-failed';
 
 export class AppError extends Error {

@@ -45,6 +45,7 @@ export const uk = {
   'error.network': 'Не вдалося завантажити. Перевірте інтернет.',
   'error.offline': 'Немає інтернету',
   'error.bad-response': 'Джерело повернуло не PDF',
+  'error.rate-limited': 'Wikimedia тимчасово обмежила завантаження. Спробуйте за кілька хвилин.',
   'error.aborted': 'Скасовано',
   'error.generic': 'Щось пішло не так',
 
