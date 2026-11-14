@@ -1,7 +1,10 @@
 import type { ComponentChildren } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 
-/** A touch tap opens a sheet on pointerup. The click that follows lands on the new scrim and must not close it. */
+/**
+ * A touch tap opens a sheet on pointerup. The click that follows lands on the new scrim and must not close it.
+ * Such a ghost click has no pointerdown on the scrim, so it is ignored for a short time after opening.
+ */
 const GHOST_CLICK_MS = 400;
 
 export interface SheetProps {
@@ -19,6 +22,7 @@ export function Sheet({ open, onClose, title, children, class: cls, ...rest }: S
   const closeRef = useRef(onClose);
   closeRef.current = onClose;
   const openedAt = useRef(0);
+  const pressed = useRef(false);
 
   useEffect(() => {
     if (!open) return;
@@ -38,9 +42,18 @@ export function Sheet({ open, onClose, title, children, class: cls, ...rest }: S
     };
   }, [open]);
 
+  const onScrimDown = (e: PointerEvent) => {
+    pressed.current = e.target === e.currentTarget;
+  };
+  const onScrimClick = (e: MouseEvent) => {
+    const real = pressed.current;
+    pressed.current = false;
+    if (e.target === e.currentTarget && (real || performance.now() - openedAt.current > GHOST_CLICK_MS)) onClose();
+  };
+
   if (!open) return null;
   return (
-    <div class="ui-sheet-scrim" data-testid="sheet-scrim" data-nav-ignore onClick={(e) => { if (e.target === e.currentTarget && performance.now() - openedAt.current > GHOST_CLICK_MS) onClose(); }}>
+    <div class="ui-sheet-scrim" data-testid="sheet-scrim" data-nav-ignore onPointerDown={onScrimDown} onClick={onScrimClick}>
       <div ref={ref} class={`ui-sheet${cls ? ` ${cls}` : ''}`} role="dialog" aria-modal="true" aria-label={title} tabIndex={-1} data-testid={rest['data-testid'] ?? 'sheet'}>
         <div class="ui-sheet__grip" />
         {title ? <h2 class="ui-sheet__title">{title}</h2> : null}
