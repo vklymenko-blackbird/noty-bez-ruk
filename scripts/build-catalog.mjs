@@ -2,7 +2,7 @@
 // Run once by hand: node scripts/build-catalog.mjs
 // Flag --check: HEAD request for each resolved fileUrl, prints the dead ones.
 // This script is not part of the app build.
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -209,11 +209,21 @@ function toCandidate(page, item) {
   };
 }
 
-async function resolveItem(item) {
+export function queryForms(item) {
+  const forms = [item.query];
+  const plain = item.title.replace(/[«»]/g, '').replace(/\s+/g, ' ').trim();
+  forms.push(`IMSLP ${item.surname} ${plain}`);
+  forms.push(`${item.surname} ${item.detail}`);
+  forms.push(`${item.surname} ${item.aliases[0] ?? plain}`);
+  forms.push(`${plain} ${item.composer}`);
+  return [...new Set(forms.map((q) => q.replace(/\s+/g, ' ').trim()))];
+}
+
+async function searchOnce(q, item) {
   const data = await apiGet({
     action: 'query',
     generator: 'search',
-    gsrsearch: `${item.query} filetype:pdf`,
+    gsrsearch: `${q} filetype:pdf`,
     gsrnamespace: 6,
     gsrlimit: 15,
     prop: 'imageinfo',
@@ -227,8 +237,24 @@ async function resolveItem(item) {
   return cands[0] ?? null;
 }
 
+// Tries several query forms; the first form that gives a candidate that passes every identity check wins.
+async function resolveItem(item) {
+  for (const q of queryForms(item)) {
+    const hit = await searchOnce(q, item);
+    await sleep(DELAY_MS);
+    if (hit) return hit;
+  }
+  return null;
+}
+
 async function main() {
   const check = process.argv.includes('--check');
+  const previous = new Map();
+  try {
+    for (const e of JSON.parse(await readFile(OUT, 'utf8'))) previous.set(e.id, e);
+  } catch {
+    // no previous file
+  }
   const out = [];
   const unresolved = [];
   const lines = [];
@@ -238,8 +264,9 @@ async function main() {
       hit = await resolveItem(item);
     } catch (e) {
       console.error(`ERROR ${item.id}: ${e.message}`);
+      const old = previous.get(item.id);
+      if (old?.fileUrl) hit = { ...old, fileTitle: '(kept from previous run)' };
     }
-    await sleep(DELAY_MS);
     const entry = {
       id: item.id,
       title: item.title,
