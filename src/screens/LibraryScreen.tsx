@@ -137,7 +137,7 @@ export default function LibraryScreen(_props: ScreenProps) {
   }
 
   return (
-    <main class="screen" data-testid="screen-library">
+    <main class="screen screen--library" data-testid="screen-library">
       <div class="screen-inner library">
         <TopBar title={t('library.title')} serif actions={actions} />
         {showInstall ? <InstallBanner /> : null}
@@ -170,15 +170,15 @@ export default function LibraryScreen(_props: ScreenProps) {
               >
                 <div class="library__cover">
                   <Cover class="cover--fluid" title={s.title} composer={s.composer} detail={s.detail} />
-                  {s.id === continueFor ? (
-                    <span class="library__ribbon" data-testid="continue-ribbon">
-                      {t('library.continue')}
-                    </span>
-                  ) : null}
                 </div>
                 <span class="library__title">{s.title}</span>
                 {s.composer ? <span class="library__composer">{s.composer}</span> : null}
                 <span class="library__page">{t('common.pageOf', { page: s.lastPage, count: s.pageCount })}</span>
+                {s.id === continueFor ? (
+                  <span class="library__ribbon" data-testid="continue-ribbon">
+                    {t('library.continue')}
+                  </span>
+                ) : null}
               </button>
             </li>
           ))}
