@@ -18,6 +18,14 @@ function surnameOf(composer: string): string {
   return words.length > 0 ? words[words.length - 1] : '';
 }
 
+/** Long titles get a smaller font step before the line clamp (cover.css). */
+export function titleLengthStep(title: string): 0 | 1 | 2 {
+  const n = Array.from(title.trim()).length;
+  if (n > 64) return 2;
+  if (n > 32) return 1;
+  return 0;
+}
+
 const ICON_SIZE: Record<NonNullable<CoverProps['size']>, number> = { sm: 20, md: 24, lg: 32 };
 
 /** A generated cover. No image, no network. Every visible part is a plain text node. */
@@ -28,6 +36,7 @@ export default function Cover({ title, composer, detail, size = 'md', class: ext
     'cover',
     `cover--${size}`,
     `cover--tint-${tintIndex(composer)}`,
+    titleLengthStep(title) > 0 ? `cover--len-${titleLengthStep(title)}` : '',
     extraClass ?? '',
   ].filter(Boolean).join(' ');
 

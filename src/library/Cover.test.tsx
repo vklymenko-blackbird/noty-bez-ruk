@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/preact';
-import Cover, { tintIndex } from './Cover';
+import Cover, { tintIndex, titleLengthStep } from './Cover';
 
 function tintClass(container: Element): string {
   const root = container.querySelector<HTMLElement>('[data-testid="cover"]');
@@ -52,5 +52,13 @@ describe('Cover', () => {
     expect(root.classList.contains('cover--fluid')).toBe(true);
     expect(root.classList.contains('extra-class')).toBe(true);
     expect(root.classList.contains('cover--lg')).toBe(true);
+  });
+
+  it('steps the title font down for long titles', () => {
+    expect(titleLengthStep('Für Elise')).toBe(0);
+    expect(titleLengthStep('Ноктюрн ре-бемоль мажор, ор. 27 № 2 і ще')).toBe(1);
+    expect(titleLengthStep('Соната для фортепіано № 14 до-дієз мінор «Місячна», ор. 27 № 2: I. Adagio sostenuto')).toBe(2);
+    const { container } = render(<Cover title={'Дуже довга назва твору '.repeat(5)} composer="Автор" />);
+    expect(container.querySelector('[data-testid="cover"]')?.classList.contains('cover--len-2')).toBe(true);
   });
 });

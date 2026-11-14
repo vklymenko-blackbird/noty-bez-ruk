@@ -8,6 +8,7 @@
   width: 200px;
   flex: 0 0 auto;
   overflow: hidden;
+  container-type: inline-size;
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: var(--r-card);
@@ -74,25 +75,32 @@
   white-space: nowrap;
 }
 
+/* The title never grows: it shows at most --lines whole lines. The clamp puts the ellipsis
+   at the end of the last visible line. Longer titles step down in size before they clamp. */
 .cover__title {
-  flex: 1 1 auto;
+  --lines: 4;
+  --title-fs: var(--fs-32);
+  flex: 0 0 auto;
   width: 100%;
+  margin-top: var(--sp-1);
   font-family: var(--font-display);
+  font-size: min(var(--title-fs), 15cqw);
   font-style: italic;
   font-weight: 500;
   line-height: 1.15;
   color: var(--ink);
+  max-height: calc(var(--lines) * 1.15em);
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-box-pack: center;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
+  -webkit-line-clamp: var(--lines);
+  line-clamp: var(--lines);
   text-wrap: balance;
   overflow-wrap: anywhere;
 }
 
 .cover__foot {
+  margin-top: auto;
   width: 100%;
   min-height: 18px;
   font-size: var(--fs-13);
@@ -103,6 +111,16 @@
   white-space: nowrap;
 }
 
-.cover--sm .cover__title { font-size: var(--fs-24); }
-.cover--md .cover__title { font-size: var(--fs-32); }
-.cover--lg .cover__title { font-size: var(--fs-40); }
+.cover--sm .cover__title { --title-fs: var(--fs-24); --lines: 2; }
+.cover--md .cover__title { --title-fs: var(--fs-32); --lines: 4; }
+.cover--lg .cover__title { --title-fs: var(--fs-40); --lines: 4; }
+
+/* Long titles (over 32 characters): one font step down, one more line. */
+.cover--len-1.cover--sm .cover__title { --title-fs: var(--fs-17); --lines: 3; }
+.cover--len-1.cover--md .cover__title { --title-fs: var(--fs-24); --lines: 5; text-wrap: wrap; }
+.cover--len-1.cover--lg .cover__title { --title-fs: var(--fs-32); --lines: 5; text-wrap: wrap; }
+
+/* Very long titles (over 64 characters): two steps down, six lines. */
+.cover--len-2.cover--sm .cover__title { --title-fs: var(--fs-13); --lines: 4; }
+.cover--len-2.cover--md .cover__title { --title-fs: var(--fs-20); --lines: 6; text-wrap: wrap; }
+.cover--len-2.cover--lg .cover__title { --title-fs: var(--fs-24); --lines: 7; text-wrap: wrap; }
