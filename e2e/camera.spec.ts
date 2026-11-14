@@ -1,5 +1,23 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import { MEDIAPIPE_LOG_IGNORE, openApp, watchErrors } from './helpers';
+
+// STEER 8: MediaPipe tries to send usage telemetry to odml.pa.googleapis.com. The strict CSP blocks it
+// and must keep blocking it. Only messages that mention this host are ignored, and only in this spec.
+const TELEMETRY_HOST = 'odml.pa.googleapis.com';
+
+function expectOnlyTelemetryErrors(watch: { errors: string[] }): void {
+  const rest = watch.errors.filter((e) => !e.includes(TELEMETRY_HOST));
+  expect(rest, rest.join('\n')).toEqual([]);
+}
+
+/** Records every googleapis.com request and whether it got a response. */
+function trackGoogleApis(page: Page): { succeeded: string[] } {
+  const succeeded: string[] = [];
+  page.on('requestfinished', (r) => {
+    if (r.url().includes('googleapis.com')) succeeded.push(r.url());
+  });
+  return { succeeded };
+}
 
 // Chromium only: this spec has no @webkit tag, so the webkit project skips it.
 // The fake camera (tests/fixtures/fake-camera.mjpeg) shows no face.
@@ -8,6 +26,7 @@ test.describe('camera pose source (fake camera)', () => {
 
   test('starts, reports samples without a face, and stops all tracks', async ({ page }) => {
     const watch = watchErrors(page, { ignore: MEDIAPIPE_LOG_IGNORE });
+    const google = trackGoogleApis(page);
     await openApp(page, { query: 'camera=1' });
 
     const result = await page.evaluate(async () => {
@@ -53,11 +72,13 @@ test.describe('camera pose source (fake camera)', () => {
     expect(result.trackStates.every((s) => s === 'ended')).toBe(true);
     expect(result.statusAfterStop).toBe('idle');
     expect(result.streamAfterStop).toBeNull();
-    watch.expectNoErrors();
+    expectOnlyTelemetryErrors(watch);
+    expect(google.succeeded, 'no googleapis.com request may succeed').toEqual([]);
   });
 
   test('stop during start releases the camera', async ({ page }) => {
     const watch = watchErrors(page, { ignore: MEDIAPIPE_LOG_IGNORE });
+    const google = trackGoogleApis(page);
     await openApp(page, { query: 'camera=1' });
 
     const result = await page.evaluate(async () => {
@@ -77,6 +98,7 @@ test.describe('camera pose source (fake camera)', () => {
     expect(result.status).toBe('idle');
     expect(result.stream).toBeNull();
     expect(result.hidden).toBe(0);
-    watch.expectNoErrors();
+    expectOnlyTelemetryErrors(watch);
+    expect(google.succeeded, 'no googleapis.com request may succeed').toEqual([]);
   });
 });
