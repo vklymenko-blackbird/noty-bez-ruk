@@ -7,12 +7,15 @@ import { App } from './app/App';
 import { installTestHook } from './app/testHook';
 import { isTestMode, testFlag } from './app/testMode';
 import { initPwa } from './pwa';
+import { BootUnsupported, isBrowserSupported } from './app/boot';
 
-if (isTestMode()) installTestHook();
+const supported = isBrowserSupported();
+
+if (supported && isTestMode()) installTestHook();
 
 const root = document.getElementById('app');
-if (root) render(<App />, root);
+if (root) render(supported ? <App /> : <BootUnsupported />, root);
 
-if (!isTestMode() || testFlag('sw')) {
+if (supported && (!isTestMode() || testFlag('sw'))) {
   initPwa({ isPlayRoute: () => location.hash.startsWith('#/play/') });
 }
