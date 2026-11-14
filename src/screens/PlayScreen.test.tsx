@@ -53,7 +53,7 @@ function topOf(el: HTMLElement): number {
 
 describe('PlayScreen half-page divider (F4)', () => {
   it('keeps the dragged divider position after the drag ends and saves it', async () => {
-    settings.set({ halfPage: true, gesture: 'touch' });
+    settings.set({ halfPage: true, gesture: 'off' });
     const id = await seed();
     render(<PlayScreen params={{ id }} />);
     await screen.findByTestId('pv');
