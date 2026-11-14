@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useState } from 'preact/hooks';
 import type { ScreenProps, GestureKind, PaperTheme, AppTheme, Settings, StorageEstimate } from '../contracts';
 import { DEFAULT_SETTINGS, SETTING_LIMITS } from '../contracts';
 import {
@@ -97,7 +97,8 @@ export default function SettingsScreen(_props: ScreenProps) {
   }, []);
 
   // Learn mode: the next key press (capture phase) goes to the chosen list.
-  useEffect(() => {
+  // Layout effect: the listener is attached before the browser can paint the new state.
+  useLayoutEffect(() => {
     if (learning === null) return;
     const dir = learning;
     const onKey = (event: KeyboardEvent) => {
