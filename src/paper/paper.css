@@ -1,1 +1,41 @@
-/* STUB: replaced by package paper-crop. */
+/* Paper themes. The class goes on the page box; the PDF canvas is a direct child.
+   Only the first child canvas is filtered, so pen overlays placed later stay clean. */
+
+.paper {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.paper-ivory {
+  background: var(--paper-ivory);
+}
+.paper-ivory > canvas:first-child {
+  mix-blend-mode: multiply;
+}
+
+.paper-sepia {
+  background: var(--paper-sepia);
+}
+.paper-sepia > canvas:first-child {
+  mix-blend-mode: multiply;
+}
+
+.paper-night {
+  background: var(--paper-night);
+}
+.paper-night > canvas:first-child {
+  filter: invert(1) hue-rotate(180deg) brightness(0.92);
+  mix-blend-mode: screen;
+}
+
+.paper-contrast {
+  background: var(--paper-white);
+}
+.paper-contrast > canvas:first-child {
+  filter: contrast(1.35) brightness(1.05);
+}
+
+.paper-plain {
+  background: var(--paper-white);
+}
