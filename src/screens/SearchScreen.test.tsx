@@ -25,7 +25,10 @@ const mocks = vi.hoisted(() => ({
   linkOuts: vi.fn(),
 }));
 
-vi.mock('../sources', () => mocks);
+vi.mock('../sources', async () => {
+  const { normalizeFileUrl } = await import('../sources/url');
+  return { ...mocks, normalizeFileUrl };
+});
 
 import SearchScreen from './SearchScreen';
 
@@ -112,5 +115,18 @@ describe('SearchScreen', () => {
     const a = screen.getByTestId('linkout-imslp');
     expect(a.getAttribute('target')).toBe('_blank');
     expect(a.getAttribute('rel')).toBe('noopener noreferrer');
+  });
+
+  it('shows one card when the live hit differs from the catalogue hit only by utm parameters', async () => {
+    const url = 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Elise.pdf';
+    mocks.searchCatalog.mockReturnValue([hit({ id: 'cat', title: 'Für Elise' })]);
+    mocks.searchCommons.mockResolvedValue([
+      hit({ id: 'commons:1', source: 'commons', title: 'Live Elise', fileUrl: `${url}?utm_source=commons.wikimedia.org&utm_campaign=imageinfo` }),
+    ]);
+    render(<SearchScreen params={{}} />);
+    fireEvent.input(screen.getByTestId('search-input'), { target: { value: 'Elise' } });
+    await waitFor(() => expect(mocks.searchCommons).toHaveBeenCalled());
+    await waitFor(() => expect(screen.getAllByTestId('hit-card')).toHaveLength(1));
+    expect(screen.queryByText('Live Elise')).toBeNull();
   });
 });

@@ -1,5 +1,6 @@
 import { AppError, MAX_DOWNLOAD_BYTES, type LinkOut, type ScoreHit } from '../contracts';
 import { t } from '../i18n';
+import { normalizeFileUrl } from './url';
 
 const API_URL = 'https://commons.wikimedia.org/w/api.php';
 const UPLOAD_PREFIX = 'https://upload.wikimedia.org/';
@@ -86,7 +87,7 @@ function toCandidate(key: string, page: unknown): Candidate | null {
       detail: '',
       license,
       pageUrl,
-      fileUrl: url,
+      fileUrl: normalizeFileUrl(url),
       sizeBytes: size,
       pages: typeof pageCount === 'number' ? pageCount : null,
     },

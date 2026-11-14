@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { ScoreHit, ScreenProps } from '../contracts';
 import { AppError } from '../contracts';
 import { TopBar, TextField, Button, Card, Icon, Spinner, ProgressRing, toast } from '../ui';
-import { searchCatalog, popularCatalog, searchCommons, downloadScore, linkOuts } from '../sources';
+import { searchCatalog, popularCatalog, searchCommons, downloadScore, linkOuts, normalizeFileUrl } from '../sources';
 import { importPdfBytes } from '../library/importPdf';
 import { storage } from '../storage';
 import { navigate } from '../app/router';
@@ -79,7 +79,7 @@ function HitCard({ hit, libraryId }: HitCardProps) {
           sourceName: 'Wikimedia Commons',
           license: hit.license,
           pageUrl: hit.pageUrl,
-          fileUrl: hit.fileUrl,
+          fileUrl: normalizeFileUrl(hit.fileUrl),
         },
       });
       setAddedId(meta.id);
@@ -169,7 +169,7 @@ export default function SearchScreen(_props: ScreenProps) {
         .then((list) => {
           if (!alive) return;
           const map = new Map<string, string>();
-          for (const s of list) if (s.origin.fileUrl) map.set(s.origin.fileUrl, s.id);
+          for (const s of list) if (s.origin.fileUrl) map.set(normalizeFileUrl(s.origin.fileUrl), s.id);
           setLibrary(map);
         })
         .catch(() => undefined);
@@ -214,14 +214,20 @@ export default function SearchScreen(_props: ScreenProps) {
     };
   }, [q, searching]);
 
-  const catalogUrls = useMemo(() => new Set(catalogHits.map((h) => h.fileUrl).filter((u): u is string => !!u)), [catalogHits]);
-  const commonsHits = useMemo(() => commons.filter((h) => !h.fileUrl || !catalogUrls.has(h.fileUrl)), [commons, catalogUrls]);
+  const catalogUrls = useMemo(
+    () => new Set(catalogHits.map((h) => normalizeFileUrl(h.fileUrl)).filter((u): u is string => !!u)),
+    [catalogHits],
+  );
+  const commonsHits = useMemo(
+    () => commons.filter((h) => !h.fileUrl || !catalogUrls.has(normalizeFileUrl(h.fileUrl))),
+    [commons, catalogUrls],
+  );
 
   const finished = status === 'done' || status === 'offline' || status === 'failed';
   const nothing = searching && finished && status === 'done' && catalogHits.length === 0 && commonsHits.length === 0;
   const outs = useMemo(() => (q ? linkOuts(q) : linkOuts('')), [q]);
 
-  const libraryId = (hit: ScoreHit) => (hit.fileUrl ? library.get(hit.fileUrl) ?? null : null);
+  const libraryId = (hit: ScoreHit) => (hit.fileUrl ? library.get(normalizeFileUrl(hit.fileUrl)) ?? null : null);
 
   return (
     <main class="screen" data-testid="screen-search">

@@ -118,6 +118,15 @@ describe('searchCommons', () => {
     ]);
   });
 
+  it('drops the utm query string from the file URL', async () => {
+    const page = filePage({
+      url: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Sonata_in_C.pdf?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original#x',
+    });
+    vi.stubGlobal('fetch', vi.fn(async () => pagesResponse({ '1': page })));
+    const hits = await searchCommons('sonata');
+    expect(hits[0].fileUrl).toBe('https://upload.wikimedia.org/wikipedia/commons/a/a1/Sonata_in_C.pdf');
+  });
+
   it('returns [] when the response has no query key', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => jsonResponse({ batchcomplete: '' })));
     expect(await searchCommons('sonata')).toEqual([]);
