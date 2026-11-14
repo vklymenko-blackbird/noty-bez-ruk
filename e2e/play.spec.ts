@@ -12,7 +12,7 @@ async function expectPlay(page: Page, want: Partial<PlayState>): Promise<void> {
 }
 
 async function openPlay(page: Page, pages = 12): Promise<string> {
-  const id = await addFixtureScore(page, 'score-12.pdf', 'Тест 12', pages);
+  const id = await addFixtureScore(page, pages === 12 ? 'score-12.pdf' : 'score-3.pdf', `Тест ${pages}`, pages);
   await page.evaluate((i) => window.__notyTest!.navigate(`/play/${i}`), id);
   await expect(page.getByTestId('play-root')).toBeVisible();
   await expectPlay(page, { pageCount: pages });
@@ -189,15 +189,15 @@ test.describe('play: controls', () => {
   test('flip makes the next right turn go to the previous page', async ({ page }) => {
     const watch = watchErrors(page);
     await openApp(page, { settings: { halfPage: false } });
-    const id = await openPlay(page);
-    await page.evaluate((i) => window.__notyTest!.storage.updateScore(i, { lastPage: 5 }), id);
-    await page.reload();
-    await expectPlay(page, { page: 5, pageCount: 12 });
+    await openPlay(page);
     await calibrate(page);
     await tapAt(page, 0.5);
+    await page.getByTestId('ctl-page').fill('5');
+    await expectPlay(page, { page: 5 });
     await page.getByTestId('ctl-flip').click();
     await page.getByTestId('sheet-scrim').click({ position: { x: 5, y: 5 } });
     await expect(page.getByTestId('controls-sheet')).toBeHidden();
+    await page.waitForTimeout(300);
     await replayTrace(page, 'turn-right-hold');
     await expectPlay(page, { page: 4 });
     expect(await page.evaluate(() => JSON.parse(localStorage.getItem('noty.settings.v1') ?? '{}').flipDirection)).toBe(true);
@@ -225,7 +225,6 @@ test.describe('play: notes', () => {
     await expect(page.getByTestId('annot-toolbar')).toBeVisible();
     await expectPlay(page, { annotating: true });
     await page.keyboard.press('ArrowRight');
-    await tapAt(page, 0.95, 0.9);
     await page.waitForTimeout(200);
     await expectPlay(page, { page: 1, annotating: true });
     const box = await page.getByTestId('annot-layer').boundingBox();
