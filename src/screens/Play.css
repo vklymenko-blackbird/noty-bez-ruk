@@ -32,7 +32,6 @@ body.is-playing {
   gap: var(--sp-3);
   color: var(--ink-muted);
   font-size: var(--fs-17);
-  color: var(--ink-muted);
 }
 
 .play-pulse {

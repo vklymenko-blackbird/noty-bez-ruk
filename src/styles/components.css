@@ -239,8 +239,18 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 1px solid var(--rule);
+  /* A visible ring on every swatch, also the dark paper on the dark chip. */
+  border: 1px solid var(--ink-muted);
 }
+/* Swatch colours by name. No inline styles: the CSP only allows style sheets from the app. */
+.ui-chip__swatch[data-swatch='ivory'] { background: var(--paper-ivory); }
+.ui-chip__swatch[data-swatch='sepia'] { background: var(--paper-sepia); }
+.ui-chip__swatch[data-swatch='night'] { background: var(--paper-night); }
+.ui-chip__swatch[data-swatch='contrast'],
+.ui-chip__swatch[data-swatch='plain'] { background: var(--paper-white); }
+.ui-chip__swatch[data-swatch='ink'] { background: var(--pen-ink); }
+.ui-chip__swatch[data-swatch='burgundy'] { background: var(--pen-burgundy); }
+.ui-chip__swatch[data-swatch='blue'] { background: var(--pen-blue); }
 
 /* Segmented */
 .ui-segmented {
@@ -252,7 +262,7 @@
 }
 .ui-segmented__item {
   flex: 1;
-  min-height: 42px;
+  min-height: var(--touch);
   padding: 0 var(--sp-4);
   white-space: nowrap;
   border: 0;
@@ -271,6 +281,11 @@
 }
 
 /* TextField */
+.ui-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
 .ui-field {
   display: flex;
   align-items: center;

@@ -66,7 +66,8 @@ export default function LibraryScreen(_props: ScreenProps) {
   const continueFor = continueId(scores);
   const showInstall = !installed;
   const volatile = estimate?.volatile === true;
-  const notPersisted = scores.length > 0 && estimate !== null && estimate.persisted === false;
+  // The install banner already says it. The storage line shows only in the installed app.
+  const notPersisted = installed && scores.length > 0 && estimate !== null && estimate.persisted === false;
 
   const openPicker = () => fileInput.current?.click();
 

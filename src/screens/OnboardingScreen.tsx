@@ -1,6 +1,6 @@
 import { useRef, useState } from 'preact/hooks';
 import type { ScreenProps } from '../contracts';
-import { Button, Card, Icon } from '../ui';
+import { Button, Icon } from '../ui';
 import { t } from '../i18n';
 import { settings } from '../settings';
 import { navigate } from '../app/router';
@@ -115,7 +115,6 @@ export default function OnboardingScreen(_props: ScreenProps) {
             <Icon name="share" size={32} />
           </div>
           <h1 class="onb-title">{t('onb.install.title')}</h1>
-          <p class="onb-body">{t('onb.install.first')}</p>
           <p class="onb-body">{t('onb.install.body')}</p>
           <Button variant="secondary" size="lg" full class="onb-cta" onClick={() => goTo(0)} data-testid="onb-continue-safari">
             {t('onb.install.continue')}
@@ -136,17 +135,6 @@ export default function OnboardingScreen(_props: ScreenProps) {
           <h1 class="onb-title">{t(CARD_TEXT[step][0])}</h1>
           <p class="onb-body">{t(CARD_TEXT[step][1])}</p>
           {isLast ? <p class="onb-charge">{t('onb.charge')}</p> : null}
-          {isLast && !installed ? (
-            <Card class="onb-install-card" data-testid="onb-install">
-              <div class="onb-install-row">
-                <Icon name="share" size={24} />
-                <div>
-                  <p class="onb-install-title">{t('onb.install.title')}</p>
-                  <p class="onb-install-body">{t('onb.install.body')}</p>
-                </div>
-              </div>
-            </Card>
-          ) : null}
         </div>
 
         <div class="onb-dots" aria-hidden="true">

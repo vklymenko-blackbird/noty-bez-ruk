@@ -4,10 +4,11 @@ import { t, type StringKey } from '../i18n';
 import { Button, ConfirmSheet, IconButton, toast } from '../ui';
 import './annot.css';
 
-const PEN_SWATCHES: { color: PenColor; label: StringKey; token: string }[] = [
-  { color: 'ink', label: 'annot.color.ink', token: 'var(--pen-ink)' },
-  { color: 'burgundy', label: 'annot.color.burgundy', token: 'var(--pen-burgundy)' },
-  { color: 'blue', label: 'annot.color.blue', token: 'var(--pen-blue)' },
+/** The dot colour comes from the CSS: .ui-chip__swatch[data-swatch] maps each name to a pen token. */
+const PEN_SWATCHES: { color: PenColor; label: StringKey }[] = [
+  { color: 'ink', label: 'annot.color.ink' },
+  { color: 'burgundy', label: 'annot.color.burgundy' },
+  { color: 'blue', label: 'annot.color.blue' },
 ];
 
 const STAMP_DIGITS = [1, 2, 3, 4, 5] as const;
@@ -70,7 +71,7 @@ export default function AnnotationToolbar({ session, page, onDone, onCancel }: A
                 onClick={() => session.setTool({ tool: 'pen', color: s.color })}
                 data-testid={`color-${s.color}`}
               >
-                <span class="ui-chip__swatch" style={{ background: s.token }} />
+                <span class="ui-chip__swatch" data-swatch={s.color} />
               </button>
             ))}
             <IconButton

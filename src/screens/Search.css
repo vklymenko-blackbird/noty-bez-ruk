@@ -89,10 +89,6 @@
   border-radius: var(--r-pill);
 }
 
-.hit__source {
-  min-height: 32px;
-}
-
 .hit__source--strong {
   font-weight: 600;
   text-decoration: underline;

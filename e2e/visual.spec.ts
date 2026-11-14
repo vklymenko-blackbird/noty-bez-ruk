@@ -98,7 +98,7 @@ for (const theme of THEMES) {
       await shot(page, theme, 'onboarding-install');
       await page.getByTestId('onb-continue-safari').click();
       for (let i = 1; i <= 3; i++) {
-        await expect(page.getByTestId('onb-next').or(page.getByTestId('onb-install'))).toBeVisible();
+        await expect(page.getByTestId('onb-next').or(page.getByTestId('onb-start'))).toBeVisible();
         await shot(page, theme, `onboarding-card-${i}`);
         if (i < 3) await page.getByTestId('onb-next').click();
       }

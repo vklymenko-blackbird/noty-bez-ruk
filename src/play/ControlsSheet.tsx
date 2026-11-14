@@ -1,18 +1,9 @@
-import type { ControlsSheetProps, PaperTheme } from '../contracts';
+import type { ControlsSheetProps } from '../contracts';
 import { SETTING_LIMITS } from '../contracts';
 import { PAPER_THEMES } from '../paper';
 import { Button, Chip, Icon, Sheet, Slider, Switch } from '../ui';
 import { t } from '../i18n';
 import './controls.css';
-
-/** Colour dot for each paper chip. Uses the paper tokens from SPEC 1.4. */
-const PAPER_SWATCH: Record<PaperTheme, string> = {
-  ivory: 'var(--paper-ivory)',
-  sepia: 'var(--paper-sepia)',
-  night: 'var(--paper-night)',
-  contrast: 'var(--paper-white)',
-  plain: 'var(--paper-white)',
-};
 
 /** Controls sheet of play mode. A pure view: all state comes from props. */
 export default function ControlsSheet(props: ControlsSheetProps) {
@@ -46,7 +37,7 @@ export default function ControlsSheet(props: ControlsSheetProps) {
               key={theme}
               data-testid={`ctl-paper-${theme}`}
               selected={props.paper === theme}
-              swatch={PAPER_SWATCH[theme]}
+              swatch={theme}
               onClick={() => props.onPaper(theme)}
             >
               {t(`paper.${theme}`)}

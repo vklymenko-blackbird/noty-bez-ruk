@@ -59,7 +59,7 @@ describe('OnboardingScreen (not installed)', () => {
     fireEvent.click(screen.getByTestId('onb-next'));
     expect(screen.getByText('Камера лише для жестів')).toBeTruthy();
     expect(screen.queryByTestId('onb-next')).toBeNull();
-    expect(screen.getByTestId('onb-install')).toBeTruthy();
+    expect(screen.queryByTestId('onb-install')).toBeNull();
     expect(screen.getByText('На довгих заняттях тримайте iPad на зарядці.')).toBeTruthy();
 
     fireEvent.click(screen.getByTestId('onb-start'));
@@ -93,7 +93,7 @@ describe('OnboardingScreen (installed)', () => {
     expect(screen.getByTestId('onb-next')).toBeTruthy();
   });
 
-  it('does not show the install reminder on card 3', () => {
+  it('does not show the install reminder on card 3 when the app is installed', () => {
     renderScreen();
     fireEvent.click(screen.getByTestId('onb-next'));
     fireEvent.click(screen.getByTestId('onb-next'));

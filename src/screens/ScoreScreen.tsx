@@ -15,15 +15,6 @@ import './Score.css';
 const THUMB_LIMIT = 8;
 const THUMB_WIDTH = 120;
 
-/** The swatch colour of each paper chip, from the paper tokens. */
-const PAPER_SWATCH: Record<PaperTheme, string> = {
-  ivory: 'var(--paper-ivory)',
-  sepia: 'var(--paper-sepia)',
-  night: 'var(--paper-night)',
-  contrast: 'var(--paper-white)',
-  plain: 'var(--paper-white)',
-};
-
 /** True when the attribution link may be shown: https on commons.wikimedia.org only. */
 export function isCommonsLink(url: string | null): url is string {
   if (!url) return false;
@@ -246,7 +237,7 @@ export default function ScoreScreen({ params }: ScreenProps) {
               <Chip
                 key={theme}
                 selected={selectedPaper === theme}
-                swatch={PAPER_SWATCH[theme]}
+                swatch={theme}
                 onClick={() => void save({ paper: theme })}
                 data-testid={`paper-chip-${theme}`}
               >
@@ -333,12 +324,14 @@ export default function ScoreScreen({ params }: ScreenProps) {
               value={draftTitle}
               onInput={setDraftTitle}
               autofocus
+              showLabel
               data-testid="rename-title"
             />
             <TextField
               label={t('score.rename.composer')}
               value={draftComposer}
               onInput={setDraftComposer}
+              showLabel
               data-testid="rename-composer"
             />
             <div class="score-actions">

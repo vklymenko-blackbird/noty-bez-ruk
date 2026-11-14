@@ -99,34 +99,6 @@
   max-width: 100%;
 }
 
-.onb-install-card {
-  width: 100%;
-  padding: var(--sp-4);
-  text-align: left;
-}
-
-.onb-install-row {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--sp-3);
-}
-
-.onb-install-title {
-  margin: 0 0 var(--sp-1);
-  font-family: var(--font-ui);
-  font-weight: 600;
-  font-size: var(--fs-17);
-  color: var(--ink);
-}
-
-.onb-install-body {
-  margin: 0;
-  font-family: var(--font-ui);
-  font-size: var(--fs-15);
-  line-height: 1.45;
-  color: var(--ink-muted);
-}
-
 .onb-dots {
   display: flex;
   gap: var(--sp-2);

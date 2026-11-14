@@ -35,7 +35,7 @@ export const uk = {
   'library.importing': 'Додаємо ноти…',
   'library.imported.one': 'Додано: {title}',
   'library.imported.many': 'Додано творів: {count}',
-  'library.notPersisted': 'iPad може очистити сховище. Додайте застосунок на Початковий екран, щоб ноти не зникли.',
+  'library.notPersisted': 'iPad може очистити ноти, якщо довго не відкривати застосунок.',
 
   // import errors
   'error.not-pdf': 'Це не PDF-файл: {name}',
@@ -232,7 +232,7 @@ export const uk = {
   'onb.start': 'Почати',
   'onb.skip': 'Пропустити',
   'onb.install.title': 'Додайте на Початковий екран',
-  'onb.install.body': 'У Safari натисніть «Поділитися», потім «На Початковий екран». Так ноти відкриваються на весь екран і працюють без інтернету.',
+  'onb.install.body': 'У Safari натисніть «Поділитися», потім «На Початковий екран» і відкривайте застосунок звідти. Ноти, додані в Safari, туди не переносяться.',
 
   // pwa
   'pwa.updateReady': 'Оновлення готове',
@@ -253,7 +253,6 @@ export const uk = {
   'settings.storage.volatile': 'Сховище недоступне: ноти не збережуться після закриття застосунку.',
   'settings.privacy.search': 'Текст пошуку надсилається до Wikimedia Commons. Більше нічого не залишає iPad.',
   'settings.sources.legal': 'Ліцензію показано так, як її подає Wikimedia Commons. Правила можуть відрізнятися в різних країнах.',
-  'onb.install.first': 'Спочатку додайте застосунок на Початковий екран і відкрийте його звідти. Ноти, додані в Safari, туди не переносяться.',
   'onb.install.continue': 'Продовжити в Safari',
   'onb.charge': 'На довгих заняттях тримайте iPad на зарядці.',
   'boot.unsupported.title': 'Потрібне оновлення iPadOS',

@@ -75,4 +75,26 @@ describe('LibraryScreen', () => {
     renderScreen();
     expect(await screen.findByTestId('library-volatile')).toBeTruthy();
   });
+
+  it('says the install advice once: no storage line under the install banner', async () => {
+    vi.spyOn(storage, 'estimate').mockResolvedValue({ usageBytes: null, quotaBytes: null, persisted: false, volatile: false });
+    await add('Alpha', 'Bach', 12);
+    const { container } = renderScreen();
+    await screen.findByTestId('library-grid');
+    expect(screen.getByTestId('library-install')).toBeTruthy();
+    await waitFor(() => expect(storage.estimate).toHaveBeenCalled());
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(container.querySelector('.library__note')).toBeNull();
+  });
+
+  it('shows the storage line in the installed app when storage is not persisted', async () => {
+    vi.spyOn(storage, 'estimate').mockResolvedValue({ usageBytes: null, quotaBytes: null, persisted: false, volatile: false });
+    vi.stubGlobal('matchMedia', (q: string) => ({ matches: q.includes('standalone'), media: q, addEventListener: () => undefined, removeEventListener: () => undefined }));
+    await add('Alpha', 'Bach', 12);
+    const { container } = renderScreen();
+    await screen.findByTestId('library-grid');
+    expect(screen.queryByTestId('library-install')).toBeNull();
+    await waitFor(() => expect(container.querySelector('.library__note')).not.toBeNull());
+    vi.unstubAllGlobals();
+  });
 });

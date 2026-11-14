@@ -54,7 +54,12 @@
   overflow-wrap: anywhere;
 }
 
+/* The link sits in a line of text. Padding gives a 48 px high hit area; the negative margin keeps the line height. */
 .score-link {
+  display: inline-block;
+  padding-block: calc((var(--touch) - 1.45em) / 2);
+  margin-block: calc((var(--touch) - 1.45em) / -2);
+  line-height: 1.45;
   color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 3px;

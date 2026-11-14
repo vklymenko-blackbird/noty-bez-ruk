@@ -13,7 +13,8 @@ test('first run shows the install step and three cards, then the library', async
   await page.getByTestId('onb-next').click();
   await page.getByTestId('onb-next').click();
 
-  await expect(page.getByTestId('onb-install')).toBeVisible();
+  await expect(page.getByTestId('onb-install')).toHaveCount(0);
+  await expect(page.getByTestId('onb-start')).toBeVisible();
   await page.getByTestId('onb-start').click();
   await expect(page.getByTestId('screen-library')).toBeVisible();
 
