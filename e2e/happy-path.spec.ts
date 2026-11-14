@@ -64,9 +64,10 @@ test('the whole journey: onboarding, find, add, play, leave, continue', async ({
     await replayTrace(page, 'turn-right-hold');
     await replayTrace(page, 'turn-right-hold');
     await expect.poll(async () => ((await getState(page)).play as { page: number }).page, { timeout: 10_000 }).toBe(2);
+    await expect(page.getByTestId('calib-overlay')).toHaveCount(0, { timeout: 10_000 });
     const box = await page.getByTestId('play-root').boundingBox();
     if (!box) throw new Error('no play-root');
-    await page.mouse.click(box.x + box.width / 2, box.y + box.height * 0.5);
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height * 0.6);
     await expect(page.getByTestId('controls-sheet')).toBeVisible();
     await page.getByRole('button', { name: 'Вийти' }).first().click();
   });

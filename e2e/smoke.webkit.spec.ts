@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { fixturePath, getState, openApp, watchErrors } from './helpers';
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('noty.coach.v1', '3'));
+});
+
 test.describe('webkit smoke', () => {
   test('the library renders @webkit', async ({ page }) => {
     const watch = watchErrors(page);
@@ -13,7 +17,6 @@ test.describe('webkit smoke', () => {
   test('a fixture import, the score screen and play mode work @webkit', async ({ page }) => {
     const watch = watchErrors(page);
     await openApp(page, { settings: { gesture: 'off', halfPage: false } });
-    await page.addInitScript(() => localStorage.setItem('noty.coach.v1', '3'));
     await page.getByTestId('input-file').setInputFiles([fixturePath('score-3.pdf')]);
     const card = page.getByTestId('score-card');
     await expect(card).toHaveCount(1);
