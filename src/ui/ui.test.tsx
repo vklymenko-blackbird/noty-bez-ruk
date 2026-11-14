@@ -17,7 +17,13 @@ describe('Sheet', () => {
     render(<Sheet open onClose={onClose} title="Заголовок">тіло</Sheet>);
     const dlg = screen.getByRole('dialog');
     expect(document.activeElement).toBe(dlg);
+    // The click that follows a touch tap right after opening is ignored.
     fireEvent.click(screen.getByTestId('sheet-scrim'));
+    expect(onClose).not.toHaveBeenCalled();
+    const now = performance.now();
+    const spy = vi.spyOn(performance, 'now').mockReturnValue(now + 1000);
+    fireEvent.click(screen.getByTestId('sheet-scrim'));
+    spy.mockRestore();
     expect(onClose).toHaveBeenCalledTimes(1);
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(onClose).toHaveBeenCalledTimes(2);
