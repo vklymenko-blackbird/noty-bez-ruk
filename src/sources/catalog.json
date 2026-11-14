@@ -1,1 +1,2623 @@
-[{ "id": "beethoven-fur-elise", "title": "Für Elise", "titleUk": "До Елізи", "aliases": ["Fur Elise", "For Elise", "Bagatelle No. 25", "Елізі"], "composer": "Ludwig van Beethoven", "composerUk": "Людвіг ван Бетховен", "detail": "WoO 59", "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/IMSLP11471-Fur_Elise%2C_Beethoven%2C_WoO59.pdf", "pageUrl": "https://commons.wikimedia.org/wiki/File:IMSLP11471-Fur_Elise,_Beethoven,_WoO59.pdf", "license": "Public domain", "sizeBytes": 427090, "pages": null }]
+[
+  {
+    "id": "beethoven-fur-elise",
+    "title": "Für Elise",
+    "titleUk": "До Елізи",
+    "aliases": [
+      "Fur Elise",
+      "For Elise",
+      "Bagatelle No. 25",
+      "Елізі"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "WoO 59",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/IMSLP11471-Fur_Elise%2C_Beethoven%2C_WoO59.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:IMSLP11471-Fur_Elise,_Beethoven,_WoO59.pdf",
+    "license": "Public domain",
+    "sizeBytes": 427090,
+    "pages": 4
+  },
+  {
+    "id": "beethoven-moonlight",
+    "title": "Moonlight Sonata",
+    "titleUk": "Місячна соната",
+    "aliases": [
+      "Moonlight Sonata",
+      "Mondscheinsonate",
+      "Sonata quasi una fantasia",
+      "Місячна",
+      "Місячна соната"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 27 No. 2",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Sonata_-_quasi_una_fantasia_-op._27%2C_no._2_-_compos%C3%A9e_pour_le_pianoforte_par_L._van_Beethoven_%3B_m%C3%A9tronomis%C3%A9e_par_J._Moscheles._%28IA_b10272173%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Sonata_-_quasi_una_fantasia_-op._27,_no._2_-_compos%C3%A9e_pour_le_pianoforte_par_L._van_Beethoven_;_m%C3%A9tronomis%C3%A9e_par_J._Moscheles._(IA_b10272173).pdf",
+    "license": "Public domain",
+    "sizeBytes": 4184726,
+    "pages": 15
+  },
+  {
+    "id": "mozart-sonata-k545",
+    "title": "Sonata No. 16 in C major, K. 545",
+    "titleUk": "Соната № 16 до мажор, K. 545",
+    "aliases": [
+      "Sonata K.545",
+      "Sonata Facile",
+      "Соната K.545"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 545",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Piano_Sonata_No.16_in_C_major%2C_K.545_%28IA_imslp-sonata-no16-in-c-major-k545-mozart-wolfgang-amadeus%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.16_in_C_major,_K.545_(IA_imslp-sonata-no16-in-c-major-k545-mozart-wolfgang-amadeus).pdf",
+    "license": "Public domain",
+    "sizeBytes": 717779,
+    "pages": 10
+  },
+  {
+    "id": "chopin-fantaisie-impromptu",
+    "title": "Fantaisie-Impromptu in C-sharp minor, Op. 66",
+    "titleUk": "Фантазія-експромт до-дієз мінор, соч. 66",
+    "aliases": [
+      "Fantasie Impromptu",
+      "Fantaisie Impromptu",
+      "Fantasy Impromptu"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 66",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Fantaisie-impromptu%2C_Op.66_%28IA_imslp-op66-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Fantaisie-impromptu,_Op.66_(IA_imslp-op66-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 211038,
+    "pages": 5
+  },
+  {
+    "id": "chopin-nocturne-op27-2",
+    "title": "Nocturne in D-flat major, Op. 27 No. 2",
+    "titleUk": "Ноктюрн ре-бемоль мажор, соч. 27 № 2",
+    "aliases": [
+      "Nocturne Op.27 No.2"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 27 No. 2",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/76/Nocturnes%2C_Op.27_%28IA_imslp-op27-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Nocturnes,_Op.27_(IA_imslp-op27-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 558587,
+    "pages": 7
+  },
+  {
+    "id": "chopin-minute-waltz",
+    "title": "Waltz in D-flat major, Op. 64 No. 1 «Minute»",
+    "titleUk": "Вальс ре-бемоль мажор «Хвилинний»",
+    "aliases": [
+      "Minute Waltz",
+      "Waltz Op.64 No.1",
+      "Минутный вальс"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 64 No. 1; у збірці: Waltzes, Op.64",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Waltzes%2C_Op.64_%28IA_imslp-op64-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Waltzes,_Op.64_(IA_imslp-op64-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1766998,
+    "pages": 13
+  },
+  {
+    "id": "chopin-etude-op10-3",
+    "title": "Étude in E major, Op. 10 No. 3",
+    "titleUk": "Етюд мі мажор, соч. 10 № 3",
+    "aliases": [
+      "Etude Op. 10 No. 3",
+      "Tristesse",
+      "Тристесс"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 10 No. 3; у збірці: Etudes, Op.10",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Etudes%2C_Op.10_%28IA_imslp-op10-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Etudes,_Op.10_(IA_imslp-op10-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 8145578,
+    "pages": 46
+  },
+  {
+    "id": "liszt-liebestraum-3",
+    "title": "Liebestraum No. 3",
+    "titleUk": "Мрія № 3",
+    "aliases": [
+      "Liebestraum",
+      "Love Dream No. 3",
+      "Liebesträume No. 3"
+    ],
+    "composer": "Franz Liszt",
+    "composerUk": "Ференц Ліст",
+    "detail": "S. 541 No. 3",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Liebestr%C3%A4ume%2C_S.541_%28IA_imslp-s541-liszt-franz%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Liebestr%C3%A4ume,_S.541_(IA_imslp-s541-liszt-franz).pdf",
+    "license": "Public domain",
+    "sizeBytes": 91311,
+    "pages": 6
+  },
+  {
+    "id": "bach-minuet-g",
+    "title": "Minuet in G major, BWV Anh. 114",
+    "titleUk": "Менует соль мажор, BWV Anh. 114",
+    "aliases": [
+      "Minuet in G",
+      "Menuet in G",
+      "Minuet from Anna Magdalena Notebook"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV Anh. 114",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Notebooks_for_Anna_Magdalena_Bach_%28IA_imslp-for-anna-magdalena-bach-bach-johann-sebastian%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Notebooks_for_Anna_Magdalena_Bach_(IA_imslp-for-anna-magdalena-bach-bach-johann-sebastian).pdf",
+    "license": "Public domain",
+    "sizeBytes": 107006,
+    "pages": 1
+  },
+  {
+    "id": "mozart-twinkle-variations",
+    "title": "Twinkle Twinkle Little Star Variations, K. 265",
+    "titleUk": "Варіації «Twinkle, twinkle»",
+    "aliases": [
+      "Twinkle Variations",
+      "Ah vous dirai-je maman"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 265",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/12_Variations_on_%27Ah%2C_vous_dirai-je_maman%27%2C_K.265-300e_%28IA_imslp-variations-on-ah-vous-dirai-je-maman-k265300e-mozart-wolfgang-amadeus%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:12_Variations_on_%27Ah,_vous_dirai-je_maman%27,_K.265-300e_(IA_imslp-variations-on-ah-vous-dirai-je-maman-k265300e-mozart-wolfgang-amadeus).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1127532,
+    "pages": 7
+  },
+  {
+    "id": "chopin-polonaise-heroic",
+    "title": "Polonaise in A-flat major, Op. 53 «Heroic»",
+    "titleUk": "Полонез ля-бемоль мажор «Героїчний»",
+    "aliases": [
+      "Heroic Polonaise",
+      "Polonaise Op. 53"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 53",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Polonaise_in_A-flat_major%2C_Op.53_%28IA_imslp-in-a-flat-major-op53-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Polonaise_in_A-flat_major,_Op.53_(IA_imslp-in-a-flat-major-op53-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1293353,
+    "pages": 10
+  },
+  {
+    "id": "debussy-clair-de-lune",
+    "title": "Clair de lune",
+    "titleUk": "Місячне світло",
+    "aliases": [
+      "Clair de Lune",
+      "Moonlight"
+    ],
+    "composer": "Claude Debussy",
+    "composerUk": "Клод Дебюссі",
+    "detail": "from Suite bergamasque",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "satie-gymnopedie-1",
+    "title": "Gymnopédie No. 1",
+    "titleUk": "Гімнопедія № 1",
+    "aliases": [
+      "Gymnopedie No. 1",
+      "Gymnopedie 1"
+    ],
+    "composer": "Erik Satie",
+    "composerUk": "Ерік Саті",
+    "detail": "Gymnopédie No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mozart-rondo-alla-turca",
+    "title": "Rondo alla Turca",
+    "titleUk": "Рондо в турецькому стилі",
+    "aliases": [
+      "Turkish March",
+      "Alla Turca",
+      "Турецький марш"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 331",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "schumann-traumerei",
+    "title": "Träumerei",
+    "titleUk": "Мрійливість",
+    "aliases": [
+      "Traumerei",
+      "Dreaming",
+      "Kinderszenen Op. 15 No. 7"
+    ],
+    "composer": "Robert Schumann",
+    "composerUk": "Роберт Шуман",
+    "detail": "Op. 15 No. 7",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beethoven-pathetique",
+    "title": "Pathétique Sonata",
+    "titleUk": "Соната «Патетична»",
+    "aliases": [
+      "Pathetique Sonata",
+      "Sonata Pathetique",
+      "Патетична соната"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 13",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "bach-prelude-c-bwv846",
+    "title": "Prelude in C major, BWV 846",
+    "titleUk": "Прелюдія до мажор, BWV 846",
+    "aliases": [
+      "Prelude in C major",
+      "Well-Tempered Clavier Book I Prelude 1",
+      "BWV 846"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV 846",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beethoven-appassionata",
+    "title": "Appassionata Sonata",
+    "titleUk": "Соната «Аппассіоната»",
+    "aliases": [
+      "Appassionata",
+      "Apassionata",
+      "Appassionata Sonata",
+      "Апасіоната"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 57",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-nocturne-op9-2",
+    "title": "Nocturne in E-flat major, Op. 9 No. 2",
+    "titleUk": "Ноктюрн мі-бемоль мажор, соч. 9 № 2",
+    "aliases": [
+      "Nocturne Op.9 No.2",
+      "Nocturne Op. 9 No. 2"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 9 No. 2",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-raindrop",
+    "title": "Prelude in D-flat major, Op. 28 No. 15 «Raindrop»",
+    "titleUk": "Прелюдія ре-бемоль мажор «Крапля»",
+    "aliases": [
+      "Raindrop Prelude",
+      "Raindrop",
+      "Прелюдія Крапля"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 28 No. 15",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-etude-op10-12",
+    "title": "Étude in C minor, Op. 10 No. 12 «Revolutionary»",
+    "titleUk": "Етюд до мінор «Революційний»",
+    "aliases": [
+      "Revolutionary Etude",
+      "Etude Op. 10 No. 12"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 10 No. 12; у збірці: Etudes, Op.10",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Etudes%2C_Op.10_%28IA_imslp-op10-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Etudes,_Op.10_(IA_imslp-op10-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 8145578,
+    "pages": 46
+  },
+  {
+    "id": "chopin-ballade-1",
+    "title": "Ballade No. 1 in G minor, Op. 23",
+    "titleUk": "Балада № 1 соль мінор, соч. 23",
+    "aliases": [
+      "Ballade No. 1",
+      "Ballade 1"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 23",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-prelude-op28-4",
+    "title": "Prelude in E minor, Op. 28 No. 4",
+    "titleUk": "Прелюдія мі мінор, соч. 28 № 4",
+    "aliases": [
+      "Prelude Op. 28 No. 4"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 28 No. 4",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-prelude-op28-7",
+    "title": "Prelude in A major, Op. 28 No. 7",
+    "titleUk": "Прелюдія ля мажор, соч. 28 № 7",
+    "aliases": [
+      "Prelude Op. 28 No. 7"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 28 No. 7",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-prelude-op28-20",
+    "title": "Prelude in C minor, Op. 28 No. 20",
+    "titleUk": "Прелюдія до мінор, соч. 28 № 20",
+    "aliases": [
+      "Prelude Op. 28 No. 20"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 28 No. 20",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-waltz-op64-2",
+    "title": "Waltz in C-sharp minor, Op. 64 No. 2",
+    "titleUk": "Вальс до-дієз мінор, соч. 64 № 2",
+    "aliases": [
+      "Waltz Op.64 No.2"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 64 No. 2; у збірці: Waltzes, Op.64",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Waltzes%2C_Op.64_%28IA_imslp-op64-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Waltzes,_Op.64_(IA_imslp-op64-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1766998,
+    "pages": 13
+  },
+  {
+    "id": "chopin-waltz-a-minor",
+    "title": "Waltz in A minor, B. 150",
+    "titleUk": "Вальс ля мінор, B. 150",
+    "aliases": [
+      "Waltz in A minor",
+      "Waltz Posthumous"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "B. 150",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-polonaise-op40-1",
+    "title": "Polonaise in A major, Op. 40 No. 1 «Military»",
+    "titleUk": "Полонез ля мажор «Військовий»",
+    "aliases": [
+      "Military Polonaise",
+      "Polonaise Op. 40 No. 1"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 40 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-polonaise-op40-2",
+    "title": "Polonaise in C minor, Op. 40 No. 2",
+    "titleUk": "Полонез до мінор, соч. 40 № 2",
+    "aliases": [
+      "Polonaise Op. 40 No. 2"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 40 No. 2",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-mazurka-op7-1",
+    "title": "Mazurka in B-flat major, Op. 7 No. 1",
+    "titleUk": "Мазурка сі-бемоль мажор, соч. 7 № 1",
+    "aliases": [
+      "Mazurka Op. 7 No. 1"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 7 No. 1; у збірці: Mazurkas, Op.7",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Mazurkas%2C_Op.7_%28IA_imslp-op7-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Mazurkas,_Op.7_(IA_imslp-op7-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 962390,
+    "pages": 10
+  },
+  {
+    "id": "chopin-nocturne-op9-1",
+    "title": "Nocturne in B-flat minor, Op. 9 No. 1",
+    "titleUk": "Ноктюрн сі-бемоль мінор, соч. 9 № 1",
+    "aliases": [
+      "Nocturne Op.9 No.1"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 9 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-nocturne-c-sharp-minor",
+    "title": "Nocturne in C-sharp minor, Op. posth.",
+    "titleUk": "Ноктюрн до-дієз мінор, посм.",
+    "aliases": [
+      "Nocturne in C sharp minor",
+      "Posthumous Nocturne"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Posthumous",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "debussy-arabesque-1",
+    "title": "Arabesque No. 1",
+    "titleUk": "Арабеска № 1",
+    "aliases": [
+      "Arabesque 1"
+    ],
+    "composer": "Claude Debussy",
+    "composerUk": "Клод Дебюссі",
+    "detail": "L. 74",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "debussy-reverie",
+    "title": "Rêverie",
+    "titleUk": "Мрія",
+    "aliases": [
+      "Reverie",
+      "Reverie Debussy"
+    ],
+    "composer": "Claude Debussy",
+    "composerUk": "Клод Дебюссі",
+    "detail": "L. 68",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "debussy-girl-flaxen-hair",
+    "title": "La fille aux cheveux de lin",
+    "titleUk": "Дівчина з льняним волоссям",
+    "aliases": [
+      "The Girl with the Flaxen Hair",
+      "Girl with Flaxen Hair"
+    ],
+    "composer": "Claude Debussy",
+    "composerUk": "Клод Дебюссі",
+    "detail": "from Préludes Book 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "debussy-golliwogg",
+    "title": "Golliwogg's Cakewalk",
+    "titleUk": "Кекуок Голлівога",
+    "aliases": [
+      "Golliwogg Cakewalk"
+    ],
+    "composer": "Claude Debussy",
+    "composerUk": "Клод Дебюссі",
+    "detail": "from Children’s Corner",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "satie-gymnopedie-2",
+    "title": "Gymnopédie No. 2",
+    "titleUk": "Гімнопедія № 2",
+    "aliases": [
+      "Gymnopedie No. 2"
+    ],
+    "composer": "Erik Satie",
+    "composerUk": "Ерік Саті",
+    "detail": "Gymnopédie No. 2",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "satie-gymnopedie-3",
+    "title": "Gymnopédie No. 3",
+    "titleUk": "Гімнопедія № 3",
+    "aliases": [
+      "Gymnopedie No. 3"
+    ],
+    "composer": "Erik Satie",
+    "composerUk": "Ерік Саті",
+    "detail": "Gymnopédie No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "satie-gnossienne-1",
+    "title": "Gnossienne No. 1",
+    "titleUk": "Гносієнна № 1",
+    "aliases": [
+      "Gnossienne 1"
+    ],
+    "composer": "Erik Satie",
+    "composerUk": "Ерік Саті",
+    "detail": "Gnossienne No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "satie-gnossienne-2",
+    "title": "Gnossienne No. 2",
+    "titleUk": "Гносієнна № 2",
+    "aliases": [
+      "Gnossienne 2"
+    ],
+    "composer": "Erik Satie",
+    "composerUk": "Ерік Саті",
+    "detail": "Gnossienne No. 2",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "joplin-entertainer",
+    "title": "The Entertainer",
+    "titleUk": "Розважальник",
+    "aliases": [
+      "Entertainer",
+      "The Entertainer Rag"
+    ],
+    "composer": "Scott Joplin",
+    "composerUk": "Скотт Джоплін",
+    "detail": "Rag",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "joplin-maple-leaf-rag",
+    "title": "Maple Leaf Rag",
+    "titleUk": "Регтайм «Кленовий листок»",
+    "aliases": [
+      "Maple Leaf"
+    ],
+    "composer": "Scott Joplin",
+    "composerUk": "Скотт Джоплін",
+    "detail": "Rag",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "brahms-waltz-op39-15",
+    "title": "Waltz in A-flat major, Op. 39 No. 15",
+    "titleUk": "Вальс ля-бемоль мажор, соч. 39 № 15",
+    "aliases": [
+      "Waltz Op. 39 No. 15"
+    ],
+    "composer": "Johannes Brahms",
+    "composerUk": "Йоганнес Брамс",
+    "detail": "Op. 39 No. 15",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "brahms-intermezzo-op118-2",
+    "title": "Intermezzo in A major, Op. 118 No. 2",
+    "titleUk": "Інтермецо ля мажор, соч. 118 № 2",
+    "aliases": [
+      "Intermezzo Op. 118 No. 2"
+    ],
+    "composer": "Johannes Brahms",
+    "composerUk": "Йоганнес Брамс",
+    "detail": "Op. 118 No. 2",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "brahms-hungarian-dance-5",
+    "title": "Hungarian Dance No. 5",
+    "titleUk": "Угорський танець № 5",
+    "aliases": [
+      "Hungarian Dance 5",
+      "Ungarischer Tanz Nr. 5"
+    ],
+    "composer": "Johannes Brahms",
+    "composerUk": "Йоганнес Брамс",
+    "detail": "WoO 1 No. 5",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mendelssohn-venetian-boat-song",
+    "title": "Venetian Boat Song, Op. 19 No. 6",
+    "titleUk": "Венеціанська барка",
+    "aliases": [
+      "Venetian Boat Song",
+      "Songs without Words Venetian Boat Song"
+    ],
+    "composer": "Felix Mendelssohn",
+    "composerUk": "Фелікс Мендельсон",
+    "detail": "Op. 19 No. 6",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mendelssohn-spring-song",
+    "title": "Spring Song, Op. 62 No. 6",
+    "titleUk": "Весняна пісня",
+    "aliases": [
+      "Spring Song",
+      "Frühlingslied"
+    ],
+    "composer": "Felix Mendelssohn",
+    "composerUk": "Фелікс Мендельсон",
+    "detail": "Op. 62 No. 6",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "grieg-arietta",
+    "title": "Arietta, Op. 12 No. 1",
+    "titleUk": "Аріетта, соч. 12 № 1",
+    "aliases": [
+      "Arietta"
+    ],
+    "composer": "Edvard Grieg",
+    "composerUk": "Едвард Гріг",
+    "detail": "Op. 12 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "grieg-wedding-day",
+    "title": "Wedding Day at Troldhaugen, Op. 65 No. 6",
+    "titleUk": "Весільний день у Тролдгаугені",
+    "aliases": [
+      "Wedding Day at Troldhaugen"
+    ],
+    "composer": "Edvard Grieg",
+    "composerUk": "Едвард Гріг",
+    "detail": "Op. 65 No. 6",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "grieg-morning-mood",
+    "title": "Morning Mood (Morgenstimmung), Op. 46 No. 1",
+    "titleUk": "Ранковий настрій",
+    "aliases": [
+      "Morning Mood",
+      "Morgenstimmung"
+    ],
+    "composer": "Edvard Grieg",
+    "composerUk": "Едвард Гріг",
+    "detail": "Op. 46 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "grieg-butterfly",
+    "title": "Butterfly, Op. 43 No. 1",
+    "titleUk": "Метелик, соч. 43 № 1",
+    "aliases": [
+      "Butterfly"
+    ],
+    "composer": "Edvard Grieg",
+    "composerUk": "Едвард Гріг",
+    "detail": "Op. 43 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "brahms-wiegenlied",
+    "title": "Wiegenlied (Lullaby), Op. 49 No. 4",
+    "titleUk": "Колискова",
+    "aliases": [
+      "Lullaby",
+      "Wiegenlied",
+      "Brahms Lullaby"
+    ],
+    "composer": "Johannes Brahms",
+    "composerUk": "Йоганнес Брамс",
+    "detail": "Op. 49 No. 4",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mozart-fantasia-k397",
+    "title": "Fantasia in D minor, K. 397",
+    "titleUk": "Фантазія ре мінор, K. 397",
+    "aliases": [
+      "Fantasia K.397"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 397",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mozart-sonata-k331",
+    "title": "Sonata No. 11 in A major, K. 331",
+    "titleUk": "Соната № 11 ля мажор, K. 331",
+    "aliases": [
+      "Sonata K.331"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 331",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mozart-sonata-k310",
+    "title": "Sonata No. 8 in A minor, K. 310",
+    "titleUk": "Соната № 8 ля мінор, K. 310",
+    "aliases": [
+      "Sonata K.310"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 310",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mozart-adagio-k540",
+    "title": "Adagio in B minor, K. 540",
+    "titleUk": "Адажіо сі мінор, K. 540",
+    "aliases": [
+      "Adagio K.540"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 540",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "bach-goldberg-aria",
+    "title": "Goldberg Variations: Aria",
+    "titleUk": "Гольдберг-варіації: Арія",
+    "aliases": [
+      "Goldberg Aria",
+      "Aria Goldberg",
+      "Aria from Goldberg Variations"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV 988",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "bach-italian-concerto",
+    "title": "Italian Concerto, BWV 971",
+    "titleUk": "Італійський концерт, BWV 971",
+    "aliases": [
+      "Italian Concerto",
+      "Italienisches Konzert"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV 971",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "bach-invention-1",
+    "title": "Invention No. 1 in C major, BWV 772",
+    "titleUk": "Інвенція № 1 до мажор, BWV 772",
+    "aliases": [
+      "Two-Part Invention No. 1",
+      "Invention 1"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV 772",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "bach-invention-8",
+    "title": "Invention No. 8 in F major, BWV 779",
+    "titleUk": "Інвенція № 8 фа мажор, BWV 779",
+    "aliases": [
+      "Two-Part Invention No. 8",
+      "Invention 8"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV 779",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "bach-invention-13",
+    "title": "Invention No. 13 in A minor, BWV 784",
+    "titleUk": "Інвенція № 13 ля мінор, BWV 784",
+    "aliases": [
+      "Two-Part Invention No. 13",
+      "Invention 13"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV 784",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/15_Inventions%2C_BWV_772-786_%28IA_imslp-inventions-bwv-772-786-bach-johann-sebastian%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:15_Inventions,_BWV_772-786_(IA_imslp-inventions-bwv-772-786-bach-johann-sebastian).pdf",
+    "license": "Public domain",
+    "sizeBytes": 47174,
+    "pages": 2
+  },
+  {
+    "id": "bach-prelude-c-minor-bwv999",
+    "title": "Prelude in C minor, BWV 999",
+    "titleUk": "Прелюдія до мінор, BWV 999",
+    "aliases": [
+      "Prelude BWV 999"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV 999",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/38/Prelude_in_C_minor%2C_BWV_999_%28IA_imslp-in-c-minor-bwv-999-bach-johann-sebastian%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Prelude_in_C_minor,_BWV_999_(IA_imslp-in-c-minor-bwv-999-bach-johann-sebastian).pdf",
+    "license": "Public domain",
+    "sizeBytes": 100784,
+    "pages": 2
+  },
+  {
+    "id": "beethoven-waldstein",
+    "title": "Waldstein Sonata, Op. 53",
+    "titleUk": "Соната «Вальдштайн»",
+    "aliases": [
+      "Waldstein",
+      "Sonata No. 21"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 53",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beethoven-funeral-march",
+    "title": "Sonata No. 12 «Funeral March», Op. 26",
+    "titleUk": "Соната № 12 «Похоронний марш»",
+    "aliases": [
+      "Funeral March Sonata",
+      "Sonata Op. 26"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 26",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Piano_Sonata_No.12%2C_Op.26_%28IA_imslp-sonata-no12-op26-beethoven-ludwig-van%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.12,_Op.26_(IA_imslp-sonata-no12-op26-beethoven-ludwig-van).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1433879,
+    "pages": 18
+  },
+  {
+    "id": "beethoven-ecossaises",
+    "title": "Ecossaises, WoO 83",
+    "titleUk": "Шотландські танці, WoO 83",
+    "aliases": [
+      "Scottish Dances",
+      "Ecossaise"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "WoO 83",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "schubert-impromptu-d899-3",
+    "title": "Impromptu in G-flat major, D. 899 No. 3",
+    "titleUk": "Експромт соль-бемоль мажор, D. 899 № 3",
+    "aliases": [
+      "Impromptu Op. 90 No. 3",
+      "Impromptu D899"
+    ],
+    "composer": "Franz Schubert",
+    "composerUk": "Франц Шуберт",
+    "detail": "D. 899 No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "schubert-impromptu-d899-4",
+    "title": "Impromptu in A-flat major, D. 899 No. 4",
+    "titleUk": "Експромт ля-бемоль мажор, D. 899 № 4",
+    "aliases": [
+      "Impromptu Op. 90 No. 4",
+      "Impromptu D899 4"
+    ],
+    "composer": "Franz Schubert",
+    "composerUk": "Франц Шуберт",
+    "detail": "D. 899 No. 4",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/4_Impromptus%2C_D.899_%28Op.90%29_%28IA_imslp-impromptus-d899-op90-schubert-franz%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:4_Impromptus,_D.899_(Op.90)_(IA_imslp-impromptus-d899-op90-schubert-franz).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1008136,
+    "pages": 9
+  },
+  {
+    "id": "schubert-moment-musical-3",
+    "title": "Moments musicaux No. 3, D. 780",
+    "titleUk": "Музичні миттєвості № 3, D. 780",
+    "aliases": [
+      "Moments Musicaux No. 3",
+      "Musical Moments 3"
+    ],
+    "composer": "Franz Schubert",
+    "composerUk": "Франц Шуберт",
+    "detail": "D. 780 No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "schubert-standchen",
+    "title": "Serenade (Ständchen), D. 957 No. 4",
+    "titleUk": "Серенада",
+    "aliases": [
+      "Serenade",
+      "Standchen",
+      "Ständchen"
+    ],
+    "composer": "Franz Schubert",
+    "composerUk": "Франц Шуберт",
+    "detail": "D. 957 No. 4",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "schubert-wanderer-fantasy",
+    "title": "Wanderer Fantasy, D. 760",
+    "titleUk": "Фантазія «Мандрівник»",
+    "aliases": [
+      "Wanderer Fantasy",
+      "Wandererfantasie"
+    ],
+    "composer": "Franz Schubert",
+    "composerUk": "Франц Шуберт",
+    "detail": "D. 760",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "schumann-arabeske",
+    "title": "Arabeske in C major, Op. 18",
+    "titleUk": "Арабеска до мажор, соч. 18",
+    "aliases": [
+      "Arabeske",
+      "Arabesque Schumann"
+    ],
+    "composer": "Robert Schumann",
+    "composerUk": "Роберт Шуман",
+    "detail": "Op. 18",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "schumann-kinderszenen",
+    "title": "Kinderszenen, Op. 15",
+    "titleUk": "Дитячі сцени, соч. 15",
+    "aliases": [
+      "Scenes from Childhood",
+      "Kinderszenen"
+    ],
+    "composer": "Robert Schumann",
+    "composerUk": "Роберт Шуман",
+    "detail": "Op. 15",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "tchaikovsky-june",
+    "title": "The Seasons: June (Barcarolle), Op. 37a No. 6",
+    "titleUk": "Пори року: Червень",
+    "aliases": [
+      "June Barcarolle",
+      "The Seasons June"
+    ],
+    "composer": "Pyotr Ilyich Tchaikovsky",
+    "composerUk": "Петро Ілліч Чайковський",
+    "detail": "Op. 37a No. 6",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "tchaikovsky-october",
+    "title": "The Seasons: October (Autumn Song), Op. 37a No. 10",
+    "titleUk": "Пори року: Жовтень",
+    "aliases": [
+      "October Autumn Song",
+      "The Seasons October"
+    ],
+    "composer": "Pyotr Ilyich Tchaikovsky",
+    "composerUk": "Петро Ілліч Чайковський",
+    "detail": "Op. 37a No. 10",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "liszt-consolation-3",
+    "title": "Consolation No. 3, S. 172",
+    "titleUk": "Втіха № 3",
+    "aliases": [
+      "Consolation No. 3",
+      "Consolations 3"
+    ],
+    "composer": "Franz Liszt",
+    "composerUk": "Ференц Ліст",
+    "detail": "S. 172 No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "liszt-la-campanella",
+    "title": "La campanella",
+    "titleUk": "Кампанелла",
+    "aliases": [
+      "La Campanella",
+      "Campanella"
+    ],
+    "composer": "Franz Liszt",
+    "composerUk": "Ференц Ліст",
+    "detail": "S. 141 No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "liszt-un-sospiro",
+    "title": "Un sospiro, S. 144 No. 3",
+    "titleUk": "Зітхання",
+    "aliases": [
+      "Un Sospiro",
+      "Sigh"
+    ],
+    "composer": "Franz Liszt",
+    "composerUk": "Ференц Ліст",
+    "detail": "S. 144 No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "liszt-hungarian-rhapsody-2",
+    "title": "Hungarian Rhapsody No. 2, S. 244/2",
+    "titleUk": "Угорська рапсодія № 2",
+    "aliases": [
+      "Hungarian Rhapsody 2",
+      "Ungarische Rhapsodie Nr. 2"
+    ],
+    "composer": "Franz Liszt",
+    "composerUk": "Ференц Ліст",
+    "detail": "S. 244/2",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "albeniz-asturias",
+    "title": "Asturias (Leyenda), Op. 47",
+    "titleUk": "Астурія (Легенда)",
+    "aliases": [
+      "Asturias",
+      "Leyenda"
+    ],
+    "composer": "Isaac Albéniz",
+    "composerUk": "Ісаак Альбеніс",
+    "detail": "Op. 47",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "dvorak-humoresque-7",
+    "title": "Humoresque No. 7, Op. 101",
+    "titleUk": "Гумореска № 7, соч. 101",
+    "aliases": [
+      "Humoresque",
+      "Dvorak Humoresque"
+    ],
+    "composer": "Antonín Dvořák",
+    "composerUk": "Антонін Дворжак",
+    "detail": "Op. 101 No. 7",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "rachmaninoff-prelude-csm",
+    "title": "Prelude in C-sharp minor, Op. 3 No. 2",
+    "titleUk": "Прелюдія до-дієз мінор, соч. 3 № 2",
+    "aliases": [
+      "Prelude in C sharp minor",
+      "Prelude Op. 3 No. 2"
+    ],
+    "composer": "Sergei Rachmaninoff",
+    "composerUk": "Сергій Рахманінов",
+    "detail": "Op. 3 No. 2",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "rachmaninoff-prelude-g-minor",
+    "title": "Prelude in G minor, Op. 23 No. 5",
+    "titleUk": "Прелюдія соль мінор, соч. 23 № 5",
+    "aliases": [
+      "Prelude Op. 23 No. 5"
+    ],
+    "composer": "Sergei Rachmaninoff",
+    "composerUk": "Сергій Рахманінов",
+    "detail": "Op. 23 No. 5",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "scriabin-etude-op8-12",
+    "title": "Étude in D-sharp minor, Op. 8 No. 12",
+    "titleUk": "Етюд ре-дієз мінор, соч. 8 № 12",
+    "aliases": [
+      "Etude Op. 8 No. 12",
+      "Scriabin Etude"
+    ],
+    "composer": "Alexander Scriabin",
+    "composerUk": "Олександр Скрябін",
+    "detail": "Op. 8 No. 12",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mussorgsky-pictures",
+    "title": "Pictures at an Exhibition",
+    "titleUk": "Картинки з виставки",
+    "aliases": [
+      "Pictures at an Exhibition",
+      "Kartinki s vystavki"
+    ],
+    "composer": "Modest Mussorgsky",
+    "composerUk": "Модест Мусоргський",
+    "detail": "piano score",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Mussorgsky_Pictures_Exhibition_Piano_Score.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Mussorgsky_Pictures_Exhibition_Piano_Score.pdf",
+    "license": "Public domain",
+    "sizeBytes": 1749135,
+    "pages": 35
+  },
+  {
+    "id": "clementi-sonatina-op36-1",
+    "title": "Sonatina in C major, Op. 36 No. 1",
+    "titleUk": "Сонатина до мажор, соч. 36 № 1",
+    "aliases": [
+      "Sonatina Op. 36 No. 1",
+      "Clementi Sonatina"
+    ],
+    "composer": "Muzio Clementi",
+    "composerUk": "Муцио Клементі",
+    "detail": "Op. 36 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "clementi-sonatina-op36-3",
+    "title": "Sonatina in C major, Op. 36 No. 3",
+    "titleUk": "Сонатина до мажор, соч. 36 № 3",
+    "aliases": [
+      "Sonatina Op. 36 No. 3"
+    ],
+    "composer": "Muzio Clementi",
+    "composerUk": "Муцио Клементі",
+    "detail": "Op. 36 No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "kuhlau-sonatina-op55-1",
+    "title": "Sonatina in C major, Op. 55 No. 1",
+    "titleUk": "Сонатина до мажор, соч. 55 № 1",
+    "aliases": [
+      "Kuhlau Sonatina"
+    ],
+    "composer": "Friedrich Kuhlau",
+    "composerUk": "Фрідріх Кулау",
+    "detail": "Op. 55 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "burgmuller-25-studies",
+    "title": "25 Easy Studies, Op. 100",
+    "titleUk": "25 легких етюдів, соч. 100",
+    "aliases": [
+      "25 Etudes Op. 100",
+      "Burgmuller Op. 100"
+    ],
+    "composer": "Friedrich Burgmüller",
+    "composerUk": "Фрідріх Бургмюллер",
+    "detail": "Op. 100",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "czerny-op599",
+    "title": "Practical Method for Beginners, Op. 599",
+    "titleUk": "Практичний метод для початківців, соч. 599",
+    "aliases": [
+      "Czerny Op. 599",
+      "Czerny 599"
+    ],
+    "composer": "Carl Czerny",
+    "composerUk": "Карл Черні",
+    "detail": "Op. 599",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "czerny-op299",
+    "title": "The School of Velocity, Op. 299",
+    "titleUk": "Школа швидкості, соч. 299",
+    "aliases": [
+      "Czerny Op. 299",
+      "School of Velocity"
+    ],
+    "composer": "Carl Czerny",
+    "composerUk": "Карл Черні",
+    "detail": "Op. 299",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beyer-op101",
+    "title": "Preparatory School of Piano Playing, Op. 101",
+    "titleUk": "Підготовча школа гри на фортепіано, соч. 101",
+    "aliases": [
+      "Beyer Op. 101",
+      "Beyer"
+    ],
+    "composer": "Ferdinand Beyer",
+    "composerUk": "Фердинанд Бейєр",
+    "detail": "Op. 101",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Vorschule_im_Klavierspiel%2C_Op.101_%28IA_imslp-im-klavierspiel-op101-beyer-ferdinand%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Vorschule_im_Klavierspiel,_Op.101_(IA_imslp-im-klavierspiel-op101-beyer-ferdinand).pdf",
+    "license": "Public domain",
+    "sizeBytes": 10301776,
+    "pages": 88
+  },
+  {
+    "id": "hanon-virtuoso-pianist",
+    "title": "The Virtuoso Pianist, Part I",
+    "titleUk": "Піаніст-віртуоз, частина I",
+    "aliases": [
+      "Hanon",
+      "The Virtuoso Pianist"
+    ],
+    "composer": "Charles-Louis Hanon",
+    "composerUk": "Шарль-Луї Ганон",
+    "detail": "Part I",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "lysenko-elegy",
+    "title": "Elegy",
+    "titleUk": "Елегія",
+    "aliases": [
+      "Елегія",
+      "Lysenko Elegy"
+    ],
+    "composer": "Mykola Lysenko",
+    "composerUk": "Микола Лисенко",
+    "detail": "piano",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "scarlatti-k9",
+    "title": "Sonata in D minor, K. 9",
+    "titleUk": "Соната ре мінор, K. 9",
+    "aliases": [
+      "Scarlatti K. 9",
+      "Sonata K.9"
+    ],
+    "composer": "Domenico Scarlatti",
+    "composerUk": "Доменіко Скарлатті",
+    "detail": "K. 9",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "couperin-carillon",
+    "title": "Le Carillon de Cythère",
+    "titleUk": "Дзвони Кіфери",
+    "aliases": [
+      "Carillon de Cythere",
+      "The Carillon of Cythera"
+    ],
+    "composer": "François Couperin",
+    "composerUk": "Франсуа Куперен",
+    "detail": "Ordre 6",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "rameau-rappel-oiseaux",
+    "title": "Le Rappel des oiseaux",
+    "titleUk": "Поклик птахів",
+    "aliases": [
+      "Rappel des oiseaux",
+      "The Call of the Birds"
+    ],
+    "composer": "Jean-Philippe Rameau",
+    "composerUk": "Жан-Філіпп Рамо",
+    "detail": "harpsichord",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "haydn-gypsy-rondo",
+    "title": "Gypsy Rondo, Hob. XV:33",
+    "titleUk": "Циганське рондо",
+    "aliases": [
+      "Gypsy Rondo",
+      "Rondo all’ongarese"
+    ],
+    "composer": "Joseph Haydn",
+    "composerUk": "Йозеф Гайдн",
+    "detail": "Hob. XV:33",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "debussy-cathedrale-engloutie",
+    "title": "La cathédrale engloutie",
+    "titleUk": "Затонулий собор",
+    "aliases": [
+      "The Sunken Cathedral",
+      "Cathedral engloutie"
+    ],
+    "composer": "Claude Debussy",
+    "composerUk": "Клод Дебюссі",
+    "detail": "Prélude Book 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "debussy-doctor-gradus",
+    "title": "Doctor Gradus ad Parnassum",
+    "titleUk": "Доктор Градус ad Parnassum",
+    "aliases": [
+      "Doctor Gradus",
+      "Gradus ad Parnassum"
+    ],
+    "composer": "Claude Debussy",
+    "composerUk": "Клод Дебюссі",
+    "detail": "from Children’s Corner",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "debussy-des-pas-sur-la-neige",
+    "title": "Des pas sur la neige",
+    "titleUk": "Сліди на снігу",
+    "aliases": [
+      "Footprints in the Snow",
+      "Footsteps in the Snow"
+    ],
+    "composer": "Claude Debussy",
+    "composerUk": "Клод Дебюссі",
+    "detail": "Prélude Book 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "debussy-arabesque-2",
+    "title": "Arabesque No. 2",
+    "titleUk": "Арабеска № 2",
+    "aliases": [
+      "Arabesque 2"
+    ],
+    "composer": "Claude Debussy",
+    "composerUk": "Клод Дебюссі",
+    "detail": "L. 66",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "grieg-notturno",
+    "title": "Notturno, Op. 54 No. 4",
+    "titleUk": "Нотюрно, соч. 54 № 4",
+    "aliases": [
+      "Notturno"
+    ],
+    "composer": "Edvard Grieg",
+    "composerUk": "Едвард Гріг",
+    "detail": "Op. 54 No. 4",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mendelssohn-rondo-capriccioso",
+    "title": "Rondo capriccioso, Op. 14",
+    "titleUk": "Рондо-капріччіо, соч. 14",
+    "aliases": [
+      "Rondo Capriccioso"
+    ],
+    "composer": "Felix Mendelssohn",
+    "composerUk": "Фелікс Мендельсон",
+    "detail": "Op. 14",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "satie-gnossienne-3",
+    "title": "Gnossienne No. 3",
+    "titleUk": "Гносієнна № 3",
+    "aliases": [
+      "Gnossienne 3"
+    ],
+    "composer": "Erik Satie",
+    "composerUk": "Ерік Саті",
+    "detail": "Gnossienne No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-impromptu-1",
+    "title": "Impromptu No. 1 in A-flat major, Op. 29",
+    "titleUk": "Експромт № 1 ля-бемоль мажор, соч. 29",
+    "aliases": [
+      "Impromptu Op. 29"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 29",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Impromptu_No.1%2C_Op.29_%28IA_imslp-no1-op29-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Impromptu_No.1,_Op.29_(IA_imslp-no1-op29-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 613955,
+    "pages": 5
+  },
+  {
+    "id": "chopin-berceuse",
+    "title": "Berceuse in D-flat major, Op. 57",
+    "titleUk": "Колискова ре-бемоль мажор, соч. 57",
+    "aliases": [
+      "Berceuse",
+      "Lullaby Chopin"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 57",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Berceuse%2C_Op.57_%28IA_imslp-op57-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Berceuse,_Op.57_(IA_imslp-op57-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 462925,
+    "pages": 4
+  },
+  {
+    "id": "chopin-barcarolle",
+    "title": "Barcarolle in F-sharp major, Op. 60",
+    "titleUk": "Баркарола фа-дієз мажор, соч. 60",
+    "aliases": [
+      "Barcarolle"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 60",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Barcarolle%2C_Op.60_%28IA_imslp-op60-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Barcarolle,_Op.60_(IA_imslp-op60-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1072395,
+    "pages": 8
+  },
+  {
+    "id": "chopin-ballade-2",
+    "title": "Ballade No. 2 in F major, Op. 38",
+    "titleUk": "Балада № 2 фа мажор, соч. 38",
+    "aliases": [
+      "Ballade No. 2"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 38",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Ballade_No.2%2C_Op.38_%28IA_imslp-no2-op38-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Ballade_No.2,_Op.38_(IA_imslp-no2-op38-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1344075,
+    "pages": 9
+  },
+  {
+    "id": "chopin-ballade-4",
+    "title": "Ballade No. 4 in F minor, Op. 52",
+    "titleUk": "Балада № 4 фа мінор, соч. 52",
+    "aliases": [
+      "Ballade No. 4"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 52",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Ballade_No.4%2C_Op.52_%28IA_imslp-no4-op52-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Ballade_No.4,_Op.52_(IA_imslp-no4-op52-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1025814,
+    "pages": 12
+  },
+  {
+    "id": "chopin-scherzo-2",
+    "title": "Scherzo No. 2 in B-flat minor, Op. 31",
+    "titleUk": "Скерцо № 2 сі-бемоль мінор, соч. 31",
+    "aliases": [
+      "Scherzo No. 2"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 31",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Scherzo_No.2%2C_Op.31_%28IA_imslp-no2-op31-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Scherzo_No.2,_Op.31_(IA_imslp-no2-op31-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 2018902,
+    "pages": 16
+  },
+  {
+    "id": "chopin-etude-op25-1",
+    "title": "Étude in A-flat major, Op. 25 No. 1 «Aeolian Harp»",
+    "titleUk": "Етюд ля-бемоль мажор «Ейолова арфа»",
+    "aliases": [
+      "Aeolian Harp",
+      "Etude Op. 25 No. 1"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 25 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-etude-op25-11",
+    "title": "Étude in A minor, Op. 25 No. 11 «Winter Wind»",
+    "titleUk": "Етюд ля мінор «Зимовий вітер»",
+    "aliases": [
+      "Winter Wind",
+      "Etude Op. 25 No. 11"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 25 No. 11",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-waltz-op69-1",
+    "title": "Waltz in A-flat major, Op. 69 No. 1 «Farewell»",
+    "titleUk": "Вальс ля-бемоль мажор «Прощальний»",
+    "aliases": [
+      "Farewell Waltz",
+      "Waltz Op. 69 No. 1"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 69 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-nocturne-op48-1",
+    "title": "Nocturne in C minor, Op. 48 No. 1",
+    "titleUk": "Ноктюрн до мінор, соч. 48 № 1",
+    "aliases": [
+      "Nocturne Op. 48 No. 1"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 48 No. 1; у збірці: Nocturnes, Op.48",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/78/Nocturnes%2C_Op.48_%28IA_imslp-op48-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Nocturnes,_Op.48_(IA_imslp-op48-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1210406,
+    "pages": 10
+  },
+  {
+    "id": "chopin-prelude-op28-1",
+    "title": "Prelude in C major, Op. 28 No. 1",
+    "titleUk": "Прелюдія до мажор, соч. 28 № 1",
+    "aliases": [
+      "Prelude Op. 28 No. 1"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 28 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-prelude-op28-6",
+    "title": "Prelude in B minor, Op. 28 No. 6",
+    "titleUk": "Прелюдія сі мінор, соч. 28 № 6",
+    "aliases": [
+      "Prelude Op. 28 No. 6"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 28 No. 6",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-sonata-2",
+    "title": "Piano Sonata No. 2 in B-flat minor, Op. 35",
+    "titleUk": "Соната № 2 сі-бемоль мінор, соч. 35",
+    "aliases": [
+      "Funeral March Sonata Chopin"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 35",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Piano_Sonata_No.2%2C_Op.35_%28IA_imslp-sonata-no2-op35-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.2,_Op.35_(IA_imslp-sonata-no2-op35-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 2486571,
+    "pages": 16
+  },
+  {
+    "id": "schubert-impromptu-d935-3",
+    "title": "Impromptu in B-flat major, D. 935 No. 3",
+    "titleUk": "Експромт сі-бемоль мажор, D. 935 № 3",
+    "aliases": [
+      "Impromptu D.935"
+    ],
+    "composer": "Franz Schubert",
+    "composerUk": "Франц Шуберт",
+    "detail": "D. 935 No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "liszt-liebestraum-1",
+    "title": "Liebestraum No. 1, S. 541",
+    "titleUk": "Мрія № 1",
+    "aliases": [
+      "Liebestraum No. 1"
+    ],
+    "composer": "Franz Liszt",
+    "composerUk": "Ференц Ліст",
+    "detail": "S. 541 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "grieg-lyric-pieces-op12",
+    "title": "Lyric Pieces, Op. 12",
+    "titleUk": "Ліричні п’єси, соч. 12",
+    "aliases": [
+      "Lyric Pieces Op. 12"
+    ],
+    "composer": "Edvard Grieg",
+    "composerUk": "Едвард Гріг",
+    "detail": "Op. 12",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "tchaikovsky-album-young-sweet-dreams",
+    "title": "Sweet Dreams, Op. 39 No. 20",
+    "titleUk": "Солодкі сни, соч. 39 № 20",
+    "aliases": [
+      "Sweet Dreams",
+      "Album for the Young Sweet Dreams"
+    ],
+    "composer": "Pyotr Ilyich Tchaikovsky",
+    "composerUk": "Петро Ілліч Чайковський",
+    "detail": "Op. 39 No. 20",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "burgmuller-arabesque",
+    "title": "Arabesque, Op. 100 No. 2",
+    "titleUk": "Арабеска, соч. 100 № 2",
+    "aliases": [
+      "Burgmuller Arabesque"
+    ],
+    "composer": "Friedrich Burgmüller",
+    "composerUk": "Фрідріх Бургмюллер",
+    "detail": "Op. 100 No. 2",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "joplin-easy-winners",
+    "title": "The Easy Winners",
+    "titleUk": "Легкі переможці",
+    "aliases": [
+      "Easy Winners"
+    ],
+    "composer": "Scott Joplin",
+    "composerUk": "Скотт Джоплін",
+    "detail": "Rag",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "bach-prelude-d-bwv850",
+    "title": "Prelude in D major, BWV 850",
+    "titleUk": "Прелюдія ре мажор, BWV 850",
+    "aliases": [
+      "Prelude BWV 850"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV 850",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "bach-little-prelude-c-bwv939",
+    "title": "Little Prelude in C major, BWV 939",
+    "titleUk": "Маленька прелюдія до мажор, BWV 939",
+    "aliases": [
+      "Little Prelude BWV 939"
+    ],
+    "composer": "Johann Sebastian Bach",
+    "composerUk": "Йоганн Себастьян Бах",
+    "detail": "BWV 939",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beethoven-tempest",
+    "title": "Sonata No. 17 «Tempest», Op. 31 No. 2",
+    "titleUk": "Соната № 17 «Буря»",
+    "aliases": [
+      "Tempest Sonata",
+      "Tempest",
+      "Буря"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 31 No. 2",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beethoven-sonata-20",
+    "title": "Sonata No. 20 in G major, Op. 49 No. 2",
+    "titleUk": "Соната № 20 соль мажор, соч. 49 № 2",
+    "aliases": [
+      "Sonata Op. 49 No. 2",
+      "Sonatina G major"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 49 No. 2",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Piano_Sonata_No.20%2C_Op.49_No.2_%28IA_imslp-sonata-no20-op49-no2-beethoven-ludwig-van%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.20,_Op.49_No.2_(IA_imslp-sonata-no20-op49-no2-beethoven-ludwig-van).pdf",
+    "license": "Public domain",
+    "sizeBytes": 962040,
+    "pages": 7
+  },
+  {
+    "id": "beethoven-sonata-19",
+    "title": "Sonata No. 19 in G minor, Op. 49 No. 1",
+    "titleUk": "Соната № 19 соль мінор, соч. 49 № 1",
+    "aliases": [
+      "Sonata Op. 49 No. 1"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 49 No. 1",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Piano_Sonata_No.19%2C_Op.49_No.1_%28IA_imslp-sonata-no19-op49-no1-beethoven-ludwig-van%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.19,_Op.49_No.1_(IA_imslp-sonata-no19-op49-no1-beethoven-ludwig-van).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1098230,
+    "pages": 8
+  },
+  {
+    "id": "beethoven-sonata-5",
+    "title": "Sonata No. 5 in C minor, Op. 10 No. 1",
+    "titleUk": "Соната № 5 до мінор, соч. 10 № 1",
+    "aliases": [
+      "Sonata Op. 10 No. 1"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 10 No. 1",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beethoven-sonata-6",
+    "title": "Sonata No. 6 in F major, Op. 10 No. 2",
+    "titleUk": "Соната № 6 фа мажор, соч. 10 № 2",
+    "aliases": [
+      "Sonata Op. 10 No. 2"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 10 No. 2",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Piano_Sonata_No.6%2C_Op.10_No.2_%28IA_imslp-sonata-no6-op10-no2-beethoven-ludwig-van%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.6,_Op.10_No.2_(IA_imslp-sonata-no6-op10-no2-beethoven-ludwig-van).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1797190,
+    "pages": 12
+  },
+  {
+    "id": "beethoven-sonata-7",
+    "title": "Sonata No. 7 in D major, Op. 10 No. 3",
+    "titleUk": "Соната № 7 ре мажор, соч. 10 № 3",
+    "aliases": [
+      "Sonata Op. 10 No. 3"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 10 No. 3",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beethoven-sonata-11",
+    "title": "Sonata No. 11 in B-flat major, Op. 22",
+    "titleUk": "Соната № 11 сі-бемоль мажор, соч. 22",
+    "aliases": [
+      "Sonata Op. 22"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 22",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Piano_Sonata_No.11%2C_Op.22_%28IA_imslp-sonata-no11-op22-beethoven-ludwig-van%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.11,_Op.22_(IA_imslp-sonata-no11-op22-beethoven-ludwig-van).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1800612,
+    "pages": 23
+  },
+  {
+    "id": "beethoven-sonata-15-pastoral",
+    "title": "Sonata No. 15 «Pastoral», Op. 28",
+    "titleUk": "Соната № 15 «Пасторальна»",
+    "aliases": [
+      "Pastoral Sonata",
+      "Sonata Op. 28"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 28",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beethoven-bagatelles-op33",
+    "title": "7 Bagatelles, Op. 33",
+    "titleUk": "7 багателей, соч. 33",
+    "aliases": [
+      "Bagatelles Op. 33"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 33",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "beethoven-andante-favori",
+    "title": "Andante favori, WoO 57",
+    "titleUk": "Улюблене андант, WoO 57",
+    "aliases": [
+      "Andante favori"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "WoO 57",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Andante_favori%2C_WoO_57_%28IA_imslp-favori-woo-57-beethoven-ludwig-van%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Andante_favori,_WoO_57_(IA_imslp-favori-woo-57-beethoven-ludwig-van).pdf",
+    "license": "Public domain",
+    "sizeBytes": 673970,
+    "pages": 10
+  },
+  {
+    "id": "beethoven-lustig-traurig-woo54",
+    "title": "Lustig – Traurig, WoO 54",
+    "titleUk": "Веселий – Сумний, WoO 54",
+    "aliases": [
+      "Lustig Traurig",
+      "Bagatelle in C minor",
+      "Bagatelle WoO 54",
+      "Багатель до мінор"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "WoO 54; багатель до мінор",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Bagatelle_in_C_minor%2C_WoO_54_%28IA_imslp-in-c-minor-woo-54-beethoven-ludwig-van%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Bagatelle_in_C_minor,_WoO_54_(IA_imslp-in-c-minor-woo-54-beethoven-ludwig-van).pdf",
+    "license": "Public domain",
+    "sizeBytes": 121807,
+    "pages": 1
+  },
+  {
+    "id": "beethoven-sonata-24",
+    "title": "Sonata No. 24 «À Thérèse», Op. 78",
+    "titleUk": "Соната № 24, соч. 78",
+    "aliases": [
+      "Sonata Op. 78",
+      "A Therese"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 78",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Piano_Sonata_No.24%2C_Op.78_%28IA_imslp-sonata-no24-op78-beethoven-ludwig-van%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.24,_Op.78_(IA_imslp-sonata-no24-op78-beethoven-ludwig-van).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1679919,
+    "pages": 12
+  },
+  {
+    "id": "beethoven-sonata-26-adieux",
+    "title": "Sonata No. 26 «Les Adieux», Op. 81a",
+    "titleUk": "Соната № 26 «Прощальна»",
+    "aliases": [
+      "Les Adieux",
+      "Farewell Sonata"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 81a",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/Piano_Sonata_No.26%2C_Op.81a_%28IA_imslp-sonata-no26-op81a-beethoven-ludwig-van%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.26,_Op.81a_(IA_imslp-sonata-no26-op81a-beethoven-ludwig-van).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1903604,
+    "pages": 16
+  },
+  {
+    "id": "beethoven-sonata-25",
+    "title": "Sonata No. 25 in G major, Op. 79",
+    "titleUk": "Соната № 25 соль мажор, соч. 79",
+    "aliases": [
+      "Sonata Op. 79"
+    ],
+    "composer": "Ludwig van Beethoven",
+    "composerUk": "Людвіг ван Бетховен",
+    "detail": "Op. 79",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mozart-sonata-k457",
+    "title": "Sonata No. 14 in C minor, K. 457",
+    "titleUk": "Соната № 14 до мінор, K. 457",
+    "aliases": [
+      "Sonata K.457"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 457",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mozart-sonata-k570",
+    "title": "Sonata No. 17 in B-flat major, K. 570",
+    "titleUk": "Соната № 17 сі-бемоль мажор, K. 570",
+    "aliases": [
+      "Sonata K.570"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 570",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mozart-sonata-k576",
+    "title": "Sonata No. 18 in D major, K. 576",
+    "titleUk": "Соната № 18 ре мажор, K. 576",
+    "aliases": [
+      "Sonata K.576"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 576",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/60/Piano_Sonata_No.18_in_D_major%2C_K.576_%28IA_imslp-sonata-no18-in-d-major-k576-mozart-wolfgang-amadeus%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.18_in_D_major,_K.576_(IA_imslp-sonata-no18-in-d-major-k576-mozart-wolfgang-amadeus).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1189407,
+    "pages": 16
+  },
+  {
+    "id": "mozart-sonata-k311",
+    "title": "Sonata No. 9 in D major, K. 311",
+    "titleUk": "Соната № 9 ре мажор, K. 311",
+    "aliases": [
+      "Sonata K.311"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 311",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Piano_Sonata_No.9_in_D_major%2C_K.311-284c_%28IA_imslp-sonata-no9-in-d-major-k311284c-mozart-wolfgang-amadeus%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.9_in_D_major,_K.311-284c_(IA_imslp-sonata-no9-in-d-major-k311284c-mozart-wolfgang-amadeus).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1240545,
+    "pages": 18
+  },
+  {
+    "id": "mozart-sonata-k332",
+    "title": "Sonata No. 12 in F major, K. 332",
+    "titleUk": "Соната № 12 фа мажор, K. 332",
+    "aliases": [
+      "Sonata K.332"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 332",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Piano_Sonata_No.12_in_F_major%2C_K.332-300k_%28IA_imslp-sonata-no12-in-f-major-k332300k-mozart-wolfgang-amadeus%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.12_in_F_major,_K.332-300k_(IA_imslp-sonata-no12-in-f-major-k332300k-mozart-wolfgang-amadeus).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1262901,
+    "pages": 18
+  },
+  {
+    "id": "mozart-sonata-k279",
+    "title": "Sonata No. 1 in C major, K. 279",
+    "titleUk": "Соната № 1 до мажор, K. 279",
+    "aliases": [
+      "Sonata K.279"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 279",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Piano_Sonata_No.1_in_C_major%2C_K.279-189d_%28IA_imslp-sonata-no1-in-c-major-k279189d-mozart-wolfgang-amadeus%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.1_in_C_major,_K.279-189d_(IA_imslp-sonata-no1-in-c-major-k279189d-mozart-wolfgang-amadeus).pdf",
+    "license": "Public domain",
+    "sizeBytes": 875554,
+    "pages": 12
+  },
+  {
+    "id": "mozart-sonata-k280",
+    "title": "Sonata No. 2 in F major, K. 280",
+    "titleUk": "Соната № 2 фа мажор, K. 280",
+    "aliases": [
+      "Sonata K.280"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 280",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/09/Piano_Sonata_No.2_in_F_major%2C_K.280-189e_%28IA_imslp-sonata-no2-in-f-major-k280189e-mozart-wolfgang-amadeus%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.2_in_F_major,_K.280-189e_(IA_imslp-sonata-no2-in-f-major-k280189e-mozart-wolfgang-amadeus).pdf",
+    "license": "Public domain",
+    "sizeBytes": 803050,
+    "pages": 12
+  },
+  {
+    "id": "mozart-adagio-rondo-k617",
+    "title": "Adagio and Rondo in C minor, K. 617",
+    "titleUk": "Адажіо і рондо до мінор, K. 617",
+    "aliases": [
+      "Adagio and Rondo K.617"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 617",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "mozart-fugue-k401",
+    "title": "Fugue in G minor, K. 401",
+    "titleUk": "Фуга соль мінор, K. 401",
+    "aliases": [
+      "Fugue K.401"
+    ],
+    "composer": "Wolfgang Amadeus Mozart",
+    "composerUk": "Вольфганг Амадей Моцарт",
+    "detail": "K. 401",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "schumann-album-jugend",
+    "title": "Album for the Young, Op. 68",
+    "titleUk": "Альбом для юнацтва, соч. 68",
+    "aliases": [
+      "Album fuer die Jugend",
+      "Album für die Jugend",
+      "Album for the Young"
+    ],
+    "composer": "Robert Schumann",
+    "composerUk": "Роберт Шуман",
+    "detail": "Op. 68",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "schumann-carnaval",
+    "title": "Carnaval, Op. 9",
+    "titleUk": "Карнавал, соч. 9",
+    "aliases": [
+      "Carnaval"
+    ],
+    "composer": "Robert Schumann",
+    "composerUk": "Роберт Шуман",
+    "detail": "Op. 9",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "chopin-fantaisie-op49",
+    "title": "Fantaisie in F minor, Op. 49",
+    "titleUk": "Фантазія фа мінор, соч. 49",
+    "aliases": [
+      "Fantasie Op. 49"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 49",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Fantaisie%2C_Op.49_%28IA_imslp-op49-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Fantaisie,_Op.49_(IA_imslp-op49-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1089426,
+    "pages": 14
+  },
+  {
+    "id": "chopin-scherzo-1",
+    "title": "Scherzo No. 1 in B minor, Op. 20",
+    "titleUk": "Скерцо № 1 сі мінор, соч. 20",
+    "aliases": [
+      "Scherzo No. 1"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 20",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Scherzo_No.1%2C_Op.20_%28IA_imslp-no1-op20-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Scherzo_No.1,_Op.20_(IA_imslp-no1-op20-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1657288,
+    "pages": 17
+  },
+  {
+    "id": "chopin-ballade-3",
+    "title": "Ballade No. 3 in A-flat major, Op. 47",
+    "titleUk": "Балада № 3 ля-бемоль мажор, соч. 47",
+    "aliases": [
+      "Ballade No. 3"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 47",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Ballade_No.3%2C_Op.47_%28IA_imslp-no3-op47-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Ballade_No.3,_Op.47_(IA_imslp-no3-op47-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 1841481,
+    "pages": 11
+  },
+  {
+    "id": "chopin-sonata-3",
+    "title": "Piano Sonata No. 3 in B minor, Op. 58",
+    "titleUk": "Соната № 3 сі мінор, соч. 58",
+    "aliases": [
+      "Sonata No. 3"
+    ],
+    "composer": "Frédéric Chopin",
+    "composerUk": "Фредерік Шопен",
+    "detail": "Op. 58",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Piano_Sonata_No.3%2C_Op.58_%28IA_imslp-sonata-no3-op58-chopin-frdric%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No.3,_Op.58_(IA_imslp-sonata-no3-op58-chopin-frdric).pdf",
+    "license": "Public domain",
+    "sizeBytes": 3603074,
+    "pages": 26
+  },
+  {
+    "id": "liszt-ballade-2",
+    "title": "Ballade No. 2 in B minor, S. 171",
+    "titleUk": "Балада № 2 сі мінор, S. 171",
+    "aliases": [
+      "Ballade No. 2"
+    ],
+    "composer": "Franz Liszt",
+    "composerUk": "Ференц Ліст",
+    "detail": "S. 171",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  },
+  {
+    "id": "liszt-mephisto-1",
+    "title": "Mephisto Waltz No. 1, S. 514",
+    "titleUk": "Мефісто-вальс № 1, S. 514",
+    "aliases": [
+      "Mephisto Waltz"
+    ],
+    "composer": "Franz Liszt",
+    "composerUk": "Ференц Ліст",
+    "detail": "S. 514",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Mephisto_Waltz_No.1%2C_S.514_%28IA_imslp-waltz-no1-s514-liszt-franz%29.pdf",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Mephisto_Waltz_No.1,_S.514_(IA_imslp-waltz-no1-s514-liszt-franz).pdf",
+    "license": "Public domain",
+    "sizeBytes": 3146613,
+    "pages": 28
+  },
+  {
+    "id": "liszt-hungarian-rhapsody-6",
+    "title": "Hungarian Rhapsody No. 6, S. 244/6",
+    "titleUk": "Угорська рапсодія № 6",
+    "aliases": [
+      "Hungarian Rhapsody 6"
+    ],
+    "composer": "Franz Liszt",
+    "composerUk": "Ференц Ліст",
+    "detail": "S. 244/6",
+    "fileUrl": null,
+    "pageUrl": null,
+    "license": null,
+    "sizeBytes": null,
+    "pages": null
+  }
+]

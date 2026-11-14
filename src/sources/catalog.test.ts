@@ -270,6 +270,7 @@ describe('searchCatalog and popularCatalog on the real catalogue', () => {
   it('popularCatalog returns only resolved entries', () => {
     const hits = popularCatalog();
     expect(hits.every((h) => h.fileUrl !== null)).toBe(true);
-    expect(hits.length).toBe(CATALOG.filter((e) => e.fileUrl !== null).length);
+    expect(hits.length).toBe(Math.min(12, CATALOG.filter((e) => e.fileUrl !== null).length));
+    expect(hits[0]?.id).toBe('catalog:beethoven-fur-elise');
   });
 });
