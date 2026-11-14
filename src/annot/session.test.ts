@@ -373,6 +373,76 @@ describe('annotation session: storage', () => {
     expect(s.isDirty()).toBe(true);
   });
 
+  it('undo after an early mark never drops saved marks, and commit keeps them (F1a)', async () => {
+    await storage.setMarks(SCORE, 1, [stroke('a')]);
+    const s = createAnnotSession(storage, SCORE);
+    const loading = s.load(1);
+    s.addMark(1, stroke('early'));
+    await loading;
+    s.undo(1);
+    expect(s.getMarks(1).map((m) => m.id)).toEqual(['a']);
+    s.redo(1);
+    expect(s.getMarks(1).map((m) => m.id)).toEqual(['a', 'early']);
+    s.undo(1);
+    await s.commit();
+    expect((await storage.getMarks(SCORE, 1)).map((m) => m.id)).toEqual(['a']);
+    expect(s.isDirty()).toBe(false);
+  });
+
+  it('clear page before load finishes, then undo, restores saved marks (F1a)', async () => {
+    await storage.setMarks(SCORE, 1, [stroke('a')]);
+    const s = createAnnotSession(storage, SCORE);
+    const loading = s.load(1);
+    s.addMark(1, stroke('early'));
+    s.clearPage(1);
+    await loading;
+    s.undo(1);
+    s.undo(1);
+    expect(s.getMarks(1).map((m) => m.id)).toEqual(['a']);
+  });
+
+  it('a page whose load failed is never written; commit reports it; retry works (F1b)', async () => {
+    await storage.setMarks(SCORE, 1, [stroke('a')]);
+    let failGet = true;
+    const flaky: StorageApi = {
+      ...storage,
+      async getMarks(id, page) {
+        if (failGet) throw new Error('read failed');
+        return storage.getMarks(id, page);
+      },
+    };
+    const s = createAnnotSession(flaky, SCORE);
+    await expect(s.load(1)).rejects.toThrow('read failed');
+    s.addMark(1, stroke('new'));
+    await expect(s.commit()).rejects.toThrow();
+    expect((await storage.getMarks(SCORE, 1)).map((m) => m.id)).toEqual(['a']);
+    expect(s.isDirty()).toBe(true);
+    // The disk is back: load can be retried and commit then keeps the saved marks.
+    failGet = false;
+    await s.load(1);
+    expect(s.getMarks(1).map((m) => m.id)).toEqual(['a', 'new']);
+    await s.commit();
+    expect((await storage.getMarks(SCORE, 1)).map((m) => m.id)).toEqual(['a', 'new']);
+  });
+
+  it('commit retries a failed load itself and then saves without losing marks (F1b)', async () => {
+    await storage.setMarks(SCORE, 1, [stroke('a')]);
+    let failGet = true;
+    const flaky: StorageApi = {
+      ...storage,
+      async getMarks(id, page) {
+        if (failGet) throw new Error('read failed');
+        return storage.getMarks(id, page);
+      },
+    };
+    const s = createAnnotSession(flaky, SCORE);
+    await expect(s.load(1)).rejects.toThrow();
+    s.addMark(1, stroke('new'));
+    failGet = false;
+    await s.commit();
+    expect((await storage.getMarks(SCORE, 1)).map((m) => m.id)).toEqual(['a', 'new']);
+  });
+
   it('subscribe fires after a commit', async () => {
     const s = createAnnotSession(storage, SCORE);
     await s.load(1);

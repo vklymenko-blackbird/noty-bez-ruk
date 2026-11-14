@@ -33,6 +33,16 @@ function sameMarks(a: Mark[], b: Mark[]): boolean {
   return true;
 }
 
+/** Thrown by commit when some pages could not be read first, so their saved marks stay untouched. */
+export class AnnotLoadError extends Error {
+  readonly pages: number[];
+  constructor(pages: number[]) {
+    super('annot load failed');
+    this.name = 'AnnotLoadError';
+    this.pages = pages;
+  }
+}
+
 export function createAnnotSession(storage: StorageApi, scoreId: ScoreId): AnnotSession {
   let tool: AnnotToolState = { tool: 'pen', color: 'ink', stampDigit: 1 };
   const pages = new Map<number, PageState>();
@@ -68,7 +78,16 @@ export function createAnnotSession(storage: StorageApi, scoreId: ScoreId): Annot
     const st = pageOf(page);
     st.committed = saved;
     // Marks added before the load finished stay on top of the saved marks, so they are not lost.
-    st.current = st.edited ? [...saved, ...st.current] : saved;
+    // Every snapshot taken before the load lacks the saved marks: add them, so undo and redo
+    // never drop what was saved. An empty snapshot becomes the saved list itself.
+    if (st.edited) {
+      const withSaved = (list: Mark[]): Mark[] => (list.length === 0 ? saved : [...saved, ...list]);
+      st.undo = st.undo.map(withSaved);
+      st.redo = st.redo.map(withSaved);
+      st.current = withSaved(st.current);
+    } else {
+      st.current = saved;
+    }
     st.loaded = true;
     notify();
   };
@@ -76,13 +95,36 @@ export function createAnnotSession(storage: StorageApi, scoreId: ScoreId): Annot
   const doCommit = async (): Promise<void> => {
     // Wait for any load that is still running, so a save never overwrites marks not yet read.
     await Promise.all([...loading.values()].map((p) => p.catch(() => undefined)));
+    const failed: number[] = [];
     for (const [page, st] of [...pages.entries()]) {
+      if (!st.loaded) {
+        // Saved marks were never read. Try once more; never write over what we have not seen.
+        if (sameMarks(st.current, st.committed)) continue;
+        try {
+          await loadPage(page);
+        } catch {
+          failed.push(page);
+          continue;
+        }
+      }
       if (sameMarks(st.current, st.committed)) continue;
       const snapshot = st.current;
       await storage.setMarks(scoreId, page, snapshot);
       st.committed = snapshot;
       notify();
     }
+    if (failed.length > 0) throw new AnnotLoadError(failed);
+  };
+
+  const loadPage = (page: number): Promise<void> => {
+    if (pageOf(page).loaded) return Promise.resolve();
+    const pending = loading.get(page);
+    if (pending) return pending;
+    const p = doLoad(page).finally(() => {
+      loading.delete(page);
+    });
+    loading.set(page, p);
+    return p;
   };
 
   return {
@@ -100,14 +142,7 @@ export function createAnnotSession(storage: StorageApi, scoreId: ScoreId): Annot
     },
 
     async load(page) {
-      if (pageOf(page).loaded) return;
-      const pending = loading.get(page);
-      if (pending) return pending;
-      const p = doLoad(page).finally(() => {
-        loading.delete(page);
-      });
-      loading.set(page, p);
-      return p;
+      return loadPage(page);
     },
 
     getMarks: (page) => pageOf(page).current,

@@ -77,7 +77,9 @@ export default function AnnotationLayer({ session, page, crop, editing, paper, f
       () => {
         if (alive) redraw();
       },
-      () => {},
+      () => {
+        if (alive) toast(t('annot.loadFailed'), { kind: 'error' });
+      },
     );
     redraw();
     return () => {

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import type { AnnotationToolbarProps, PenColor } from '../contracts';
 import { t, type StringKey } from '../i18n';
 import { Button, ConfirmSheet, IconButton, toast } from '../ui';
+import { AnnotLoadError } from './session';
 import './annot.css';
 
 /** The dot colour comes from the CSS: .ui-chip__swatch[data-swatch] maps each name to a pen token. */
@@ -39,10 +40,10 @@ export default function AnnotationToolbar({ session, page, onDone, onCancel }: A
     setSaving(true);
     try {
       await session.commit();
-    } catch {
+    } catch (e) {
       savingRef.current = false;
       setSaving(false);
-      toast(t('annot.saveFailed'), { kind: 'error' });
+      toast(t(e instanceof AnnotLoadError ? 'annot.loadFailed' : 'annot.saveFailed'), { kind: 'error' });
       return;
     }
     savingRef.current = false;
